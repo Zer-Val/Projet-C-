@@ -1,23 +1,15 @@
-#ifndef EUROPEANVANILLAOPTION_H
-#define EUROPEANVANILLAOPTION_H
+// EuropeanVanillaOption.cpp
+#include "EuropeanVanillaOption.h"
 
-#include "Options.h" // Assurez-vous que le chemin est correct
-#include <stdexcept> // Pour std::invalid_argument
+// Constructeur qui initialise _expiry et _strike
+EuropeanVanillaOption::EuropeanVanillaOption(double expiry, double strike)
+    : Option(expiry), _strike(strike) {
+    if (expiry < 0 || strike < 0) {
+        throw std::invalid_argument("Expiry and strike must be non-negative");
+    }
+}
 
-class EuropeanVanillaOption : public Option {
-public:
-    enum class OptionType { Call, Put };
-
-    EuropeanVanillaOption(double expiry, double strike);
-    virtual ~EuropeanVanillaOption() {}
-
-    virtual OptionType GetOptionType() const = 0; // Méthode virtuelle pure
-
-    double getStrike() const;
-    double getExpiry() const;
-
-private:
-    double _strike;
-};
-
-#endif // EUROPEANVANILLAOPTION_H
+// MÃ©thode getter pour _strike
+double EuropeanVanillaOption::getStrike() const {
+    return _strike;
+}
