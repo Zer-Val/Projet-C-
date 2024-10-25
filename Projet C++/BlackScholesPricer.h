@@ -4,25 +4,21 @@
 
 #ifndef BLACKSCHOLESPRICER_H
 #define BLACKSCHOLESPRICER_H
+
 class BlackScholesPricer {
 public:
-    //Constructeur de la classe BSP
-    BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility);
-
-    //On dÈfinit l'opÈrateur () pour retourner le prix d'une option
-    double operator()() const;
-
-    //MÈthode pour retourner le Delta d'une option
-    double delta() const;
-
-private:
     
-    EuropeanVanillaOption* option_;
-    double asset_price;
-    double interest_rate;
-    double volatility;
+    BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility); //Constructeur de la classe BSP
+    double operator()() const; //Op√©rateur () pour calculer le prix de l'option
+    double delta() const; //M√©thode pour calculer le delta de l'option
 
-    //MÈthode pour calculer la Frep cumulative de la loi normale
-    double normal_cdf(double x) const;
+private: 
+	EuropeanVanillaOption* option_; //Pointeur vers l'option qu'on veut pricer
+	double asset_price_; //Prix de l'actif sous-jacent (S)
+	double interest_rate_; //Taux d'int√©r√™t (r)
+	double volatility_;  //Volatilit√© (vol)
+
+    double normal_cdf(double x) const; //M√©thode pour calculer la fonction de r√©partition cumulative de la loi normale
 };
+
 #endif //BLACKSCHOLESPRICER_H
