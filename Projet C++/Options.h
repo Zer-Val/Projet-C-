@@ -3,21 +3,19 @@
 #ifndef OPTION_H
 #define OPTION_H
 
-class Option 
-{
-    private:
-        double _expiry;
+class Option {
+public:
+    //Constructeur qui initialise _expiry
+    Option(double expiry);
 
-    public:
-        //Constructeur qui initialise _expiry
-        Option(double expiry);
+    //Méthode getter pour _expiry
+    double getExpiry() const;
 
-        //Getter pour _expiry
-        double getExpiry() const;
+    //Méthode virtuelle pure pour le calcul du payoff
+    virtual double payoff(double underlyingPrice) const = 0;
 
-		//M�thode virtuelle pour le calcul du payoff de l'option
-        virtual double payoff(double) const = 0;
-
+private:
+    double _expiry; //Membre privé pour la date d'expiration
 };
 
 #endif //OPTION_H
