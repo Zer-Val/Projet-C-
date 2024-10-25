@@ -1,14 +1,20 @@
-#include "CallOption.h"
+#pragma once
+#include "EuropeanVanillaOption.h"
 
-//Constructeur qui utilise le celui de EVO
-CallOption::CallOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
+#ifndef CALLOPTION_H
+#define CALLOPTION_H
 
-//ImplÈmentation de payoff pour une Call
-double CallOption::payoff(double z) const {
-	return (z >= getStrike()) ? (z - getStrike()) : 0.0;   // ? est un opÈrateur ternaire, je m'en sers pour Ècrire des conditions if-else en une seule ligne. Ici (z >= getStrike()) ? (z - getStrike()) : 0.0 <=> if (z >= getStrike()) { return z - getStrike(); } else { return 0.0; }
-}
+class CallOption : public EuropeanVanillaOption 
+{
+    public:
+        //Constructeur, utilise le celui de EVO
+        CallOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
 
-//ImplÈmentation de GetOptionType pour une Call
-EuropeanVanillaOption::optionType CallOption::GetOptionType() const {
-    return optionType::call;
-}
+        //Impl√©mentation de payoff pour une Call
+        double payoff(double z) const override;
+
+		//Impl√©mentation de GetOptionType pour une Call
+        optionType GetOptionType() const override;
+};
+
+#endif //CALLOPTION_H
