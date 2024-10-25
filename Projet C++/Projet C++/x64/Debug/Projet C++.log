@@ -1,0 +1,33 @@
+﻿  BinaryTree.cpp
+  BlackScholesPricer.cpp
+C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.cpp(4,21): error C2995: 'void BinaryTree<T>::setDepth(int)' : modèle de fonction déjà défini
+      C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.h(12,10):
+      voir la déclaration de 'BinaryTree<T>::setDepth'
+  
+C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.cpp(13,21): error C2995: 'void BinaryTree<T>::setNode(int,int,T)' : modèle de fonction déjà défini
+      C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.h(13,10):
+      voir la déclaration de 'BinaryTree<T>::setNode'
+  
+C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.cpp(22,18): error C2995: 'T BinaryTree<T>::getNode(int,int) const' : modèle de fonction déjà défini
+      C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.h(14,7):
+      voir la déclaration de 'BinaryTree<T>::getNode'
+  
+C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.cpp(31,21): error C2995: 'void BinaryTree<T>::display(void) const' : modèle de fonction déjà défini
+      C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\BinaryTree.h(15,10):
+      voir la déclaration de 'BinaryTree<T>::display'
+  
+  CallOption.cpp
+  EuropeanVanillaOption.cpp
+C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\EuropeanVanillaOption.cpp(4,31): error C2084: la fonction 'double EuropeanVanillaOption::getStrike(void) const' a déjà un corps
+      C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\EuropeanVanillaOption.h(20,12):
+      voir la définition précédente de « EuropeanVanillaOption::getStrike »
+  
+C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\EuropeanVanillaOption.cpp(10,24): error C2084: la fonction 'EuropeanVanillaOption::EuropeanVanillaOption(double,double)' a déjà un corps
+      C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\EuropeanVanillaOption.h(15,5):
+      voir la définition précédente de « EuropeanVanillaOption::EuropeanVanillaOption »
+  
+C:\Users\tankd\Documents\Archives 3 (ESILV)\Année\A4\S7\C++ for Finance\Projet\Projet C++\EuropeanVanillaOption.cpp(10,78): error C2614: 'EuropeanVanillaOption' : initialisation de membre non conforme : 'Option' n'est ni une base ni un membre
+  Options.cpp
+  Projet C++.cpp
+  PutOption.cpp
+  Génération de code en cours...
