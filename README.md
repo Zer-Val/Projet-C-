@@ -5,8 +5,8 @@ Ce projet est un projet académique sur l'utilisation de C++ dans le domaine de 
 Notre objectif est d'essayer de modéliser le prix avec le modèle de Black-Scholes, puis avec celui de Cox-Ross-Rubinstein
 
 
-# Part I
-## Black-Scholes Model (2-3h)
+## Part I
+# Black-Scholes Model (2-3h)
 ### 1 Model specification
 A European vanilla option has the following characteristics:
 - Type: Call or Put (to be modelled with an enum)
@@ -48,20 +48,21 @@ constructor)
          { K - z, if K ≥ z
   h(z) = { 0, otherwise
 
- Override the GetOptionType() accordingly in the derived classes
+- Override the GetOptionType() accordingly in the derived classes
+
 4. Create the class BlackScholesPricer
-2
- With constructor BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
+
+- With constructor BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
 double interest_rate, double volatility)
- Declare BlackScholesPricer as a friend class of EuropeanVanillaOption in order for the
+- Declare BlackScholesPricer as a friend class of EuropeanVanillaOption in order for the
 former to access the strike of the latter
- Write the operator() which returns the price of the option. The Black-Scholes formula
+- Write the operator() which returns the price of the option. The Black-Scholes formula
 can be found on the internet. (Hint: use std::erfc.)
- Write the method delta() which returns the Delta of the option
-3
-Part II
-The Cox-Ross-Rubinstein model (3h)
-3 The CRR model
+- Write the method delta() which returns the Delta of the option
+
+## Part II
+# The Cox-Ross-Rubinstein model (3h)
+### 3 The CRR model
 In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1, 2, · · · ). Randomly,
 it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
 the spot price S0 (see Figure below).
