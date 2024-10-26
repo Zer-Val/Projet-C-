@@ -114,19 +114,20 @@ at the given indices
 
 
 2. Create the class CRRPricer
- With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
+   
+- With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
 double down, double interest_rate)
- depth: N
- asset_price: S0
- up, down, interest_rate: U,D,R respectively
- In the constructor, check for arbitrage
- Create the tree structure to store the tree of the desired depth (hint: use BinaryTree
+   - depth: N
+   - asset_price: S0
+   - up, down, interest_rate: U,D,R respectively
+- In the constructor, check for arbitrage
+- Create the tree structure to store the tree of the desired depth (hint: use BinaryTree
 with an appropriate type)
- Write the method void compute() that implements the CRR procedure
- Write the getter method get(int, int) that returns H (n, i).
- Write the operator() which returns the price of the option, it must call compute() if
+- Write the method void compute() that implements the CRR procedure
+- Write the getter method get(int, int) that returns H (n, i).
+- Write the operator() which returns the price of the option, it must call compute() if
 needed
- The CRR method provides also a closed-form formula for option pricing:
+- The CRR method provides also a closed-form formula for option pricing:
 H(0, 0) =
 1
 (1 + R)N
@@ -137,7 +138,7 @@ i!(N − i)!
 qi(1 − q)N−ih (S (N, i)) .
 Put an optional argument bool closed_form that defaults to false to the operator().
 When it is set to true, the above formula should be used instead of the CRR procedure.
-3. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
+4. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
 (EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
 the following type of options:
  Digital Call with payo: h (z) = 1z≥K
