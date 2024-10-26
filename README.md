@@ -110,12 +110,9 @@ allocate/deallocate properly the vectors in tree
 at the given indices
 - Implement the getter method getNode(int, int) which retrives the corresponding value
 - Implement the method display() which prints the all the values stored
+![Graphique CRR](images/Graphique2CRR.png)
 
-(a) Examples with N=3 and N=5
-(b) Examples with N=10
 
-Figure 2: Examples of output by the display() function
-6
 2. Create the class CRRPricer
  With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
 double down, double interest_rate)
