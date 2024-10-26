@@ -76,20 +76,20 @@ the spot price S0 (see Figure below).
 
 As a result, the stock price at step n and node i is:
 
-S(n, i) = S0 (1 + U)^i (1 + D)^(n−i) ,
+S(n, i) = S0 * (1 + U)^i * (1 + D)^(n−i) ,
 
-where S0 > 0,U > D > −1 and 0 ≤ i ≤ n. 
+where S0 > 0, U > D > −1 and 0 ≤ i ≤ n. 
 
 There is also a risk-free asset which grows by the factor 1 + R > 0 at each time step 
 (starting at 1 at step 0).
 The model admits no arbitrage if and onfly if D < R < U.
 
-In the CRR model the price H(n, i) at time step n and node i of a European option with
-expiry date N and payoff h(S (N)) can be computed using the CRR procedure, which proceeds
-by backward induction :
+In the CRR model the price H(n, i) at time step n and node i of a European option 
+with expiry date N and payoff h(S (N)) can be computed using the CRR procedure,
+which proceeds by backward induction :
 
 - At the expiry date N:
-                  H(N, i) = h(S (N, i))
+    H(N, i) = h(S (N, i))
 for each node i = 0, · · · ,N.
 
 - If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · ,N − 1,
