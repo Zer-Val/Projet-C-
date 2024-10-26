@@ -100,7 +100,7 @@ q = (R − D)/(U − D)    is called the risk-neutral probability.
 1. Implement a class BinaryTree that represents the data structure (path tree) used for the
 CRR method:
 
-- It should be a template class BinaryTree<T>
+- It should be a template class BinaryTree<T>  
 - It should have a member _depth, representing N
 - It should contain a private member _tree, a vector of vectors (STL) to hold data of
 type T
