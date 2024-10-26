@@ -129,14 +129,8 @@ with an appropriate type)
 - Write the operator() which returns the price of the option, it must call compute() if
 needed
 - The CRR method provides also a closed-form formula for option pricing:
-H(0, 0) =
-1
-(1 + R)N
-XN
-i=0
-N!
-i!(N − i)!
-qi(1 − q)N−ih (S (N, i)) .
+H(0, 0) = 1/(1 + R)^N ∑(i=0,N) N!/(i!(N − i)!) q^i(1 − q)^(N−i) h(S (N, i))
+&#x2211;
 Put an optional argument bool closed_form that defaults to false to the operator().
 When it is set to true, the above formula should be used instead of the CRR procedure.
 4. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
