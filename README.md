@@ -38,15 +38,25 @@ constructor)
 - write an pure virtual method GetOptionType() which should return an optionType enum
 
 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.
- They should use the constructor of EuropeanVanillaOption
- For a Call option with strike K, the payo is given by h (z) =
-(
-z − K if z ≥ K
-0 otherwise.
- For a Put option with strike K, the payo is given by h (z) =
-(
-K − z if K ≥ z
-0 otherwise.
+
+- They should use the constructor of EuropeanVanillaOption
+- For a Call option with strike \( K \), the payoff is given by:
+  \[
+  h(z) = 
+  \begin{cases}
+      z - K, & \text{if } z \geq K \\
+      0, & \text{otherwise}
+  \end{cases}
+  \]
+- For a Put option with strike \( K \), the payoff is given by:
+  \[
+  h(z) = 
+  \begin{cases}
+      K - z, & \text{if } K \geq z \\
+      0, & \text{otherwise}
+  \end{cases}
+  \]
+
  Override the GetOptionType() accordingly in the derived classes
 4. Create the class BlackScholesPricer
 2
