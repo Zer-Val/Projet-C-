@@ -68,7 +68,7 @@ In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1,
 it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
 the spot price S0 (see Figure below).
 
-![Figure 1: Binary Tree](C:/Users/tankd/Desktop/Graphique CRR.png)
+![Figure 1: Binary Tree](images/Graphique CRR.png)
       
 
 
