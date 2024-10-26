@@ -70,7 +70,7 @@ the spot price S0 (see Figure below).
 
 As a result, the stock price at step n and node i is:
 
-S(n, i) = S0 * (1 + U)^i * (1 + D)^(n−i) ,
+S(n, i) = S0 * (1 + U)^i * (1 + D)^(n−i),
 
 where S0 > 0, U > D > −1 and 0 ≤ i ≤ n. 
 
@@ -87,15 +87,14 @@ which proceeds by backward induction :
 for each node i = 0, · · · ,N.
 
 - If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · ,N − 1,
-then
+then :
 
 H (n, i) = [qH (n + 1, i + 1) + (1 − q)H (n + 1, i)] / (1 + R)
-for each i = 0, · · · , n; and where q is dened by
-q =
-R − D
-U − D
-is called the risk-neutral probability.
-5
+
+for each i = 0, · · · , n; and where q is defined by
+
+q = (R − D)/(U − D)    is called the risk-neutral probability.
+
 4 Implementation
 1. Implement a class BinaryTree that represents the data structure (path tree) used for the
 CRR method:
