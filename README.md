@@ -7,29 +7,36 @@ Notre objectif est d'essayer de modéliser le prix avec le modèle de Black-Scho
 
 # Part I
 ## Black-Scholes Model (2-3h)
-1 Model specication
+### 1 Model specification
 A European vanilla option has the following characteristics:
- Type: Call or Put (to be modelled with an enum)
- Strike price: K
- Expiry date: T
+- Type: Call or Put (to be modelled with an enum)
+- Strike price: K
+- Expiry date: T
+
 Its price depends on the following market data:
- Underlying price: S
- Interest rate: r
+- Underlying price: S
+- Interest rate: r
+
 The following parameter is also required in order to price the option:
- Volatility: σ
-2 Implementation
+- Volatility: σ
+
+
+### 2 Implementation
+
 1. Implement the abstract class Option:
- with a private member double _expiry, along with a getter method getExpiry()
- with a pure virtual method double payo(double), payo() represents the payo function
+- with a private member double _expiry, along with a getter method getExpiry()
+- with a pure virtual method double payoff(double), payoff() represents the payoff function
 of the option, denoted by h in this document
- write a constructor that initialize _expiry with an argument
+- write a constructor that initialize _expiry with an argument
+
 2. Derive Option into another abstract class EuropeanVanillaOption:
- with private attributes double _strike
- write a constructor which initialize _expiry and _strike with arguments (call the base
+- with private attributes double _strike
+- write a constructor which initialize _expiry and _strike with arguments (call the base
 constructor)
- the constructor should ensure that the arguments are nonnegative
- write a classe enum optionType that has two values: call and put
- write an pure virtual method GetOptionType() which should return an optionType enum
+- the constructor should ensure that the arguments are nonnegative
+- write a classe enum optionType that has two values: call and put
+- write an pure virtual method GetOptionType() which should return an optionType enum
+
 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.
  They should use the constructor of EuropeanVanillaOption
  For a Call option with strike K, the payo is given by h (z) =
