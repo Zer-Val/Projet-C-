@@ -23,13 +23,15 @@ The following parameter is also required in order to price the option:
 
 ### 2 - Implementation  
 
-1. Implement the abstract class Option:  
+1. Implement the abstract class Option:
+   
 - with a private member double _expiry, along with a getter method getExpiry()
 - with a pure virtual method double payoff(double), payoff() represents the payoff function
 of the option, denoted by h in this document
 - write a constructor that initialize _expiry with an argument  
 
 2. Derive Option into another abstract class EuropeanVanillaOption:  
+     
 - with private attributes double _strike
 - write a constructor which initialize _expiry and _strike with arguments (call the base
 constructor)
@@ -46,7 +48,7 @@ constructor)
     h(z) = K - z if K ≥ z, 0 otherwise
 - Override the GetOptionType() accordingly in the derived classes  
 
-4. Create the class BlackScholesPricer
+4. Create the class BlackScholesPricer  
 
 - With constructor BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
 double interest_rate, double volatility)
@@ -65,8 +67,6 @@ it can move up by a factor 1+U or down by 1+D independently at each time step, s
 the spot price S0 (see Figure below).
       
 ![Graphique CRR](images/Graphique1CRR.png)
-
-
 
 As a result, the stock price at step n and node i is:
 
@@ -95,22 +95,25 @@ for each i = 0, · · · , n; and where q is defined by
 
 q = (R − D)/(U − D)    is called the risk-neutral probability.
 
-4 Implementation
+### 4 - Implementation  
+
 1. Implement a class BinaryTree that represents the data structure (path tree) used for the
 CRR method:
- It should be a template class BinaryTree<T>
- It should have a member _depth, representing N
- It should contain a private member _tree, a vector of vectors (STL) to hold data of
+
+- It should be a template class BinaryTree<T>
+- It should have a member _depth, representing N
+- It should contain a private member _tree, a vector of vectors (STL) to hold data of
 type T
- Implement the setter method setDepth(int) a setter for _depth, that resizes _tree and
+- Implement the setter method setDepth(int) a setter for _depth, that resizes _tree and
 allocate/deallocate properly the vectors in tree
- Implement the setter method setNode(int, int, T) which sets the value stored in _tree
+- Implement the setter method setNode(int, int, T) which sets the value stored in _tree
 at the given indices
- Implement the getter method getNode(int, int) which retrives the corresponding value
- Implement the method display() which prints the all the values stored
-(a) Examples with N=3
-and N=5
+- Implement the getter method getNode(int, int) which retrives the corresponding value
+- Implement the method display() which prints the all the values stored
+
+(a) Examples with N=3 and N=5
 (b) Examples with N=10
+
 Figure 2: Examples of output by the display() function
 6
 2. Create the class CRRPricer
