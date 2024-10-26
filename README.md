@@ -90,11 +90,11 @@ graph TD
     T --> U["n = 3"]
     U --> V["· · ·"]
 
-                                        
+```                                        
 n = 0     n = 1     n = 2     n = 3     · · ·
 
 Figure 1: Binary Tree
-```
+
 
 As a result, the stock price at step n and node i is:
 S (n, i) = S0 (1 + U)i (1 + D)n−i ,
