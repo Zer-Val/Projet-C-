@@ -110,6 +110,7 @@ allocate/deallocate properly the vectors in tree
 at the given indices
 - Implement the getter method getNode(int, int) which retrives the corresponding value
 - Implement the method display() which prints the all the values stored
+  
 ![Graphique CRR](images/Graphique2CRR.png)
 
 
