@@ -32,22 +32,18 @@ of the option, denoted by h in this document
 2. Derive Option into another abstract class EuropeanVanillaOption:  
 - with private attributes double _strike
 - write a constructor which initialize _expiry and _strike with arguments (call the base
-constructor)  
+constructor)
 - the constructor should ensure that the arguments are nonnegative
 - write a classe enum optionType that has two values: call and put
 - write an pure virtual method GetOptionType() which should return an optionType enum
 
 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
 
-- They should use the constructor of EuropeanVanillaOption  
+- They should use the constructor of EuropeanVanillaOption 
 - For a Call option with strike K, the payoff is given by:
-
-    h(z) = z - K if z ≥ K, 0 otherwise  
-
-- For a Put option with strike \( K \), the payoff is given by:  
-
-    h(z) = K - z if K ≥ z, 0 otherwise   
-
+    h(z) = z - K if z ≥ K, 0 otherwise
+- For a Put option with strike \( K \), the payoff is given by:
+    h(z) = K - z if K ≥ z, 0 otherwise
 - Override the GetOptionType() accordingly in the derived classes  
 
 4. Create the class BlackScholesPricer
