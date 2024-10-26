@@ -7,7 +7,7 @@ Notre objectif est d'essayer de modéliser le prix avec le modèle de Black-Scho
 
 ## Part I
 # Black-Scholes Model (2-3h)
-### 1 Model specification
+### 1 - Model specification
 A European vanilla option has the following characteristics:
 - Type: Call or Put (to be modelled with an enum)
 - Strike price: K
@@ -21,7 +21,7 @@ The following parameter is also required in order to price the option:
 - Volatility: σ
 
 
-### 2 Implementation
+### 2 - Implementation
 
 1. Implement the abstract class Option:
 - with a private member double _expiry, along with a getter method getExpiry()
@@ -63,28 +63,32 @@ can be found on the internet. (Hint: use std::erfc.)
 ## Part II
 # The Cox-Ross-Rubinstein model (3h)
 ### 3 The CRR model
+
 In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1, 2, · · · ). Randomly,
 it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
 the spot price S0 (see Figure below).
-· · ·
-↗
-i = 3
-↗ ↘
-i = 2 · · ·
-↗ ↘ ↗
-i = 1 i = 2
-↗ ↘ ↗ ↘
-i = 0 i = 1 · · ·
-↘ ↗ ↘ ↗
-i = 0 i = 1
-↘ ↗ ↘
-i = 0 · · ·
-↘ ↗
-i = 0
-↘
-· · ·
-n = 0 n = 1 n = 2 n = 3 · · ·
-Figure 1: Binary Tree
+                                        · · ·     
+                                     ↗          
+                              i = 3              
+                           ↗         ↘  
+                    i = 2               · · ·
+                 ↗         ↘         ↗  
+          i = 1               i = 2     
+       ↗        ↘          ↗         ↘   
+i = 0               i = 1               · · ·
+       ↘        ↗          ↘         ↗   
+          i = 0               i = 1     
+                 ↘         ↗         ↘   
+                    i = 0               · · ·
+                           ↘         ↗
+                              i = 0
+                                     ↘
+                                        · · ·
+                                        
+n = 0     n = 1     n = 2     n = 3     · · ·
+
+                  Figure 1: Binary Tree
+
 As a result, the stock price at step n and node i is:
 S (n, i) = S0 (1 + U)i (1 + D)n−i ,
 where S0 > 0,U > D > −1 and 0 ≤ i ≤ n. There is also a risk-free asset which grows by the
