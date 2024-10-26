@@ -41,21 +41,12 @@ constructor)
 
 - They should use the constructor of EuropeanVanillaOption
 - For a Call option with strike \( K \), the payoff is given by:
-  \[
-  h(z) = 
-  \begin{cases}
-      z - K, & \text{if } z \geq K \\
-      0, & \text{otherwise}
-  \end{cases}
-  \]
+         { z - K, if z ≥ K
+  h(z) = { 0, otherwise
+
 - For a Put option with strike \( K \), the payoff is given by:
-  \[
-  h(z) = 
-  \begin{cases}
-      K - z, & \text{if } K \geq z \\
-      0, & \text{otherwise}
-  \end{cases}
-  \]
+         { K - z, if K ≥ z
+  h(z) = { 0, otherwise
 
  Override the GetOptionType() accordingly in the derived classes
 4. Create the class BlackScholesPricer
