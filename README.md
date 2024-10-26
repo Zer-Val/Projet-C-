@@ -67,28 +67,34 @@ can be found on the internet. (Hint: use std::erfc.)
 In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1, 2, · · · ). Randomly,
 it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
 the spot price S0 (see Figure below).
-                                         · · ·     
-                                     ↗          
-                              i = 3              
-                           ↗         ↘  
-                    i = 2               · · ·
-                 ↗         ↘         ↗  
-          i = 1               i = 2     
-       ↗        ↘          ↗         ↘   
-i = 0               i = 1               · · ·
-       ↘        ↗          ↘         ↗   
-          i = 0               i = 1     
-                 ↘         ↗         ↘   
-                    i = 0               · · ·
-                           ↘         ↗
-                              i = 0
-                                     ↘
-                                        · · ·
+```mermaid
+graph TD
+    subgraph " "
+        B["· · ·"] --> C
+        C --> D[i = 3]
+        D --> E1[i = 2]
+        D --> F1["· · ·"]
+        E1 --> G1[i = 1]
+        E1 --> H1[i = 2]
+        G1 --> I1[i = 0]
+        G1 --> J1[i = 1]
+        H1 --> K1[i = 0]
+        H1 --> L1[i = 1]
+        J1 --> M1[i = 0]
+        J1 --> N1["· · ·"]
+        L1 --> O1[i = 0]
+        K1 --> P1["· · ·"]
+    end
+    R["n = 0"] --> S["n = 1"]
+    S --> T["n = 2"]
+    T --> U["n = 3"]
+    U --> V["· · ·"]
+
                                         
 n = 0     n = 1     n = 2     n = 3     · · ·
 
-
-                  Figure 1: Binary Tree
+Figure 1: Binary Tree
+```
 
 As a result, the stock price at step n and node i is:
 S (n, i) = S0 (1 + U)i (1 + D)n−i ,
