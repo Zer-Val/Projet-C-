@@ -54,7 +54,7 @@ constructor)
   <img src="images/payoffPut.png" alt="Calcul du payoff d'une option Put">
 </p>  
   
-- Override the GetOptionType() accordingly in the derived classes  
+- Override the GetOptionType() accordingly in the derived classes<br>
   
 4. Create the class BlackScholesPricer  
   
