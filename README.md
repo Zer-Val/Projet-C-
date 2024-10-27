@@ -136,16 +136,16 @@ at the given indices
 <p align="center">
   <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function
 6">
-</p> 
-
-
-2. Create the class CRRPricer
-   
+</p>  
+  
+2. Create the class CRRPricer  
+  
 - With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
 double down, double interest_rate)
    - depth: N
    - asset_price: S0
    - up, down, interest_rate: U,D,R respectively
+  
 - In the constructor, check for arbitrage
 - Create the tree structure to store the tree of the desired depth (hint: use BinaryTree
 with an appropriate type)
@@ -169,7 +169,7 @@ exist for Black-Scholes prices and deltas for digital options)
 
 ## Part III 
 # Path dependent options and MC (3h)
-### 5 Some option pricing theory
+### 5 - Some option pricing theory
 5.1 European options and path-dependent option
 We consider a risky asset with the Black-Scholes dynamics:
 
