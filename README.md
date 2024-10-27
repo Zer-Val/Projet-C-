@@ -98,10 +98,12 @@ which proceeds by backward induction :
     H(N, i) = h(S (N, i))
 for each node i = 0, · · · ,N.
 
-- If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · ,N − 1,
+- If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · , N − 1,
 then :
 
-H (n, i) = [qH (n + 1, i + 1) + (1 − q)H (n + 1, i)] / (1 + R)
+<p align="center">
+  <img src="images/stockpriceIfLongerOneAlreadyKnow.png" alt="Stock price at step n and node i if the price at step n+1 and time i is known">
+</p> 
 
 for each i = 0, · · · , n; and where q is defined by
 
