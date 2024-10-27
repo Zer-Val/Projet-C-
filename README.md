@@ -46,7 +46,7 @@ constructor)
   
 <p align="center">
   <img src="images/payoffCall.png" alt="Calcul du payoff d'une option Call">
-</p>  
+</p>   
   
 - For a Put option with strike \( K \), the payoff is given by:  
   
