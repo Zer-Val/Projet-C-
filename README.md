@@ -45,11 +45,15 @@ constructor)
 - For a Call option with strike K, the payoff is given by:  
   
 <p align="center">
-  <img src="images/PrixCall.png" alt="Calcul du payoff d'une option Call">
-</p> 
+  <img src="images/payoffCall.png" alt="Calcul du payoff d'une option Call">
+</p>  
   
-- For a Put option with strike \( K \), the payoff is given by:
-    h(z) = K - z if K ≥ z, 0 otherwise
+- For a Put option with strike \( K \), the payoff is given by:  
+  
+<p align="center">
+  <img src="images/payoffPut.png" alt="Calcul du payoff d'une option Put">
+</p>  
+  
 - Override the GetOptionType() accordingly in the derived classes  
 
 4. Create the class BlackScholesPricer  
