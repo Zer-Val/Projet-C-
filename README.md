@@ -107,7 +107,11 @@ then :
 
 for each i = 0, · · · , n; and where q is defined by
 
-q = (R − D)/(U − D)    is called the risk-neutral probability.
+<p align="center">
+  <img src="images/formuleq.png" alt="Formule de la risk-neutral probability">
+</p>  
+  
+is called the risk-neutral probability.
 
 ### 4 - Implementation  
 
