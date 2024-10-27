@@ -1,4 +1,4 @@
-# Projet C++
+eee# Projet C++
 
 Ce projet est un projet académique sur l'utilisation de C++ dans le domaine de la Finance, plus précisémment, le pricing d'options Call et Put.  
 
@@ -41,7 +41,7 @@ constructor)
 
 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
 
-- They should use the constructor of EuropeanVanillaOption 
+- They should use the constructor of EuropeanVanillaOption
 - For a Call option with strike K, the payoff is given by:  
   
 <p align="center">
@@ -54,7 +54,7 @@ constructor)
   <img src="images/payoffPut.png" alt="Calcul du payoff d'une option Put">
 </p>  
   
-- Override the GetOptionType() accordingly in the derived classes<br>
+- Override the GetOptionType() accordingly in the derived classes  
   
 4. Create the class BlackScholesPricer  
   
@@ -75,10 +75,13 @@ it can move up by a factor 1+U or down by 1+D independently at each time step, s
 the spot price S0 (see Figure below).
       
 ![Graphique CRR](images/Graphique1CRR.png)
-
+<p align="center">
+  <img src="images/payoffPut.png" alt="Calcul du payoff d'une option Put">
+</p>  
+  
 As a result, the stock price at step n and node i is:
 
-S(n, i) = S0 * (1 + U)^i * (1 + D)^(n−i),
+S(n, i) = S0  (1 + U)^i  (1 + D)^(n−i),
 
 where S0 > 0, U > D > −1 and 0 ≤ i ≤ n. 
 
