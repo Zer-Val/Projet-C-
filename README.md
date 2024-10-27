@@ -55,17 +55,17 @@ constructor)
 </p>  
   
 - Override the GetOptionType() accordingly in the derived classes  
-
+  
 4. Create the class BlackScholesPricer  
-
+  
 - With constructor BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
 double interest_rate, double volatility)
 - Declare BlackScholesPricer as a friend class of EuropeanVanillaOption in order for the
 former to access the strike of the latter
 - Write the operator() which returns the price of the option. The Black-Scholes formula
 can be found on the internet. (Hint: use std::erfc.)
-- Write the method delta() which returns the Delta of the option
-
+- Write the method delta() which returns the Delta of the option  
+  
 ## Part II
 # The Cox-Ross-Rubinstein model (3h)
 ### 3 - The CRR model
