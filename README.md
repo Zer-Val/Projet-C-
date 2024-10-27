@@ -301,20 +301,20 @@ are implemented: double rand_unif() and double rand_norm(), returning a realizat
 U ([0, 1]) and N (0, 1) respectively. Ensure that only one instance of std::mt19937 can be
 used in all the program through MT.
 - Write the BlackScholesMCPricer class:
--- The constructor must have signature (Option* option, double initial_price, double in-
+   - The constructor must have signature (Option* option, double initial_price, double in-
 terest_rate, double volatility)
--- The class should have a private attribute that counts the number of paths already
+   - The class should have a private attribute that counts the number of paths already
 generated since the beginning of the program to estimate the price of the option,
 a getter named getNbPaths() needs to give a read access to this attribute.
--- The method generate(int nb_paths) generates nb_paths new paths of (St1 , · · · , Stm)
+   - The method generate(int nb_paths) generates nb_paths new paths of (St1 , · · · , Stm)
 (for European Option, m = 1), and UPDATES the current estimate of the price of
 the option (the updating process is the same as in exercise 5 of the TD).
--- The operator () returns the current estimate (throw an exception if it is undefined).
--- The method condenceInterval() returns the 95% CI of the price, as a std::vector<double>
+   - The operator () returns the current estimate (throw an exception if it is undefined).
+   - The method condenceInterval() returns the 95% CI of the price, as a std::vector<double>
 containing the lower bound and the upper bound.
--- The random generation have to be handled by calling MT::rand_norm().
--- No path should be stored in the object
--- Check the prices given by BlackScholesMCPricer are in line with those given by BlackScholesPricer on vanilla options.
+   - The random generation have to be handled by calling MT::rand_norm().
+   - No path should be stored in the object
+   - Check the prices given by BlackScholesMCPricer are in line with those given by BlackScholesPricer on vanilla options.
 
 ## Part IV  
   
@@ -393,4 +393,4 @@ double r, double volatility), which initializes U, D and R as described in Secti
 
 ### 10 - Test your program!  
   
-- Use the test les available on DVL containing the grading main() functions.  
+- Use the test files available on DVL containing the grading main() functions.  
