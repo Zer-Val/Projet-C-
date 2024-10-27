@@ -191,8 +191,7 @@ We consider a risky asset with the Black-Scholes dynamics:
   <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
 </p>  
 
-where σ ∈ $\mathbb{
-r}$+ is the volatility and Wt a Wiener process under the risk neutral probability $\mathbb{Q}$.
+where σ ∈ $\mathbb{R}$+ is the volatility and Wt a Wiener process under the risk neutral probability $\mathbb{Q}$.
 We denote the price (at time 0) of an option by H0.
 
 This price can be determined by computing the expected discounted payo under Q:
