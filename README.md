@@ -73,16 +73,17 @@ can be found on the internet. (Hint: use std::erfc.)
 In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1, 2, · · · ). Randomly,
 it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
 the spot price S0 (see Figure below).
-      
-![Graphique CRR](images/Graphique1CRR.png)
+  
 <p align="center">
-  <img src="images/payoffPut.png" alt="Calcul du payoff d'une option Put">
+  <img src="images/Graphique1CRR.png" alt="Binary Tree">
 </p>  
   
 As a result, the stock price at step n and node i is:
-
-S(n, i) = S0  (1 + U)^i  (1 + D)^(n−i),
-
+  
+<p align="center">
+  <img src="images/stockpriceNodei.png" alt="Stock price at step n and node i">
+</p>  
+  
 where S0 > 0, U > D > −1 and 0 ≤ i ≤ n. 
 
 There is also a risk-free asset which grows by the factor 1 + R > 0 at each time step 
