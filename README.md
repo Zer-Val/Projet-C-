@@ -129,35 +129,32 @@ with an appropriate type)
 - Write the operator() which returns the price of the option, it must call compute() if
 needed
 - The CRR method provides also a closed-form formula for option pricing:
-H(0, 0) = 1/(1 + R)^N ∑(i=0,N) N!/(i!(N − i)!) q^i(1 − q)^(N−i) h(S (N, i))
-&#x2211;
+H(0, 0) = 1/(1 + R)^N ∑(i=0,N) [N!/(i!(N − i)!) q^i(1 − q)^(N−i) h(S (N, i))]
+
 Put an optional argument bool closed_form that defaults to false to the operator().
 When it is set to true, the above formula should be used instead of the CRR procedure.
+
 4. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
 (EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
 the following type of options:
- Digital Call with payo: h (z) = 1z≥K
- Digital Put with payo: h (z) = 1z≤K
- Enable BlackScholesPricer to price digital options as well (closed form formulas also
+- Digital Call with payoff: h(z) = 1_z≥K
+- Digital Put with payoff: h(z) = 1_z≤K
+- Enable BlackScholesPricer to price digital options as well (closed form formulas also
 exist for Black-Scholes prices and deltas for digital options)
-7
-Part III
-Path dependent options and MC (3h)
-5 Some option pricing theory
+
+## Part III 
+# Path dependent options and MC (3h)
+### 5 Some option pricing theory
 5.1 European options and path-dependent option
 We consider a risky asset with the Black-Scholes dynamics:
-St = S0e
-
-r−
-σ2
-2
-
-t+σWt
-,
-where σ ∈ R+ is the volatility and Wt a Wiener process under the risk neutral probability Q.
+
+St = S0e((r−σ²/2)t+σ*Wt)
+
+where σ ∈ ℝ+ is the volatility and Wt a Wiener process under the risk neutral probability Q.
 We denote the price (at time 0) of an option by H0.
+
 This price can be determined by computing the expected discounted payo under Q:
-H0 = e−rTEQ [HT ] ,
+H0 = e(−rT)EQ [HT ] ,
 where HT denotes the payo of the option at its expiry date T.
 5.1.1 European options
 In the case of a European option, HT = h(ST ), where h : R+ → R is the payo function of the
