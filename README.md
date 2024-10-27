@@ -190,42 +190,40 @@ We consider a risky asset with the Black-Scholes dynamics:
   <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
 </p>  
 
-where σ ∈ R+ is the volatility and Wt a Wiener process under the risk neutral probability $\mathbb{Q}$.
-We denote the price (at time 0) of an option by H0.
+where σ ∈ ℝ+ is the volatility and Wt a Wiener process under the risk neutral probability Q.
+We denote the price (at time 0) of an option by H_0.
 
 This price can be determined by computing the expected discounted payoff under Q:  
   
 <p align="center">
-  <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
+  <img src="images/risk-neutralpricingformula.png" alt="Risk-neutral pricing formula">
 </p>  
   
-where HT denotes the payoff of the option at its expiry date T.
-5.1.1 European options
-In the case of a European option, HT = h(ST ), where h : R+ → R is the payo function of the
-option, it only depends on the price of the risky asset at maturity.
-5.1.2 Path dependent options
-For more complex options, the payo HT also depends on the price of the risky asset at dates
-prior to the maturity.
-These are called path dependent options.
-Let tk =
-k
-m
-T, for k = 1, · · · ,m. A path-dependent option is a nancial derivative with payo at
-expiry date T:
-HT = h (St1 , · · · , Stm) ,
-where h : (R+)m → R is the payo function.
-For instance, the arithmetic Asian Call has the following payo function:
-h (z1, · · · , zm) =
+where H_T denotes the payoff of the option at its expiry date T.
+
+5.1.1 European options  
   
-1
-m
-Xm
-k=1
-zk
-!
-− K
-!+
-.
+In the case of a European option, H_T = h(S_T), where h : ℝ+ → ℝ is the payoff function of the
+option, it only depends on the price of the risky asset at maturity.  
+  
+5.1.2 Path dependent options  
+  
+For more complex options, the payoff HT also depends on the price of the risky asset at dates
+prior to the maturity.  
+  
+These are called path dependent options.
+Let t_k = kT/m, for k = 1, · · · ,m.
+
+A path-dependent option is a nancial derivative with payo at
+expiry date T:
+
+HT = h (St1 , · · · , Stm) ,
+
+where h : (R+)m → R is the payo function.  
+For instance, the arithmetic Asian Call has the following payoff function:  
+  
+  
+  
 5.2 Black-Scholes random paths
 The Wiener process W has independent increments, with Wt −Ws ∼ N (0, t − s) for 0 ≤ s < t.
 Stk can be expressed as
