@@ -1,9 +1,8 @@
 # Projet C++
 
-Ce projet est un projet académique sur l'utilisation de C++ dans le domaine de la Finance, plus précisémment, le pricing d'options Call et Put.  
+This project is an academic project on the use of C++ in the field of Finance, specifically focusing on the pricing of Call and Put options. 
 
 Notre objectif est d'essayer de modéliser le prix avec le modèle de Black-Scholes, puis avec celui de Cox-Ross-Rubinstein  
-
 
 ## Part I
 # Black-Scholes Model (2-3h)
@@ -45,13 +44,13 @@ constructor)
 - For a Call option with strike K, the payoff is given by:  
   
 <p align="center">
-  <img src="images/payoffCall.png" alt="Calcul du payoff d'une option Call">
+  <img src="images/payoffCall.png" alt="Payoff Call option formula">
 </p>   
   
 - For a Put option with strike \( K \), the payoff is given by:  
   
 <p align="center">
-  <img src="images/payoffPut.png" alt="Calcul du payoff d'une option Put">
+  <img src="images/payoffPut.png" alt="Payoff Put option formula">
 </p>  
   
 - Override the GetOptionType() accordingly in the derived classes  
@@ -95,20 +94,22 @@ with expiry date N and payoff h(S (N)) can be computed using the CRR procedure,
 which proceeds by backward induction :
 
 - At the expiry date N:
-    H(N, i) = h(S (N, i))
+<p align="center">
+  <img src="priceatexpirydateN.png" alt="Stock price at step n and node i if the price at step n+1 and time i is known">
+</p>
 for each node i = 0, · · · ,N.
 
 - If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · , N − 1,
 then :
 
 <p align="center">
-  <img src="images/stockpriceIfLongerOneAlreadyKnow.png" alt="Stock price at step n and node i if the price at step n+1 and time i is known">
+  <img src="images/stockpriceIfLongerOneAlreadyKnow.png" alt="Stock price at step n and node i at expiry date N">
 </p> 
 
 for each i = 0, · · · , n; and where q is defined by
 
 <p align="center">
-  <img src="images/formuleq.png" alt="Formule de la risk-neutral probability">
+  <img src="images/formuleq.png" alt="Risk-neutral probability formula">
 </p>  
   
 is called the risk-neutral probability.
@@ -129,7 +130,10 @@ at the given indices
 - Implement the getter method getNode(int, int) which retrives the corresponding value
 - Implement the method display() which prints the all the values stored
   
-![Graphique CRR](images/Graphique2CRR.png)
+<p align="center">
+  <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function
+6">
+</p> 
 
 
 2. Create the class CRRPricer
