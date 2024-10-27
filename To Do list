@@ -1,0 +1,20 @@
+- [ ] Tâche 1 : Implement a class BinaryTree
+- [ ] Tâche 2 : Create the class CRRPricer
+- [ ] Tâche 3 : Create the class EuropeanDigitalOption
+- [ ] Tâche 4 : Create the derived class EuropeanDigitalCallOption from EuropeanDigitalOption
+- [ ] Tâche 5 : Create the derived class EuropeanDigitalPutOption from EuropeanDigitalOption
+- [ ] Tâche 6 : Augment the Option class with payoffPath method
+- [ ] Tâche 7 : Create the derived class AsianOption from Option
+- [ ] Tâche 8 : Create the derived class AsianCallOption from AsianOption
+- [ ] Tâche 9 : Create the derived class AsianPutOption from AsianOption
+- [ ] Tâche 10 : Augment the Option class with bool isAsianOption()
+- [ ] Tâche 11 : Modify the CRRPricer constructor to throw an error if the option is an Asian option
+- [ ] Tâche 12 : Design a singleton class MT
+- [ ] Tâche 13 : Write the BlackScholesMCPricer class
+- [ ] Tâche 14 : Augment the Option class with bool isAmericanOption()
+- [ ] Tâche 15 : Create the derived class AmericanOption from Option
+- [ ] Tâche 16 : Create the derived class AmericanCallOption from AmericanOption
+- [ ] Tâche 17 : Create the derived class AmericanPutOption from AmericanOption
+- [ ] Tâche 18 : Modify CRRPricer in order for it to price properly American options
+- [ ] Tâche 19 : Overload the CRRPricer constructor
+- [ ] Tache 20 : Test with the test file 
