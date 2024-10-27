@@ -214,55 +214,43 @@ prior to the maturity.
 These are called path dependent options.
 Let t_k = kT/m, for k = 1, · · · ,m.
 
-A path-dependent option is a nancial derivative with payo at
+A path-dependent option is a financial derivative with payoff at
 expiry date T:
 
-HT = h (St1 , · · · , Stm) ,
+<p align="center">
+  <img src="images/pathdepotpion.png" alt="Payoff of a path-dependent option">
+</p>
 
-where h : (R+)m → R is the payo function.  
+where h : (R+)m → R is the payoff function.  
 For instance, the arithmetic Asian Call has the following payoff function:  
   
-  
+<p align="center">
+  <img src="images/AACallpayoff.png" alt="Asian Call payoff function">
+</p>  
   
 5.2 Black-Scholes random paths
-The Wiener process W has independent increments, with Wt −Ws ∼ N (0, t − s) for 0 ≤ s < t.
+The Wiener process W has independent increments, with Wt − :Ws ∼ N (0, t − s) for 0 ≤ s < t.
 Stk can be expressed as
-Stk = Stk−1e
-
-r−
-σ2
-2
-
-(tk−tk−1)+σ
-√
-tk−tk−1Zk
-8
-Where Z1, · · · ,Zm are i.i.d. random variables with distribution N (0, 1).
+  
+<p align="center">
+  <img src="images/BSrandomPathSP.png" alt="Expression of Wiener Process">
+</p>  
+  
+Where Z1, · · · , Zm are i.i.d. random variables with distribution N (0, 1).
 Let the seqence b Z1, · · · , b Zm be a i.i.d. sample of Z1, · · · ,Zm. We refer the sequence
 
 bSt1 , · · · , bStm
 
-dened by:
-bSt1 = S0e
-
-r−
-σ2
-2
-
-t1+σ
-√
-t1 bZ1
-,
-bStk = bStk−1e
-
-r−
-σ2
-2
-
-(tk−tk−1)+σ
-√
-tk−tk−1 bZk
-, for k = 2, · · · , m,
+defined by:
+  
+<p align="center">
+  <img src="images/BSPathFormula1.png" alt="Black-Scholes sample path 1">
+</p>    
+  
+<p align="center">
+  <img src="images/BSPathFormula2.png" alt="Black-Scholes sample path 2">
+</p>  
+  
 as a Black-Scholes sample path.
 5.3 Monte Carlo
 Let
@@ -273,104 +261,87 @@ tm
 
 , for i ∈ N, be a sequence of independent sample paths. By the law of large
 numbers
-EQ [h(St1 , · · · , Stm)] = lim
-N→∞
-1
-N
-NX−1
-i=0
-h
-
-bSi
-t1 , · · · , bSi
-tm
-
-.
-This means that for sucient large N, we can approximate H0 using
-H0 ≈ e−rT 1
-N
-NX−1
-i=0
-h
-
-bSi
-t1 , · · · , bSi
-tm
-
-9
-6 Programming
- Augment the Option class with payoPath method, taking a std::vector<double> as argu-
+  
+<p align="center">
+  <img src="images/FormuleMC1.png" alt="Expression de l'espérance sous la mesure Q">
+</p>  
+  
+This means that for sufficient large N, we can approximate H0 using
+  
+<p align="center">
+  <img src="images/FormuleMC2.png" alt="Approximation de H0">
+</p>  
+  
+### 6 - Programming  
+  
+- Augment the Option class with payoffPath method, taking a std::vector<double> as argu-
 ment, returning h(St1 , · · · , Stm).
- The non-overriden version of this function should return h (Stm) (calling payo(double))
- Create a derived class from Option: AsianOption
- The constructor takes a std::vector<double> as argument, representing (t1, · · · , tm)
- The argument should be stored in a private member, with a getter method getTimeSteps()
- Override AsianOption::payoPath(std::vector<double>) so that
-h(St1 , · · · , Stm) = h
- 
-1
-m
-Xm
-k=1
-Stk
-!
-,
-where h on the right hand side is payo(double). AsianOption::payoPath(std::vector<double>)
+- The non-overriden version of this function should return h (Stm) (calling payoff(double))
+- Create a derived class from Option: AsianOption
+- The constructor takes a std::vector<double> as argument, representing (t1, · · · , tm)
+- The argument should be stored in a private member, with a getter method getTimeSteps()
+- Override AsianOption::payoffPath(std::vector<double>) so that
+  
+<p align="center">
+  <img src="images/payoffAsian.png" alt="Expression de l'espérance sous la mesure Q">
+</p>  
+  
+where h on the right hand side is payoff(double). AsianOption::payoffPath(std::vector<double>)
 should not be virtual.
- Created AsianCallOption and AsianPutOption, derived from AsianOption.
- In addition to std::vector<double>, their constructor takes a double as argument, den-
+- Created AsianCallOption and AsianPutOption, derived from AsianOption.
+- In addition to std::vector<double>, their constructor takes a double as argument, den-
 ing the strike.
- They have to have proper implementations of payo().
- Augment the Option class with bool isAsianOption(), returning false in its non-overriden
+- They have to have proper implementations of payo().
+- Augment the Option class with bool isAsianOption(), returning false in its non-overriden
 version, override it in AsianOption.
- In CRRPricer 's constructor, check if the option is an Asian option, if it is the case, throw
+- In CRRPricer 's constructor, check if the option is an Asian option, if it is the case, throw
 an exception.
- Design a singleton class MT, encapsulating a std::mt19937 object. Two public static methods
+- Design a singleton class MT, encapsulating a std::mt19937 object. Two public static methods
 are implemented: double rand_unif() and double rand_norm(), returning a realization of
 U ([0, 1]) and N (0, 1) respectively. Ensure that only one instance of std::mt19937 can be
 used in all the program through MT.
- Write the BlackScholesMCPricer class:
- The constructor must have signature (Option* option, double initial_price, double in-
+- Write the BlackScholesMCPricer class:
+-- The constructor must have signature (Option* option, double initial_price, double in-
 terest_rate, double volatility)
- The class should have a private attribute that counts the number of paths already
+-- The class should have a private attribute that counts the number of paths already
 generated since the beginning of the program to estimate the price of the option,
 a getter named getNbPaths() needs to give a read access to this attribute.
- The method generate(int nb_paths) generates nb_paths new paths of (St1 , · · · , Stm)
+-- The method generate(int nb_paths) generates nb_paths new paths of (St1 , · · · , Stm)
 (for European Option, m = 1), and UPDATES the current estimate of the price of
 the option (the updating process is the same as in exercise 5 of the TD).
- The operator () returns the current estimate (throw an exception if it is undened).
- The method condenceInterval() returns the 95% CI of the price, as a std::vector<double>
+-- The operator () returns the current estimate (throw an exception if it is undefined).
+-- The method condenceInterval() returns the 95% CI of the price, as a std::vector<double>
 containing the lower bound and the upper bound.
- The random generation have to be handled by calling MT::rand_norm().
- No path should be stored in the object
- Check the prices given by BlackScholesMCPricer are in line with those given by BlackSc-
-holesPricer on vanilla options.
-10
-Part IV
-Back to CRR (1-2h)
-7 American option in the binomial model
+-- The random generation have to be handled by calling MT::rand_norm().
+-- No path should be stored in the object
+-- Check the prices given by BlackScholesMCPricer are in line with those given by BlackScholesPricer on vanilla options.
+
+## Part IV  
+  
+# Back to CRR (1-2h)  
+  
+### 7 - American option in the binomial model  
+  
 In addition to pricing European options, we want to include the ability to price American options
-in the binomial model.
+in the binomial model.  
 The holder of an American option has the right to exercise it at any time up to and including the
 expiry date N. If the option is exercised at time step n and node i of the binomial tree, then the
-holder will receive payo h (S (n, i)).
+holder will receive payo h (S (n, i)).  
 The price H (n, i) of an American option at any time step n and node i in the binomial tree can
 be computed by the following procedure, which proceeds by backward induction on n:
- At the expiry date N: H (N, i) has the same value as for the option's European counterpart.
+  
+- At the expiry date N: H (N, i) has the same value as for the option's European counterpart.
 Financial interpretation: if not exercised before the expiry, there is no advantage holding an
 American option over holding a European option.
- If H (n + 1, i) is already known at each node i ∈ {0, · · · , n + 1} for some n < N, then
-H (n, i) = max
-
-
-qH (n + 1, i + 1) + (1 − q)H (n + 1, i)
-| 1 +{zR }
-continuation value
-, h (S (n, i)) | {z }
-intrinsic value
-
-
-for each i ∈ {0, · · · , n}.
+
+- If H (n + 1, i) is already known at each node i ∈ {0, · · · , n + 1} for some n < N, then
+  
+<p align="center">
+  <img src="images/AmericanOptionPrice.png" alt="Expression du prix l'étape n et au temps i si celui au noeud n+1 est connu">
+</p>  
+  
+for each i ∈ {0, · · · , n}.  
+  
 Financial interpretation: the option holder chooses the maximum between the continuation
 value (expected gain if they do not exercise, under the risk-neutral measure) and the intrinsic
 value (the value of the option if exercised immediately).
@@ -378,54 +349,48 @@ In particular, H (0, 0) at the root node of the tree is the price of the America
 We would like to compute and store the price of an American option for each time step n and node
 i in the binomial tree. In addition, we want to compute the early exercise policy, which should be
 of Boolean type and tells if the American option should be exercised or not for each state of the
-tree. The early exercise policy should also be stored using an instance of BinaryTree<bool>.
-11
-8 Black-Scholes as limit of the binomial tree
+tree. The early exercise policy should also be stored using an instance of BinaryTree<bool>.  
+  
+### 8 - Black-Scholes as limit of the binomial tree  
+  
 The binomial model can be used to approximate the Black-Scholes model if N is large.
-One of the scheme is to divide the time interval [0, T] into N steps of length h =
-T
-N
-, and set the
+One of the scheme is to divide the time interval [0, T] into N steps of length h = T/N, and set the
 parameters of the binomial model to be:
-U = e
-
-r+
-σ2
-2
-
-h+σ
-√
-h
-− 1,
-D = e
-
-r+
-σ2
-2
-
-h−σ
-√
-h
-− 1,
-R = erh − 1,
+  
+<p align="center">
+  <img src="images/BSU.png" alt="Expression de U">
+</p>  
+  
+<p align="center">
+  <img src="images/BSD.png" alt="Expression de D">
+</p>  
+  
+<p align="center">
+  <img src="images/BSR.png" alt="Expression de R">
+</p>  
+  
 where σ is the volatility and r is the continuously compounded interest rate in the Black-Scholes
 model.
+
 Implement a method to initialize a Binomial tree as a Black-Scholes approximation (using the
 Black-Scholes parameters). Compare option prices with the Monte Carlo method and the closed
-form method for European options.
-9 Implementation
-1. Augment the Option class with bool isAmericanOption() which returns false in its non-
-overriden version.
-2. Derive Option into AmericanOption, and override isAmericanOption() properly.
-3. Derive AmericanOption into AmericanCallOption and AmericanPutOption, write proper
-constructors and override their respective payo() methods.
-4. Modify CRRPricer in order for it to price properly American options; the exercise condition
+form method for European options.  
+
+### 9 - Implementation  
+  
+- Augment the Option class with bool isAmericanOption() which returns false in its non-
+overriden version.  
+- Derive Option into AmericanOption, and override isAmericanOption() properly.  
+- Derive AmericanOption into AmericanCallOption and AmericanPutOption, write proper
+constructors and override their respective payo() methods.  
+- Modify CRRPricer in order for it to price properly American options; the exercise condition
 for American options is stored in a BinaryTree<bool>, accessible through a getter method
 bool getExercise(int, int).
 The exercise condition is true when the intrinsic value is larger or equal to the continuous
-value, it is computed during the CRR procedure.
-5. Overload the CRRPricer with CRRPricer(Option* option, int depth, double asset_price,
+value, it is computed during the CRR procedure.  
+- Overload the CRRPricer with CRRPricer(Option* option, int depth, double asset_price,
 double r, double volatility), which initializes U, D and R as described in Section 6.
-10 Test your program!
- Use the test les available on DVL containing the grading main() functions.
-12
+
+### 10 - Test your program!  
+  
+- Use the test les available on DVL containing the grading main() functions.  
