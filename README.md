@@ -6,7 +6,7 @@ This project is an academic project on the use of C++ in the field of Finance, s
 This project aims to implement option pricing models, including Black-Scholes and Cox-Ross-Rubinstein, in C++ to price European and American options and determine early exercise policies. It involves validating pricing methods using closed-form solutions, Monte Carlo simulations, and a binary tree structure for modeling asset price evolution.
 
 ## Part I
-# Black-Scholes Model (2-3h)
+# Black-Scholes Model
 ### 1 - Model specification
 A European vanilla option has the following characteristics:
 - Type: Call or Put (to be modelled with an enum)
@@ -67,7 +67,7 @@ can be found on the internet. (Hint: use std::erfc.)
 - Write the method delta() which returns the Delta of the option  
   
 ## Part II
-# The Cox-Ross-Rubinstein model (3h)
+# The Cox-Ross-Rubinstein model
 ### 3 - The CRR model
 
 In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1, 2, · · · ). Randomly,
@@ -120,8 +120,8 @@ is called the risk-neutral probability.
 ### 4 - Implementation  
 
 1. Implement a class BinaryTree that represents the data structure (path tree) used for the
-CRR method:
-
+CRR method:  
+  
 - It should be a template class BinaryTree<T>  
 - It should have a member _depth, representing N
 - It should contain a private member _tree, a vector of vectors (STL) to hold data of
@@ -131,7 +131,7 @@ allocate/deallocate properly the vectors in tree
 - Implement the setter method setNode(int, int, T) which sets the value stored in _tree
 at the given indices
 - Implement the getter method getNode(int, int) which retrives the corresponding value
-- Implement the method display() which prints the all the values stored
+- Implement the method display() which prints the all the values stored  
   
 <p align="center">
   <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function">
