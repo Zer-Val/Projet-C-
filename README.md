@@ -291,7 +291,7 @@ should not be virtual.
 - Created AsianCallOption and AsianPutOption, derived from AsianOption.
 - In addition to std::vector<double>, their constructor takes a double as argument, den-
 ing the strike.
-- They have to have proper implementations of payo().
+- They have to have proper implementations of payoff().
 - Augment the Option class with bool isAsianOption(), returning false in its non-overriden
 version, override it in AsianOption.
 - In CRRPricer 's constructor, check if the option is an Asian option, if it is the case, throw
@@ -326,7 +326,7 @@ In addition to pricing European options, we want to include the ability to price
 in the binomial model.  
 The holder of an American option has the right to exercise it at any time up to and including the
 expiry date N. If the option is exercised at time step n and node i of the binomial tree, then the
-holder will receive payo h (S (n, i)).  
+holder will receive payoff h (S (n, i)).  
 The price H (n, i) of an American option at any time step n and node i in the binomial tree can
 be computed by the following procedure, which proceeds by backward induction on n:
   
@@ -382,7 +382,7 @@ form method for European options.
 overriden version.  
 - Derive Option into AmericanOption, and override isAmericanOption() properly.  
 - Derive AmericanOption into AmericanCallOption and AmericanPutOption, write proper
-constructors and override their respective payo() methods.  
+constructors and override their respective payoff() methods.  
 - Modify CRRPricer in order for it to price properly American options; the exercise condition
 for American options is stored in a BinaryTree<bool>, accessible through a getter method
 bool getExercise(int, int).
