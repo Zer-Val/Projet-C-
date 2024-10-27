@@ -43,7 +43,7 @@ constructor)
 
 - They should use the constructor of EuropeanVanillaOption 
 - For a Call option with strike K, the payoff is given by:
-    h(z) = z - K if z ≥ K, 0 otherwise
+![Graphique CRR](images/PrixCall.png)
 - For a Put option with strike \( K \), the payoff is given by:
     h(z) = K - z if K ≥ z, 0 otherwise
 - Override the GetOptionType() accordingly in the derived classes  
