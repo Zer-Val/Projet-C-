@@ -12,15 +12,14 @@ A European vanilla option has the following characteristics:
 - Type: Call or Put (to be modelled with an enum)
 - Strike price: K
 - Expiry date: T  
-
+  
 Its price depends on the following market data:
 - Underlying price: S
 - Interest rate: r  
-
+  
 The following parameter is also required in order to price the option:
 - Volatility: σ  
-
-
+  
 ### 2 - Implementation  
 
 1. Implement the abstract class Option:
@@ -29,7 +28,7 @@ The following parameter is also required in order to price the option:
 - with a pure virtual method double payoff(double), payoff() represents the payoff function
 of the option, denoted by h in this document
 - write a constructor that initialize _expiry with an argument  
-
+  
 2. Derive Option into another abstract class EuropeanVanillaOption:  
      
 - with private attributes double _strike
@@ -38,7 +37,7 @@ constructor)
 - the constructor should ensure that the arguments are nonnegative
 - write a classe enum optionType that has two values: call and put
 - write an pure virtual method GetOptionType() which should return an optionType enum
-
+  
 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
 
 - They should use the constructor of EuropeanVanillaOption
@@ -185,18 +184,22 @@ exist for Black-Scholes prices and deltas for digital options)
   
 5.1 European options and path-dependent option  
   
-We consider a risky asset with the Black-Scholes dynamics:
+We consider a risky asset with the Black-Scholes dynamics:  
 
 <p align="center">
   <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
 </p>  
 
-where σ ∈ $\mathbb{R}$+ is the volatility and Wt a Wiener process under the risk neutral probability $\mathbb{Q}$.
+where σ ∈ R+ is the volatility and Wt a Wiener process under the risk neutral probability $\mathbb{Q}$.
 We denote the price (at time 0) of an option by H0.
 
-This price can be determined by computing the expected discounted payo under Q:
-H0 = e(−rT)EQ [HT ] ,
-where HT denotes the payo of the option at its expiry date T.
+This price can be determined by computing the expected discounted payoff under Q:  
+  
+<p align="center">
+  <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
+</p>  
+  
+where HT denotes the payoff of the option at its expiry date T.
 5.1.1 European options
 In the case of a European option, HT = h(ST ), where h : R+ → R is the payo function of the
 option, it only depends on the price of the risky asset at maturity.
