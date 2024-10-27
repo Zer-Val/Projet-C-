@@ -134,8 +134,7 @@ at the given indices
 - Implement the method display() which prints the all the values stored
   
 <p align="center">
-  <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function
-6">
+  <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function">
 </p>  
   
 2. Create the class CRRPricer  
@@ -154,26 +153,43 @@ with an appropriate type)
 - Write the operator() which returns the price of the option, it must call compute() if
 needed
 - The CRR method provides also a closed-form formula for option pricing:
-H(0, 0) = 1/(1 + R)^N ∑(i=0,N) [N!/(i!(N − i)!) q^i(1 − q)^(N−i) h(S (N, i))]
-
+  
+<p align="center">
+  <img src="images/formulaOptionPricingCRR.png" alt="The CRR method provides also a closed-form formula for option pricing">
+</p>  
+  
 Put an optional argument bool closed_form that defaults to false to the operator().
 When it is set to true, the above formula should be used instead of the CRR procedure.
 
 4. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
 (EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
 the following type of options:
-- Digital Call with payoff: h(z) = 1_z≥K
-- Digital Put with payoff: h(z) = 1_z≤K
+- Digital Call with payoff:
+  
+<p align="center">
+  <img src="images/DCwithpayoff.png" alt="Digital Call with payoff">
+</p>  
+  
+- Digital Put with payoff:
+  
+<p align="center">
+  <img src="images/DPwithpayoff.png" alt="Digital Put with payoff">
+</p>  
+  
 - Enable BlackScholesPricer to price digital options as well (closed form formulas also
 exist for Black-Scholes prices and deltas for digital options)
 
 ## Part III 
 # Path dependent options and MC (3h)
-### 5 - Some option pricing theory
-5.1 European options and path-dependent option
+### 5 - Some option pricing theory  
+  
+5.1 European options and path-dependent option  
+  
 We consider a risky asset with the Black-Scholes dynamics:
 
-St = S0e((r−σ²/2)t+σ*Wt)
+<p align="center">
+  <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
+</p>  
 
 where σ ∈ ℝ+ is the volatility and Wt a Wiener process under the risk neutral probability Q.
 We denote the price (at time 0) of an option by H0.
