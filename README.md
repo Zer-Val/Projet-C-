@@ -218,7 +218,7 @@ A path-dependent option is a financial derivative with payoff at
 expiry date T:
 
 <p align="center">
-  <img src="images/pathdepotpion.png" alt="Payoff of a path-dependent option">
+  <img src="images/pathdepoption.png" alt="Payoff of a path-dependent option">
 </p>
 
 where h : (R+)m → R is the payoff function.  
