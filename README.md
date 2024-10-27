@@ -94,8 +94,12 @@ In the CRR model the price H(n, i) at time step n and node i of a European optio
 with expiry date N and payoff h(S (N)) can be computed using the CRR procedure,
 which proceeds by backward induction :
 
-- At the expiry date N:
-
+- At the expiry date N:  
+  
+<p align="center">
+  <img src="priceatexpirydateN.png" alt="Stock price at step n and node i if the price at step n+1 and time i is known">
+</p>  
+  
 for each node i = 0, · · · ,N.
 
 - If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · , N − 1,
