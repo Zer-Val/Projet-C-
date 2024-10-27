@@ -42,7 +42,7 @@ constructor)
 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
 
 - They should use the constructor of EuropeanVanillaOption 
-- For a Call option with strike K, the payoff is given by:
+- For a Call option with strike K, the payoff is given by:  
 ![Graphique CRR](images/PrixCall.png)
 - For a Put option with strike \( K \), the payoff is given by:
     h(z) = K - z if K ≥ z, 0 otherwise
