@@ -318,7 +318,7 @@ In addition to pricing European options, we want to include the ability to price
 in the binomial model.  
 The holder of an American option has the right to exercise it at any time up to and including the
 expiry date N. If the option is exercised at time step n and node i of the binomial tree, then the
-holder will receive payoff $h(S(n, i))$$.  
+holder will receive payoff $h(S(n, i))$.  
 The price $H(n, i)$ of an American option at any time step n and node i in the binomial tree can
 be computed by the following procedure, which proceeds by backward induction on n:
   
@@ -327,10 +327,8 @@ Financial interpretation: if not exercised before the expiry, there is no advant
 American option over holding a European option.
 
 - If $H(n + 1, i)$ is already known at each node $i \in {0, \dots , n + 1}$ for some $n < N$, then
-  
-<p align="center">
-  <img src="images/AmericanOptionPrice.png" alt="Expression du prix l'étape n et au temps i si celui au noeud n+1 est connu">
-</p>  
+
+$`H(n, i) = \max \left\{\underbrace{\frac{qH(n + 1, i + 1) + (1 - q)H(n + 1, i)}{1 + R}}_{\text{continuation value}}, \quad \underbrace{h(S(n, i))}_{\text{intrinsic value}}\right\}`$
   
 for each $i \in {0, \dots , n}$.  
   
@@ -348,10 +346,7 @@ tree. The early exercise policy should also be stored using an instance of Binar
 The binomial model can be used to approximate the Black-Scholes model if N is large.
 One of the scheme is to divide the time interval [0, T] into N steps of length h = T/N, and set the
 parameters of the binomial model to be:
-  
-<p align="center">
-$ `H(n, i) = \max \left\{\underbrace{\frac{qH(n + 1, i + 1) + (1 - q)H(n + 1, i)}{1 + R}}_{\text{continuation value}}, \quad \underbrace{h(S(n, i))}_{\text{intrinsic value}} \right\}`$
-</p>  
+ 
 
   
 <p align="center">
