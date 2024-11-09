@@ -53,9 +53,13 @@ $$
   
 - For a Put option with strike K, the payoff is given by:  
   
-<p align="center">
-  <img src="images/payoffPut.png" alt="Payoff Put option formula">
-</p>  
+$$
+h(z) =
+\begin{cases} 
+      K - Z & \text{if } z \leq K \\
+      0 & \text{otherwise} 
+\end{cases}
+$$
   
 - Override the GetOptionType() accordingly in the derived classes  
   
@@ -75,7 +79,7 @@ can be found on the internet. (Hint: use std::erfc.)
 
 In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1, 2, · · · ). Randomly,
 it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
-the spot price S0 (see Figure below).
+the spot price $S_0$ (see Figure below).
   
 <p align="center">
   <img src="images/Graphique1CRR.png" alt="Binary Tree">
@@ -83,11 +87,11 @@ the spot price S0 (see Figure below).
   
 As a result, the stock price at step n and node i is:
   
-<p align="center">
-  <img src="images/stockpriceNodei.png" alt="Stock price at step n and node i">
-</p>  
-  
-where S0 > 0, U > D > −1 and 0 ≤ i ≤ n. 
+$$ 
+S(n, i) = S_0 (1+U)î (1+D)^{n-i}
+$$
+
+where $S_0 > 0, U > D > −1 & \text{and} 0 ≤ i ≤ n$. 
 
 There is also a risk-free asset which grows by the factor 1 + R > 0 at each time step 
 (starting at 1 at step 0).
