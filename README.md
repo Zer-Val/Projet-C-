@@ -5,7 +5,7 @@ This project is an academic project on the use of C++ in the field of Finance, s
 
 This project aims to implement option pricing models, including Black-Scholes and Cox-Ross-Rubinstein, in C++ to price European and American options and determine early exercise policies. It involves validating pricing methods using closed-form solutions, Monte Carlo simulations, and a binary tree structure for modeling asset price evolution.
 
-${\hat{Z}}_{t_1}$, ..., ${\hat{Z}}\textsubscript{t_m}$
+${\hat{Z}}_{t_1}, \dots \hat{Z}\textsubscript{t_m}$
 ## Part I
 # Black-Scholes Model
 ### 1 - Model specification
