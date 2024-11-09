@@ -238,7 +238,7 @@ $$
   
 Where $Z_1, \dots , Z_m$ are i.i.d. random variables with distribution $\mathcal{N}(0, 1)$.
 Let the seqence $\hat{Z_1}, \dots, \hat{Z_m}$ be a i.i.d. sample of $Z_1, \dots ,Z_m$. We refer the sequence
-$\hat{S_{t_1}}, \dots , \hat{S_{t_m}}$
+$\widehat{S_{t_1}}, \dots , \widehat{S_{t_m}}$
 
 defined by:
   
