@@ -250,7 +250,7 @@ $$`\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t
   
 as a Black-Scholes sample path.
 
-v#### 5.3 Monte Carlo
+#### 5.3 Monte Carlo
 Let $`\widehat{Z}^i_{t_1},\dots, \widehat{Z}^i_{t_2}`$, for $i \in \mathbb{N}$, be a sequence of independent sample paths. By the law of large
 numbers
   
