@@ -238,17 +238,17 @@ $$
   
 Where $Z_1, \dots , Z_m$ are i.i.d. random variables with distribution $\mathcal{N}(0, 1)$.
 Let the seqence $`\hat{Z}_{t_1},\dots, \hat{Z}_{t_2}`$ be a i.i.d. sample of $Z_1, \dots ,Z_m$. We refer the sequence
-$(`\hat{S}_{t_1},\dots, \hat{S}_{t_2}`)$
+$`(\hat{S}_{t_1},\dots, \hat{S}_{t_m})`$
 
 defined by:
   
-<p align="center">
-  <img src="images/BSPathFormula1.png" alt="Black-Scholes sample path 1">
-</p>    
+$$
+\hat{S}_{t_1} = S_0 e^{ \left( r - \frac{\sigma^2}{2} \right)t_1 + \sigma \sqrt{t_1} \hat{Z}_1 }
+$$
   
-<p align="center">
-  <img src="images/BSPathFormula2.png" alt="Black-Scholes sample path 2">
-</p>  
+$$
+`\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{\left( \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 \right)}`
+$$
   
 as a Black-Scholes sample path.
 5.3 Monte Carlo
