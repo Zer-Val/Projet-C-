@@ -187,7 +187,6 @@ We consider a risky asset with the Black-Scholes dynamics:
 
 $$
 S_t = S_0 e^{(r - \frac{\sigma^2}{2})t+\sigma W_t}
-
 $$
 
 where $\sigma \in \mathbb{R}^+$ is the volatility and $W_t$ a Wiener process under the risk neutral probability $\mathbb{Q}$.
@@ -229,12 +228,12 @@ h(z_1, \dots, z_m) = \left( \left( \frac{1}{m} \sum_{k=1}^m  z_k \right) - K \ri
 $$ 
   
 5.2 Black-Scholes random paths
-The Wiener process W has independent increments, with Wt − :Ws ∼ N (0, t − s) for 0 ≤ s < t.
-Stk can be expressed as
+The Wiener process W has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$.
+$S_{t_k}$ can be expressed as
   
-<p align="center">
-  <img src="images/BSrandomPathSP.png" alt="Expression of Wiener Process">
-</p>  
+$$
+S_k = S_{k-1} e^{\left( r - \frac{\sigma^2}{2} \right) (t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_k}
+$$  
   
 Where Z1, · · · , Zm are i.i.d. random variables with distribution N (0, 1).
 Let the seqence b Z1, · · · , b Zm be a i.i.d. sample of Z1, · · · ,Zm. We refer the sequence
