@@ -276,7 +276,9 @@ ment, returning $h(S_{t_1} , \dots , S_{t_m}).
 - The argument should be stored in a private member, with a getter method getTimeSteps()
 - Override AsianOption::payoffPath(std::vector<double>) so that
   
-$h(S_{t_1}, \dots, S_{t_m}) = h \left( \frac{1}{m} \sum_{k=1}^{m} S_{t_k} \right)$
+$$
+h(S_{t_1}, \dots, S_{t_m}) = h \left( \frac{1}{m} \sum_{k=1}^{m} S_{t_k} \right)
+$$
   
 where h on the right hand side is payoff(double). AsianOption::payoffPath(std::vector<double>)
 should not be virtual.
@@ -328,8 +330,9 @@ American option over holding a European option.
 
 - If $H(n + 1, i)$ is already known at each node $i \in {0, \dots , n + 1}$ for some $n < N$, then
 
+<p align="center">
 $`H(n, i) = \max \left\{\underbrace{\frac{qH(n + 1, i + 1) + (1 - q)H(n + 1, i)}{1 + R}}_{\text{continuation value}}, \quad \underbrace{h(S(n, i))}_{\text{intrinsic value}}\right\}`$
-  
+</p>  
 for each $i \in {0, \dots , n}$.  
   
 Financial interpretation: the option holder chooses the maximum between the continuation
