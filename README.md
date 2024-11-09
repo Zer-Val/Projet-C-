@@ -237,8 +237,8 @@ S_k = S_{k-1} e^{\left( r - \frac{\sigma^2}{2} \right) (t_k - t_{k-1}) + \sigma 
 $$  
   
 Where $Z_1, \dots , Z_m$ are i.i.d. random variables with distribution $\mathcal{N}(0, 1)$.
-Let the seqence $`\hat{Z}_{t_1},\dots, \hat{Z}_{t_2}`$ be a i.i.d. sample of $Z_1, \dots ,Z_m$. We refer the sequence
-$`(\hat{S}_{t_1},\dots, \hat{S}_{t_m})`$
+Let the seqence $`\widehat{Z}_{t_1},\dots, \widehat{Z}_{t_2}`$ be a i.i.d. sample of $Z_1, \dots ,Z_m$. We refer the sequence
+$`(\widehat{S}_{t_1},\dots, \widehat{S}_{t_m})`$
 
 defined by:
   
