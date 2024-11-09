@@ -221,7 +221,7 @@ expiry date T:
   <img src="images/pathdepoption.png" alt="Payoff of a path-dependent option">
 </p>
 
-where $h : \mathbb{R}^+^m \to \mathbb{R}$ is the payoff function.  
+where $h : (\mathbb{R}^+)^m \to \mathbb{R}$ is the payoff function.  
 For instance, the arithmetic Asian Call has the following payoff function:  
   
 <p align="center">
