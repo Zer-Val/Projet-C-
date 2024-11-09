@@ -190,20 +190,20 @@ We consider a risky asset with the Black-Scholes dynamics:
   <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
 </p>  
 
-where σ ∈ ℝ+ is the volatility and Wt a Wiener process under the risk neutral probability Q.
+where $\sigma \in \mathbb{R}^+$ is the volatility and $W_t$ a Wiener process under the risk neutral probability $\mathbb{Q}$.
 We denote the price (at time 0) of an option by $H_0$.
 
-This price can be determined by computing the expected discounted payoff under Q:  
+This price can be determined by computing the expected discounted payoff under $\mathbb{Q}$:  
   
 <p align="center">
   <img src="images/risk-neutralpricingformula.png" alt="Risk-neutral pricing formula">
 </p>  
   
-where H_T denotes the payoff of the option at its expiry date T.
+where $H_T$ denotes the payoff of the option at its expiry date T.
 
 5.1.1 European options  
   
-In the case of a European option, H_T = h(S_T), where h : ℝ+ → ℝ is the payoff function of the
+In the case of a European option, $H_T = h(S_T)$, where $h : \mathbb{R}^+ \to \mathbb{R}$ is the payoff function of the
 option, it only depends on the price of the risky asset at maturity.  
   
 5.1.2 Path dependent options  
@@ -212,7 +212,7 @@ For more complex options, the payoff HT also depends on the price of the risky a
 prior to the maturity.  
   
 These are called path dependent options.
-Let t_k = kT/m, for k = 1, · · · ,m.
+Let $t_k = \frac{k}{m} T$, for k = 1, · · · ,m.
 
 A path-dependent option is a financial derivative with payoff at
 expiry date T:
@@ -221,7 +221,7 @@ expiry date T:
   <img src="images/pathdepoption.png" alt="Payoff of a path-dependent option">
 </p>
 
-where h : (R+)m → R is the payoff function.  
+where $h : \mathbb{R}^+^m \to \mathbb{R}$ is the payoff function.  
 For instance, the arithmetic Asian Call has the following payoff function:  
   
 <p align="center">
