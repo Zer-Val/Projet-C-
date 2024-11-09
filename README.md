@@ -47,7 +47,7 @@ constructor)
   <img src="images/payoffCall.png" alt="Payoff Call option formula">
 </p>   
   
-- For a Put option with strike \( K \), the payoff is given by:  
+- For a Put option with strike K, the payoff is given by:  
   
 <p align="center">
   <img src="images/payoffPut.png" alt="Payoff Put option formula">
@@ -99,7 +99,7 @@ which proceeds by backward induction :
   <img src="images/priceatexpirydateN.png" alt="Stock price at step n and node i if the price at step n+1 and time i is known">
 </p>  
   
-for each node i = 0, · · · ,N.
+for each node i = 0, · · · , N.
 
 - If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · , N − 1,
 then :
@@ -142,13 +142,13 @@ at the given indices
 double down, double interest_rate)
    - depth: N
    - asset_price: S0
-   - up, down, interest_rate: U,D,R respectively
+   - up, down, interest_rate: U, D, R respectively
   
 - In the constructor, check for arbitrage
 - Create the tree structure to store the tree of the desired depth (hint: use BinaryTree
 with an appropriate type)
 - Write the method void compute() that implements the CRR procedure
-- Write the getter method get(int, int) that returns H (n, i).
+- Write the getter method get(int, int) that returns H(n, i).
 - Write the operator() which returns the price of the option, it must call compute() if
 needed
 - The CRR method provides also a closed-form formula for option pricing:
@@ -191,7 +191,7 @@ We consider a risky asset with the Black-Scholes dynamics:
 </p>  
 
 where σ ∈ ℝ+ is the volatility and Wt a Wiener process under the risk neutral probability Q.
-We denote the price (at time 0) of an option by H_0.
+We denote the price (at time 0) of an option by $H_0$.
 
 This price can be determined by computing the expected discounted payoff under Q:  
   
