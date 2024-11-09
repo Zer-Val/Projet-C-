@@ -331,8 +331,9 @@ American option over holding a European option.
 - If $H(n + 1, i)$ is already known at each node $i \in {0, \dots , n + 1}$ for some $n < N$, then
 
 <p align="center">
-$`H(n, i) = \max \left\{\underbrace{\frac{qH(n + 1, i + 1) + (1 - q)H(n + 1, i)}{1 + R}}_{\text{continuation value}}, \quad \underbrace{h(S(n, i))}_{\text{intrinsic value}}\right\}`$
+$H(n, i) = \max \left\{\underbrace{\frac{qH(n + 1, i + 1) + (1 - q)H(n + 1, i)}{1 + R}}_{\text{continuation value}}, \quad \underbrace{h(S(n, i))}_{\text{intrinsic value}}\right\}$
 </p>  
+
 for each $i \in {0, \dots , n}$.  
   
 Financial interpretation: the option holder chooses the maximum between the continuation
@@ -347,7 +348,7 @@ tree. The early exercise policy should also be stored using an instance of Binar
 ### 8 - Black-Scholes as limit of the binomial tree  
   
 The binomial model can be used to approximate the Black-Scholes model if N is large.
-One of the scheme is to divide the time interval [0, T] into N steps of length h = T/N, and set the
+One of the scheme is to divide the time interval [0, T] into N steps of length $h = \frac{T}{N}$, and set the
 parameters of the binomial model to be:
  
 
