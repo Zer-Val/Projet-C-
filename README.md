@@ -207,7 +207,7 @@ option, it only depends on the price of the risky asset at maturity.
   
 5.1.2 Path dependent options  
   
-For more complex options, the payoff HT also depends on the price of the risky asset at dates
+For more complex options, the payoff $H_T$ also depends on the price of the risky asset at dates
 prior to the maturity.  
   
 These are called path dependent options.
@@ -238,7 +238,8 @@ $$
   
 Where $Z_1, \dots , Z_m$ are i.i.d. random variables with distribution $\mathcal{N}(0, 1)$.
 Let the seqence $\hat{Z_1}$ be a i.i.d. sample of $Z_1, \dots ,Z_m$. We refer the sequence
-$(\hat{S}_{t_1}, \dots , )$
+$(\hat{S}_{t_1}, \dots , \hat{S}_{t_m})$
+
 defined by:
   
 <p align="center">
