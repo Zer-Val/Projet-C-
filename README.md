@@ -2,11 +2,12 @@
 
 This project is an academic project on the use of C++ in the field of Finance, specifically focusing on the pricing of Call and Put options. 
 
-
 This project aims to implement option pricing models, including Black-Scholes and Cox-Ross-Rubinstein, in C++ to price European and American options and determine early exercise policies. It involves validating pricing methods using closed-form solutions, Monte Carlo simulations, and a binary tree structure for modeling asset price evolution.
 
-## Part I
-# Black-Scholes Model
+This project is based on the following project assignement :
+
+# Part I
+## Black-Scholes Model
 ### 1 - Model specification
 A European vanilla option has the following characteristics:
 - Type: Call or Put (to be modelled with an enum)
@@ -73,8 +74,8 @@ former to access the strike of the latter
 can be found on the internet. (Hint: use std::erfc.)
 - Write the method delta() which returns the Delta of the option  
   
-## Part II
-# The Cox-Ross-Rubinstein model
+# Part II
+## The Cox-Ross-Rubinstein model
 ### 3 - The CRR model
 
 In the CRR model the price of an asset evolves in discrete time steps $(n = 0, 1, 2, \dots )$. Randomly,
@@ -176,8 +177,8 @@ the following type of options:
 - Enable BlackScholesPricer to price digital options as well (closed form formulas also
 exist for Black-Scholes prices and deltas for digital options)
 
-## Part III 
-# Path dependent options and MC (3h)
+# Part III 
+## Path dependent options and MC (3h)
 ### 5 - Some option pricing theory  
   
 #### 5.1 European options and path-dependent option  
@@ -308,9 +309,9 @@ containing the lower bound and the upper bound.
    - No path should be stored in the object
    - Check the prices given by BlackScholesMCPricer are in line with those given by BlackScholesPricer on vanilla options.
 
-## Part IV  
+# Part IV  
   
-# Back to CRR (1-2h)  
+## Back to CRR (1-2h)  
   
 ### 7 - American option in the binomial model  
   
