@@ -217,7 +217,7 @@ A path-dependent option is a financial derivative with payoff at
 expiry date T:
 
 $$
-H_T = h(S_{t_1}, \dots , S_{t_m}
+H_T = h(S_{t_1}, \dots , S_{t_m})
 $$
 
 where $h : (\mathbb{R}^+)^m \to \mathbb{R}$ is the payoff function.  
@@ -228,18 +228,16 @@ h(z_1, \dots, z_m) = \left( \left( \frac{1}{m} \sum_{k=1}^m  z_k \right) - K \ri
 $$ 
   
 5.2 Black-Scholes random paths
-The Wiener process W has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$.
+The Wiener process W has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$. \\
 $S_{t_k}$ can be expressed as
   
 $$
 S_k = S_{k-1} e^{\left( r - \frac{\sigma^2}{2} \right) (t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_k}
 $$  
   
-Where Z1, · · · , Zm are i.i.d. random variables with distribution N (0, 1).
-Let the seqence b Z1, · · · , b Zm be a i.i.d. sample of Z1, · · · ,Zm. We refer the sequence
-
-bSt1 , · · · , bStm
-
+Where $Z_1, \dots , Z_m$ are i.i.d. random variables with distribution \mathcal{N}(0, 1).
+Let the seqence be $\hat{Z_1}, \dots , \hat{Z_m}$ be a i.i.d. sample of $Z_1, \dots ,Z_m$. We refer the sequence
+$(\hat(S_{t_1}), \dots, \hat(S_{t_m}))$
 defined by:
   
 <p align="center">
