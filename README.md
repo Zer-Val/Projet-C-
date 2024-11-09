@@ -22,14 +22,14 @@ The following parameter is also required in order to price the option:
   
 ### 2 - Implementation  
 
-#### 1. Implement the abstract class Option:
+#### 1.1 Implement the abstract class Option:
    
 - with a private member double _expiry, along with a getter method getExpiry()
 - with a pure virtual method double payoff(double), payoff() represents the payoff function
 of the option, denoted by h in this document
 - write a constructor that initialize _expiry with an argument  
   
-#### 2. Derive Option into another abstract class EuropeanVanillaOption:  
+#### 1.2 Derive Option into another abstract class EuropeanVanillaOption:  
      
 - with private attributes double _strike
 - write a constructor which initialize _expiry and _strike with arguments (call the base
@@ -38,7 +38,7 @@ constructor)
 - write a classe enum optionType that has two values: call and put
 - write an pure virtual method GetOptionType() which should return an optionType enum
   
-#### 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
+#### 1.3 Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
 
 - They should use the constructor of EuropeanVanillaOption
 - For a Call option with strike $K$, the payoff is given by:  
@@ -63,7 +63,7 @@ $$
   
 - Override the GetOptionType() accordingly in the derived classes  
   
-#### 4. Create the class BlackScholesPricer  
+#### 1.4 Create the class BlackScholesPricer  
   
 - With constructor BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
 double interest_rate, double volatility)
@@ -126,7 +126,7 @@ is called the risk-neutral probability.
 
 ### 4 - Implementation  
 
-#### 1. Implement a class BinaryTree that represents the data structure (path tree) used for the
+#### 4.1 Implement a class BinaryTree that represents the data structure (path tree) used for the
 CRR method:  
   
 - It should be a template class BinaryTree<T>  
@@ -144,7 +144,7 @@ at the given indices
   <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function">
 </p>  
   
-#### 2. Create the class CRRPricer  
+#### 4.2 Create the class CRRPricer  
   
 - With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
 double down, double interest_rate)
@@ -168,7 +168,7 @@ $$
 Put an optional argument bool closed_form that defaults to false to the operator().
 When it is set to true, the above formula should be used instead of the CRR procedure.
 
-#### 3. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
+#### 4.3 Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
 (EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
 the following type of options:
 - Digital Call with payoff: $h(z) = 1_{z \geq K}$
@@ -181,7 +181,7 @@ exist for Black-Scholes prices and deltas for digital options)
 # Path dependent options and MC (3h)
 ### 5 - Some option pricing theory  
   
-5.1 European options and path-dependent option  
+#### 5.1 European options and path-dependent option  
   
 We consider a risky asset with the Black-Scholes dynamics:  
 
@@ -200,12 +200,12 @@ $$
  
 where $H_T$ denotes the payoff of the option at its expiry date T.
 
-5.1.1 European options  
+##### 5.1.1 European options  
   
 In the case of a European option, $H_T = h(S_T)$, where $h : \mathbb{R}^+ \to \mathbb{R}$ is the payoff function of the
 option, it only depends on the price of the risky asset at maturity.  
   
-5.1.2 Path dependent options  
+##### 5.1.2 Path dependent options  
   
 For more complex options, the payoff $H_T$ also depends on the price of the risky asset at dates
 prior to the maturity.  
@@ -227,7 +227,7 @@ $$
 h(z_1, \dots, z_m) = \left( \left( \frac{1}{m} \sum_{k=1}^m  z_k \right) - K \right)^+ 
 $$ 
   
-5.2 Black-Scholes random paths
+#### 5.2 Black-Scholes random paths
 The Wiener process W has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$.
 
 $S_{t_k}$ can be expressed as
@@ -246,11 +246,11 @@ $$
 \hat{S}_{t_1} = S_0 e^{ \left( r - \frac{\sigma^2}{2} \right)t_1 + \sigma \sqrt{t_1} \hat{Z}_1 }
 $$
   
-$`\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 }`$
+$$`\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 }`$$
   
 as a Black-Scholes sample path.
 
-5.3 Monte Carlo
+v#### 5.3 Monte Carlo
 Let $`\widehat{Z}^i_{t_1},\dots, \widehat{Z}^i_{t_2}`$, for $i \in \mathbb{N}$, be a sequence of independent sample paths. By the law of large
 numbers
   
