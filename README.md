@@ -22,14 +22,14 @@ The following parameter is also required in order to price the option:
   
 ### 2 - Implementation  
 
-1. Implement the abstract class Option:
+#### 1. Implement the abstract class Option:
    
 - with a private member double _expiry, along with a getter method getExpiry()
 - with a pure virtual method double payoff(double), payoff() represents the payoff function
 of the option, denoted by h in this document
 - write a constructor that initialize _expiry with an argument  
   
-2. Derive Option into another abstract class EuropeanVanillaOption:  
+#### 2. Derive Option into another abstract class EuropeanVanillaOption:  
      
 - with private attributes double _strike
 - write a constructor which initialize _expiry and _strike with arguments (call the base
@@ -38,7 +38,7 @@ constructor)
 - write a classe enum optionType that has two values: call and put
 - write an pure virtual method GetOptionType() which should return an optionType enum
   
-3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
+#### 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
 
 - They should use the constructor of EuropeanVanillaOption
 - For a Call option with strike $K$, the payoff is given by:  
@@ -63,7 +63,7 @@ $$
   
 - Override the GetOptionType() accordingly in the derived classes  
   
-4. Create the class BlackScholesPricer  
+#### 4. Create the class BlackScholesPricer  
   
 - With constructor BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
 double interest_rate, double volatility)
@@ -126,7 +126,7 @@ is called the risk-neutral probability.
 
 ### 4 - Implementation  
 
-1. Implement a class BinaryTree that represents the data structure (path tree) used for the
+#### 1. Implement a class BinaryTree that represents the data structure (path tree) used for the
 CRR method:  
   
 - It should be a template class BinaryTree<T>  
@@ -144,7 +144,7 @@ at the given indices
   <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function">
 </p>  
   
-2. Create the class CRRPricer  
+#### 2. Create the class CRRPricer  
   
 - With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
 double down, double interest_rate)
@@ -168,7 +168,7 @@ $$
 Put an optional argument bool closed_form that defaults to false to the operator().
 When it is set to true, the above formula should be used instead of the CRR procedure.
 
-4. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
+#### 3. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
 (EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
 the following type of options:
 - Digital Call with payoff: $h(z) = 1_{z \geq K}$
