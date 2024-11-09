@@ -130,7 +130,7 @@ is called the risk-neutral probability.
 CRR method:  
   
 - It should be a template class BinaryTree<T>  
-- It should have a member _depth, representing N
+- It should have a member _depth, representing $N$
 - It should contain a private member _tree, a vector of vectors (STL) to hold data of
 type T
 - Implement the setter method setDepth(int) a setter for _depth, that resizes _tree and
@@ -226,7 +226,7 @@ h(z_1, \dots, z_m) = \left( \left( \frac{1}{m} \sum_{k=1}^m  z_k \right) - K \ri
 $$ 
   
 #### 5.2 Black-Scholes random paths
-The Wiener process $W$ $has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$.
+The Wiener process $W$ has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$.
 
 $S_{t_k}$ can be expressed as
   
@@ -267,7 +267,7 @@ $H_0 \approx e^{-rT} \frac{1}{N} \sum_{i=0}^{N-1} h \left( \hat{S}_{t_1}^{i}, \d
 ### 6 - Programming  
   
 - Augment the Option class with payoffPath method, taking a std::vector<double> as argu-
-ment, returning $h(S_{t_1} , \dots , S_{t_m}).
+ment, returning $h(S_{t_1} , \dots , S_{t_m})$.
 - The non-overriden version of this function should return $h(S_{t_m})$ (calling payoff(double))
 - Create a derived class from Option: AsianOption
 - The constructor takes a std::vector<double> as argument, representing $(t_1, \dots , t_m)$
