@@ -17,6 +17,7 @@ private:
     double asset_price_; //Prix de l'actif sous-jacent (S)
     double interest_rate_; //Taux d'intérêt (r)
     double volatility_;  //Volatilité (vol)
+
 };
 
 #endif //BLACKSCHOLESPRICER_H
