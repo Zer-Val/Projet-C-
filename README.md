@@ -43,7 +43,7 @@ constructor)
 - They should use the constructor of EuropeanVanillaOption
 - For a Call option with strike K, the payoff is given by:  
   
-$ h(z) = \begin{cases} z - K & \text{if } z \geq K \\ 0 & \text{otherwise} \end{cases} $
+$h(z) = \begin{cases} z - K & \text{if } z \geq K \\ 0 & \text{otherwise} \end{cases}$
 
   
 - For a Put option with strike K, the payoff is given by:  
