@@ -10,15 +10,15 @@ This project aims to implement option pricing models, including Black-Scholes an
 ### 1 - Model specification
 A European vanilla option has the following characteristics:
 - Type: Call or Put (to be modelled with an enum)
-- Strike price: K
-- Expiry date: T  
+- Strike price: $K$
+- Expiry date: $T$  
   
 Its price depends on the following market data:
-- Underlying price: S
-- Interest rate: r  
+- Underlying price: $S$
+- Interest rate: $r$  
   
 The following parameter is also required in order to price the option:
-- Volatility: σ  
+- Volatility: $\sigma$  
   
 ### 2 - Implementation  
 
@@ -41,7 +41,7 @@ constructor)
 3. Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
 
 - They should use the constructor of EuropeanVanillaOption
-- For a Call option with strike K, the payoff is given by:  
+- For a Call option with strike $K$, the payoff is given by:  
   
 $$
 h(z) =
@@ -51,7 +51,7 @@ h(z) =
 \end{cases}
 $$
   
-- For a Put option with strike K, the payoff is given by:  
+- For a Put option with strike $K$, the payoff is given by:  
   
 $$
 h(z) =
@@ -93,30 +93,30 @@ $$
 
 where $S_0 \geq 0$, $U > D > −1$ and $0 \leq i \leq n$. 
 
-There is also a risk-free asset which grows by the factor 1 + R > 0 at each time step 
+There is also a risk-free asset which grows by the factor $1 + R > 0$ at each time step 
 (starting at 1 at step 0).
-The model admits no arbitrage if and onfly if D < R < U.
+The model admits no arbitrage if and onfly if $D < R < U$.
 
-In the CRR model the price H(n, i) at time step n and node i of a European option 
-with expiry date N and payoff h(S (N)) can be computed using the CRR procedure,
+In the CRR model the price $H(n, i)$ at time step n and node i of a European option 
+with expiry date N and payoff $h(S (N))$ can be computed using the CRR procedure,
 which proceeds by backward induction :
 
-- At the expiry date N:  
+- At the expiry date $N$:  
   
 $$
 H(N, i) = h(S(N, i))
 $$
   
-for each node i = 0, · · · , N.
+for each node $i = 0, · · · , N$.
 
-- If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · , N − 1,
+- If $H(n + 1, i)$ is already known for all nodes $i = 0, · · · , n + 1$ for some $n = 0, · · · , N − 1$,
 then :
 
 $$
 H(n, i) = \frac{q H(n + 1, i + 1) + (1 - q) H(n + 1, i)}{1 + R}
 $$
 
-for each i = 0, · · · , n; and where q is defined by
+for each $i = 0, · · · , n$; and where $q$ is defined by
 
 $$
 q = \frac {R - D}{U - D}
@@ -148,41 +148,32 @@ at the given indices
   
 - With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
 double down, double interest_rate)
-   - depth: N
-   - asset_price: S0
-   - up, down, interest_rate: U, D, R respectively
+   - depth: $N$
+   - asset_price: $S_0$
+   - up, down, interest_rate: $U, D, R$ respectively
   
 - In the constructor, check for arbitrage
 - Create the tree structure to store the tree of the desired depth (hint: use BinaryTree
 with an appropriate type)
 - Write the method void compute() that implements the CRR procedure
-- Write the getter method get(int, int) that returns H(n, i).
+- Write the getter method get(int, int) that returns $H(n, i)$.
 - Write the operator() which returns the price of the option, it must call compute() if
 needed
 - The CRR method provides also a closed-form formula for option pricing:
   
-<p align="center">
-  <img src="images/formulaOptionPricingCRR.png" alt="The CRR method provides also a closed-form formula for option pricing">
-</p>  
-  
+$$
+H(0, 0) = \frac{1}{(1 + R)^N} \sum_{i=0}^N \binom{N}{i} q^i (1 - q)^{N - i} \, h(S(N, i)).
+$$
+   
 Put an optional argument bool closed_form that defaults to false to the operator().
 When it is set to true, the above formula should be used instead of the CRR procedure.
 
 4. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
 (EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
 the following type of options:
-- Digital Call with payoff:
-  
-<p align="center">
-  <img src="images/DCwithpayoff.png" alt="Digital Call with payoff">
-</p>  
-  
-- Digital Put with payoff:
-  
-<p align="center">
-  <img src="images/DPwithpayoff.png" alt="Digital Put with payoff">
-</p>  
-  
+- Digital Call with payoff: $h(z) = 1_{z \geq K}  
+- Digital Put with payoff: $h(z) = 1_{z \leq K} 
+
 - Enable BlackScholesPricer to price digital options as well (closed form formulas also
 exist for Black-Scholes prices and deltas for digital options)
 
