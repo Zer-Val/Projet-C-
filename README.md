@@ -78,7 +78,7 @@ can be found on the internet. (Hint: use std::erfc.)
 ### 3 - The CRR model
 
 In the CRR model the price of an asset evolves in discrete time steps $(n = 0, 1, 2, \dots )$. Randomly,
-it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
+it can move up by a factor $1+U$ or down by $1+D$ independently at each time step, starting from
 the spot price $S_0$ (see Figure below).
   
 <p align="center">
@@ -97,8 +97,8 @@ There is also a risk-free asset which grows by the factor $1 + R > 0$ at each ti
 (starting at 1 at step 0).
 The model admits no arbitrage if and onfly if $D < R < U$.
 
-In the CRR model the price $H(n, i)$ at time step n and node i of a European option 
-with expiry date N and payoff $h(S (N))$ can be computed using the CRR procedure,
+In the CRR model the price $H(n, i)$ at time step $n$ and node $i$ of a European option 
+with expiry date $N$ and payoff $h(S(N))$ can be computed using the CRR procedure,
 which proceeds by backward induction :
 
 - At the expiry date $N$:  
@@ -173,7 +173,6 @@ When it is set to true, the above formula should be used instead of the CRR proc
 the following type of options:
 - Digital Call with payoff: $h(z) = 1_{z \geq K}$
 - Digital Put with payoff: $h(z) = 1_{z \leq K}$
-
 - Enable BlackScholesPricer to price digital options as well (closed form formulas also
 exist for Black-Scholes prices and deltas for digital options)
 
@@ -198,7 +197,7 @@ $$
 H_0 = e^{-rT} \mathbb{E}^\mathbb{Q} [H_T]
 $$  
  
-where $H_T$ denotes the payoff of the option at its expiry date T.
+where $H_T$ denotes the payoff of the option at its expiry date $T$.
 
 ##### 5.1.1 European options  
   
@@ -213,8 +212,7 @@ prior to the maturity.
 These are called path dependent options.
 Let $t_k = \frac{k}{m} T$, for $k = 1, \dots ,m$.
 
-A path-dependent option is a financial derivative with payoff at
-expiry date T:
+A path-dependent option is a financial derivative with payoff at expiry date $T$:
 
 $$
 H_T = h(S_{t_1}, \dots , S_{t_m})
@@ -228,7 +226,7 @@ h(z_1, \dots, z_m) = \left( \left( \frac{1}{m} \sum_{k=1}^m  z_k \right) - K \ri
 $$ 
   
 #### 5.2 Black-Scholes random paths
-The Wiener process W has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$.
+The Wiener process $W$ $has independent increments, with $W_t − W_s ∼ \mathcal{N}(0, t − s)$ for $0 ≤ s < t$.
 
 $S_{t_k}$ can be expressed as
   
@@ -260,7 +258,7 @@ numbers
 $\mathbb{E}^Q \left[ h(S_{t_1}, \dots, S_{t_m}) \right] = \lim_{N \to \infty} \frac{1}{N} \sum_{i=0}^{N-1} h \left( \hat{S}_{t_1}^{i}, \dots, \hat{S}_{t_m}^{i} \right)$
 </p> 
   
-This means that for sufficient large N, we can approximate H0 using
+This means that for sufficient large $N$, we can approximate $H_0$ using
   
 <p align="center">
 $H_0 \approx e^{-rT} \frac{1}{N} \sum_{i=0}^{N-1} h \left( \hat{S}_{t_1}^{i}, \dots, \hat{S}_{t_m}^{i} \right)$
@@ -319,10 +317,10 @@ containing the lower bound and the upper bound.
 In addition to pricing European options, we want to include the ability to price American options
 in the binomial model.  
 The holder of an American option has the right to exercise it at any time up to and including the
-expiry date N. If the option is exercised at time step n and node i of the binomial tree, then the
+expiry date $N$. If the option is exercised at time step $n$ and node $i$ of the binomial tree, then the
 holder will receive payoff $h(S(n, i))$.  
-The price $H(n, i)$ of an American option at any time step n and node i in the binomial tree can
-be computed by the following procedure, which proceeds by backward induction on n:
+The price $H(n, i)$ of an American option at any time step $n$ and node $i$ in the binomial tree can
+be computed by the following procedure, which proceeds by backward induction on $n$:
   
 - At the expiry date N: $H(N, i)$ has the same value as for the option's European counterpart.
 Financial interpretation: if not exercised before the expiry, there is no advantage holding an
@@ -340,28 +338,30 @@ Financial interpretation: the option holder chooses the maximum between the cont
 value (expected gain if they do not exercise, under the risk-neutral measure) and the intrinsic
 value (the value of the option if exercised immediately).
 In particular, $H(0, 0)$ at the root node of the tree is the price of the American option at time 0.
-We would like to compute and store the price of an American option for each time step n and node
-i in the binomial tree. In addition, we want to compute the early exercise policy, which should be
+We would like to compute and store the price of an American option for each time step $n$ and node
+$i$ in the binomial tree. In addition, we want to compute the early exercise policy, which should be
 of Boolean type and tells if the American option should be exercised or not for each state of the
 tree. The early exercise policy should also be stored using an instance of BinaryTree<bool>.  
   
 ### 8 - Black-Scholes as limit of the binomial tree  
   
-The binomial model can be used to approximate the Black-Scholes model if N is large.
-One of the scheme is to divide the time interval [0, T] into N steps of length $h = \frac{T}{N}$, and set the
+The binomial model can be used to approximate the Black-Scholes model if $N$ is large.
+One of the scheme is to divide the time interval $[0, T]$ into $N$ steps of length $h = \frac{T}{N}$, and set the
 parameters of the binomial model to be:
  
+$$
+U = e^{\left( r + \frac{\sigma^2}{2} \right)h + \sigma \sqrt{h} - 1}
+$$
 
+$$
+D = e^{\left( r + \frac{\sigma^2}{2} \right)h - \sigma \sqrt{h} - 1}
+$$
+
+$$
+R = e^{rH} - 1
+$$
   
-<p align="center">
-  <img src="images/BSD.png" alt="Expression de D">
-</p>  
-  
-<p align="center">
-  <img src="images/BSR.png" alt="Expression de R">
-</p>  
-  
-where σ is the volatility and r is the continuously compounded interest rate in the Black-Scholes
+where $\sigma$ is the volatility and $r$ is the continuously compounded interest rate in the Black-Scholes
 model.
 
 Implement a method to initialize a Binomial tree as a Black-Scholes approximation (using the
@@ -381,8 +381,4 @@ bool getExercise(int, int).
 The exercise condition is true when the intrinsic value is larger or equal to the continuous
 value, it is computed during the CRR procedure.  
 - Overload the CRRPricer with CRRPricer(Option* option, int depth, double asset_price,
-double r, double volatility), which initializes U, D and R as described in Section 6.
-
-### 10 - Test your program!  
-  
-- Use the test files available on DVL containing the grading main() functions.  
+double r, double volatility), which initializes $U, D \text{and} R$ as described in Section 6.
