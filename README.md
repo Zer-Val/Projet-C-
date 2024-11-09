@@ -247,7 +247,7 @@ $$
 $$
 
 <p align="center">
-$`\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 }`$
+$\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 }$
 </p>
   
 as a Black-Scholes sample path.
@@ -255,30 +255,28 @@ as a Black-Scholes sample path.
 #### 5.3 Monte Carlo
 Let $`\widehat{Z}^i_{t_1},\dots, \widehat{Z}^i_{t_2}`$, for $i \in \mathbb{N}$, be a sequence of independent sample paths. By the law of large
 numbers
-  
+
 <p align="center">
-  <img src="images/FormuleMC1.png" alt="Expression de l'espérance sous la mesure Q">
-</p>  
+$\mathbb{E}^Q \left[ h(S_{t_1}, \dots, S_{t_m}) \right] = \lim_{N \to \infty} \frac{1}{N} \sum_{i=0}^{N-1} h \left( \hat{S}_{t_1}^{i}, \dots, \hat{S}_{t_m}^{i} \right)$
+</p> 
   
 This means that for sufficient large N, we can approximate H0 using
   
 <p align="center">
-  <img src="images/FormuleMC2.png" alt="Approximation de H0">
+$H_0 \approx e^{-rT} \frac{1}{N} \sum_{i=0}^{N-1} h \left( \hat{S}_{t_1}^{i}, \dots, \hat{S}_{t_m}^{i} \right)$
 </p>  
   
 ### 6 - Programming  
   
 - Augment the Option class with payoffPath method, taking a std::vector<double> as argu-
-ment, returning h(St1 , · · · , Stm).
-- The non-overriden version of this function should return h (Stm) (calling payoff(double))
+ment, returning $h(S_{t_1} , \dots , S_{t_m}).
+- The non-overriden version of this function should return $h(S_{t_m})$ (calling payoff(double))
 - Create a derived class from Option: AsianOption
-- The constructor takes a std::vector<double> as argument, representing (t1, · · · , tm)
+- The constructor takes a std::vector<double> as argument, representing $(t_1, \dots , t_m)$
 - The argument should be stored in a private member, with a getter method getTimeSteps()
 - Override AsianOption::payoffPath(std::vector<double>) so that
   
-<p align="center">
-  <img src="images/payoffAsian.png" alt="Expression de l'espérance sous la mesure Q">
-</p>  
+$h(S_{t_1}, \dots, S_{t_m}) = h \left( \frac{1}{m} \sum_{k=1}^{m} S_{t_k} \right)$
   
 where h on the right hand side is payoff(double). AsianOption::payoffPath(std::vector<double>)
 should not be virtual.
@@ -292,7 +290,7 @@ version, override it in AsianOption.
 an exception.
 - Design a singleton class MT, encapsulating a std::mt19937 object. Two public static methods
 are implemented: double rand_unif() and double rand_norm(), returning a realization of
-U ([0, 1]) and N (0, 1) respectively. Ensure that only one instance of std::mt19937 can be
+$\mathcal{U}([0, 1])$ and $\mathcal{N}(0, 1)$ respectively. Ensure that only one instance of std::mt19937 can be
 used in all the program through MT.
 - Write the BlackScholesMCPricer class:
    - The constructor must have signature (Option* option, double initial_price, double in-
@@ -300,7 +298,7 @@ terest_rate, double volatility)
    - The class should have a private attribute that counts the number of paths already
 generated since the beginning of the program to estimate the price of the option,
 a getter named getNbPaths() needs to give a read access to this attribute.
-   - The method generate(int nb_paths) generates nb_paths new paths of (St1 , · · · , Stm)
+   - The method generate(int nb_paths) generates nb_paths new paths of $(S_{t_1} , · · · , S_{t_m})$
 (for European Option, m = 1), and UPDATES the current estimate of the price of
 the option (the updating process is the same as in exercise 5 of the TD).
    - The operator () returns the current estimate (throw an exception if it is undefined).
@@ -320,26 +318,26 @@ In addition to pricing European options, we want to include the ability to price
 in the binomial model.  
 The holder of an American option has the right to exercise it at any time up to and including the
 expiry date N. If the option is exercised at time step n and node i of the binomial tree, then the
-holder will receive payoff h (S (n, i)).  
-The price H (n, i) of an American option at any time step n and node i in the binomial tree can
+holder will receive payoff $h(S(n, i))$$.  
+The price $H(n, i)$ of an American option at any time step n and node i in the binomial tree can
 be computed by the following procedure, which proceeds by backward induction on n:
   
-- At the expiry date N: H (N, i) has the same value as for the option's European counterpart.
+- At the expiry date N: $H(N, i)$ has the same value as for the option's European counterpart.
 Financial interpretation: if not exercised before the expiry, there is no advantage holding an
 American option over holding a European option.
 
-- If H (n + 1, i) is already known at each node i ∈ {0, · · · , n + 1} for some n < N, then
+- If $H(n + 1, i)$ is already known at each node $i \in {0, \dots , n + 1}$ for some $n < N$, then
   
 <p align="center">
   <img src="images/AmericanOptionPrice.png" alt="Expression du prix l'étape n et au temps i si celui au noeud n+1 est connu">
 </p>  
   
-for each i ∈ {0, · · · , n}.  
+for each $i \in {0, \dots , n}$.  
   
 Financial interpretation: the option holder chooses the maximum between the continuation
 value (expected gain if they do not exercise, under the risk-neutral measure) and the intrinsic
 value (the value of the option if exercised immediately).
-In particular, H (0, 0) at the root node of the tree is the price of the American option at time 0.
+In particular, $H(0, 0)$ at the root node of the tree is the price of the American option at time 0.
 We would like to compute and store the price of an American option for each time step n and node
 i in the binomial tree. In addition, we want to compute the early exercise policy, which should be
 of Boolean type and tells if the American option should be exercised or not for each state of the
@@ -352,8 +350,9 @@ One of the scheme is to divide the time interval [0, T] into N steps of length h
 parameters of the binomial model to be:
   
 <p align="center">
-  <img src="images/BSU.png" alt="Expression de U">
+$ `H(n, i) = \max \left\{\underbrace{\frac{qH(n + 1, i + 1) + (1 - q)H(n + 1, i)}{1 + R}}_{\text{continuation value}}, \quad \underbrace{h(S(n, i))}_{\text{intrinsic value}} \right\}`$
 </p>  
+
   
 <p align="center">
   <img src="images/BSD.png" alt="Expression de D">
