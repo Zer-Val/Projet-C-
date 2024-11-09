@@ -112,15 +112,15 @@ for each node i = 0, · · · , N.
 - If H(n + 1, i) is already known for all nodes i = 0, · · · , n + 1 for some n = 0, · · · , N − 1,
 then :
 
-<p align="center">
-  <img src="images/stockpriceIfLongerOneAlreadyKnow.png" alt="Stock price at step n and node i at expiry date N">
-</p> 
+$$
+H(n, i) = \frac{q H(n + 1, i + 1) + (1 - q) H(n + 1, i)}{1 + R}
+$$
 
 for each i = 0, · · · , n; and where q is defined by
 
-<p align="center">
-  <img src="images/formuleq.png" alt="Risk-neutral probability formula">
-</p>  
+$$
+q = \frac {R - D}{U - D}
+$$
   
 is called the risk-neutral probability.
 
