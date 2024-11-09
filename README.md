@@ -162,7 +162,7 @@ needed
 - The CRR method provides also a closed-form formula for option pricing:
   
 $$
-H(0, 0) = \frac{1}{(1 + R)^N} \sum_{i=0}^N \binom{N}{i} q^i (1 - q)^{N - i} \, h(S(N, i)).
+H(0, 0) = \frac{1}{(1 + R)^N} \sum_{i=0}^N \binom{N}{i} q^i (1 - q)^{N - i} h(S(N, i)).
 $$
    
 Put an optional argument bool closed_form that defaults to false to the operator().
@@ -185,19 +185,20 @@ exist for Black-Scholes prices and deltas for digital options)
   
 We consider a risky asset with the Black-Scholes dynamics:  
 
-<p align="center">
-  <img src="images/GBMmodel.png" alt="Geometric Brownian Motion (GBM) model">
-</p>  
+$$
+S_t = S_0 e^{(r - \frac{\sigma^2}{2})t+\sigma W_t}
+
+$$
 
 where $\sigma \in \mathbb{R}^+$ is the volatility and $W_t$ a Wiener process under the risk neutral probability $\mathbb{Q}$.
 We denote the price (at time 0) of an option by $H_0$.
 
 This price can be determined by computing the expected discounted payoff under $\mathbb{Q}$:  
-  
-<p align="center">
-  <img src="images/risk-neutralpricingformula.png" alt="Risk-neutral pricing formula">
-</p>  
-  
+
+$$
+H_0 = e^{-rT} \mathbb{E}^\mathbb{Q} [H_T]
+$$  
+ 
 where $H_T$ denotes the payoff of the option at its expiry date T.
 
 5.1.1 European options  
@@ -211,21 +212,21 @@ For more complex options, the payoff HT also depends on the price of the risky a
 prior to the maturity.  
   
 These are called path dependent options.
-Let $t_k = \frac{k}{m} T$, for k = 1, · · · ,m.
+Let $t_k = \frac{k}{m} T$, for $k = 1, \dots ,m$.
 
 A path-dependent option is a financial derivative with payoff at
 expiry date T:
 
-<p align="center">
-  <img src="images/pathdepoption.png" alt="Payoff of a path-dependent option">
-</p>
+$$
+H_T = h(S_{t_1}, \dots , S_{t_m}
+$$
 
 where $h : (\mathbb{R}^+)^m \to \mathbb{R}$ is the payoff function.  
 For instance, the arithmetic Asian Call has the following payoff function:  
   
-<p align="center">
-  <img src="images/AACallpayoff.png" alt="Asian Call payoff function">
-</p>  
+$$
+h(z_1, \dots, z_m) = \left( \left( \frac{1}{m} \sum_{k=1}^m  z_k \right) - K \right)^+ 
+$$ 
   
 5.2 Black-Scholes random paths
 The Wiener process W has independent increments, with Wt − :Ws ∼ N (0, t − s) for 0 ≤ s < t.
