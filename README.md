@@ -246,17 +246,12 @@ $$
 \hat{S}_{t_1} = S_0 e^{ \left( r - \frac{\sigma^2}{2} \right)t_1 + \sigma \sqrt{t_1} \hat{Z}_1 }
 $$
   
-$`\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{\left( \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 \right)}`$
+$`\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 }`$
   
 as a Black-Scholes sample path.
+
 5.3 Monte Carlo
-Let
-
-bSi
-t1 , · · · , bSi
-tm
-
-, for i ∈ N, be a sequence of independent sample paths. By the law of large
+Let $`\widehat{Z}^i_{t_1},\dots, \widehat{Z}^i_{t_2}`$, for $i \in \mathbb{N}$, be a sequence of independent sample paths. By the law of large
 numbers
   
 <p align="center">
