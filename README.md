@@ -77,7 +77,7 @@ can be found on the internet. (Hint: use std::erfc.)
 # The Cox-Ross-Rubinstein model
 ### 3 - The CRR model
 
-In the CRR model the price of an asset evolves in discrete time steps (n = 0, 1, 2, · · · ). Randomly,
+In the CRR model the price of an asset evolves in discrete time steps $(n = 0, 1, 2, \dots )$. Randomly,
 it can move up by a factor 1+U or down by 1+D independently at each time step, starting from
 the spot price $S_0$ (see Figure below).
   
@@ -107,16 +107,16 @@ $$
 H(N, i) = h(S(N, i))
 $$
   
-for each node $i = 0, · · · , N$.
+for each node $i = 0, \dots , N$.
 
-- If $H(n + 1, i)$ is already known for all nodes $i = 0, · · · , n + 1$ for some $n = 0, · · · , N − 1$,
+- If $H(n + 1, i)$ is already known for all nodes $i = 0, \dots , n + 1$ for some $n = 0, \dots , N − 1$,
 then :
 
 $$
 H(n, i) = \frac{q H(n + 1, i + 1) + (1 - q) H(n + 1, i)}{1 + R}
 $$
 
-for each $i = 0, · · · , n$; and where $q$ is defined by
+for each $i = 0, \dots , n$; and where $q$ is defined by
 
 $$
 q = \frac {R - D}{U - D}
@@ -171,8 +171,8 @@ When it is set to true, the above formula should be used instead of the CRR proc
 4. Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
 (EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
 the following type of options:
-- Digital Call with payoff: $h(z) = 1_{z \geq K}  
-- Digital Put with payoff: $h(z) = 1_{z \leq K} 
+- Digital Call with payoff: $h(z) = 1_{z \geq K}$
+- Digital Put with payoff: $h(z) = 1_{z \leq K}$
 
 - Enable BlackScholesPricer to price digital options as well (closed form formulas also
 exist for Black-Scholes prices and deltas for digital options)
