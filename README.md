@@ -88,10 +88,10 @@ the spot price $S_0$ (see Figure below).
 As a result, the stock price at step n and node i is:
   
 $$ 
-S(n, i) = S_0 (1+U)î (1+D)^{n-i}
+S(n, i) = S_0 (1+U)^i (1+D)^{n-i}
 $$
 
-where $S_0 > 0, U > D > −1 & \text{and} 0 ≤ i ≤ n$. 
+where $S_0 >$\geq 0, U > D > −1 & \text{and} 0 ≤ i ≤ n$. 
 
 There is also a risk-free asset which grows by the factor 1 + R > 0 at each time step 
 (starting at 1 at step 0).
