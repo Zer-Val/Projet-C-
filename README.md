@@ -10,7 +10,7 @@ This project is based on the following project assignement :
 
 ## 1 - Model specification
 A European vanilla option has the following characteristics:
-- Type: Call or Put (to be modelled with an enum)
+- Type: Call or Put (to be modelled with an \textit{enum})
 - Strike price: $K$
 - Expiry date: $T$  
   
@@ -23,25 +23,25 @@ The following parameter is also required in order to price the option:
   
 ## 2 - Implementation  
 
-### 1.1 Implement the abstract class Option:
+### 1.1 Implement the abstract class \textit{Option}:
    
-- with a private member double _expiry, along with a getter method getExpiry()
-- with a pure virtual method double payoff(double), payoff() represents the payoff function
-of the option, denoted by h in this document
-- write a constructor that initialize _expiry with an argument  
+- with a private member \textit{double _expiry}, along with a getter method \textit{getExpiry()}
+- with a pure virtual method \textit{double payoff(double), payoff()} represents the payoff function
+of the option, denoted by $h$ in this document
+- write a constructor that initialize \textit{_expiry} with an argument  
   
-### 1.2 Derive Option into another abstract class EuropeanVanillaOption:  
+### 1.2 Derive \textit{Option} into another abstract class \textit{EuropeanVanillaOption}:  
      
-- with private attributes double _strike
-- write a constructor which initialize _expiry and _strike with arguments (call the base
+- with private attributes \textit{double _strike}
+- write a constructor which initialize \textit{_expiry} and \textit{_strike} with arguments (call the base
 constructor)
 - the constructor should ensure that the arguments are nonnegative
-- write a classe enum optionType that has two values: call and put
-- write an pure virtual method GetOptionType() which should return an optionType enum
+- write a classe enum \textit{optionType} that has two values: \textit{call} and \textit{put}
+- write an pure virtual method \textit{GetOptionType()} which should return an \textit{optionType} enum
   
-### 1.3 Derive EuropeanVanillaOption into two classes: CallOption and PutOption.  
+### 1.3 Derive \textit{EuropeanVanillaOption} into two classes: \textit{CallOption} and \textit{PutOption}.  
 
-- They should use the constructor of EuropeanVanillaOption
+- They should use the constructor of \textit{EuropeanVanillaOption}
 - For a Call option with strike $K$, the payoff is given by:  
   
 $$
@@ -62,17 +62,17 @@ h(z) =
 \end{cases}
 $$
   
-- Override the GetOptionType() accordingly in the derived classes  
+- Override the \textit{GetOptionType()} accordingly in the derived classes  
   
-### 1.4 Create the class BlackScholesPricer  
+### 1.4 Create the class \textit{BlackScholesPricer}  
   
-- With constructor BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
-double interest_rate, double volatility)
-- Declare BlackScholesPricer as a friend class of EuropeanVanillaOption in order for the
+- With constructor \textit{BlackScholesPricer(EuropeanVanillaOption* option, double asset_price,
+double interest_rate, double volatility)}
+- Declare \textit{BlackScholesPricer} as a friend class of \textit{EuropeanVanillaOption} in order for the
 former to access the strike of the latter
-- Write the operator() which returns the price of the option. The Black-Scholes formula
-can be found on the internet. (Hint: use std::erfc.)
-- Write the method delta() which returns the Delta of the option  
+- Write the \textit{operator()} which returns the price of the option. The Black-Scholes formula
+can be found on the internet. (Hint: use \textit{std::erfc}.)
+- Write the method \textit{delta()} which returns the Delta of the option  
   
 # Part II - The Cox-Ross-Rubinstein model
 
@@ -127,19 +127,19 @@ is called the risk-neutral probability.
 
 ## 4 - Implementation  
 
-### 4.1 Implement a class BinaryTree that represents the data structure (path tree) used for the
+### 4.1 Implement a class \textit{BinaryTree} that represents the data structure (path tree) used for the
 CRR method:  
   
-- It should be a template class BinaryTree<T>  
-- It should have a member _depth, representing $N$
-- It should contain a private member _tree, a vector of vectors (STL) to hold data of
-type T
-- Implement the setter method setDepth(int) a setter for _depth, that resizes _tree and
+- It should be a template class \textit{BinaryTree<T>}  
+- It should have a member \textit{_depth}, representing $N$
+- It should contain a private member \textit{_tree}, a vector of vectors (STL) to hold data of
+type \textit{T}
+- Implement the setter method \textit{setDepth(int)} a setter for \textit{_depth}, that resizes \textit{_tree} and
 allocate/deallocate properly the vectors in tree
-- Implement the setter method setNode(int, int, T) which sets the value stored in _tree
+- Implement the setter method \textit{setNode(int, int, T)} which sets the value stored in \textit{_tree}
 at the given indices
-- Implement the getter method getNode(int, int) which retrives the corresponding value
-- Implement the method display() which prints the all the values stored  
+- Implement the getter method \textit{getNode(int, int)} which retrives the corresponding value
+- Implement the method \textit{display()} which prints the all the values stored  
   
 <p align="center">
   <img src="images/Graphique2CRR.png" alt="Examples of output by the display() function">
@@ -147,18 +147,18 @@ at the given indices
   
 ### 4.2 Create the class CRRPricer  
   
-- With constructor CRRPricer(Option* option, int depth, double asset_price, double up,
-double down, double interest_rate)
-   - depth: $N$
-   - asset_price: $S_0$
-   - up, down, interest_rate: $U, D, R$ respectively
+- With constructor \textit{CRRPricer(Option* option, int depth, double asset_price, double up,
+double down, double interest_rate)}
+   - \textit{depth}: $N$
+   - \textit{asset_price}: $S_0$
+   - \textit{up, down, interest_rate}: $U, D, R$ respectively
   
 - In the constructor, check for arbitrage
-- Create the tree structure to store the tree of the desired depth (hint: use BinaryTree
+- Create the tree structure to store the tree of the desired depth (hint: use \textit{BinaryTree}
 with an appropriate type)
-- Write the method void compute() that implements the CRR procedure
-- Write the getter method get(int, int) that returns $H(n, i)$.
-- Write the operator() which returns the price of the option, it must call compute() if
+- Write the method \textit{void compute()} that implements the CRR procedure
+- Write the getter method \textit{get(int, int)} that returns $H(n, i)$.
+- Write the \textit{operator()} which returns the price of the option, it must call \textit{compute()} if
 needed
 - The CRR method provides also a closed-form formula for option pricing:
   
@@ -166,15 +166,14 @@ $$
 H(0, 0) = \frac{1}{(1 + R)^N} \sum_{i=0}^N \binom{N}{i} q^i (1 - q)^{N - i} h(S(N, i)).
 $$
    
-Put an optional argument bool closed_form that defaults to false to the operator().
+Put an optional argument \textit{bool closed_form} that defaults to \textit{false} to the \textit{operator()}.
 When it is set to true, the above formula should be used instead of the CRR procedure.
 
-### 4.3 Similarly to EuropeanVanillaOption, design EuropeanDigitalOption and its derived classes
-(EuropeanDigitalCallOption and EuropeanDigitalPutOption) in order to take into account
-the following type of options:
+### 4.3 Similarly to \textit{EuropeanVanillaOption}, design \textit{EuropeanDigitalOption} and its derived classes (\textit{EuropeanDigitalCallOption} and \textit{EuropeanDigitalPutOption}) in order to take into account the following type of options:
+
 - Digital Call with payoff: $h(z) = 1_{z \geq K}$
 - Digital Put with payoff: $h(z) = 1_{z \leq K}$
-- Enable BlackScholesPricer to price digital options as well (closed form formulas also
+- Enable \textit{BlackScholesPricer} to price digital options as well (closed form formulas also
 exist for Black-Scholes prices and deltas for digital options)
 
 # Part III - Path dependent options and MC (3h)
@@ -264,27 +263,27 @@ $H_0 \approx e^{-rT} \frac{1}{N} \sum_{i=0}^{N-1} h \left( \hat{S}_{t_1}^{i}, \d
   
 ## 6 - Programming  
   
-- Augment the Option class with payoffPath method, taking a std::vector<double> as argu-
+- Augment the \textit{Option} class with \textit{payoffPath} method, taking a \textit{std::vector<double>} as argu-
 ment, returning $h(S_{t_1} , \dots , S_{t_m})$.
-- The non-overriden version of this function should return $h(S_{t_m})$ (calling payoff(double))
-- Create a derived class from Option: AsianOption
-- The constructor takes a std::vector<double> as argument, representing $(t_1, \dots , t_m)$
-- The argument should be stored in a private member, with a getter method getTimeSteps()
-- Override AsianOption::payoffPath(std::vector<double>) so that
+- The non-overriden version of this function should return $h(S_{t_m})$ (calling \textit{payoff(double)})
+- Create a derived class from \textit{Option}: \textit{AsianOption}
+   - The constructor takes a \textit{std::vector<double>} as argument, representing $(t_1, \dots , t_m)$
+   - The argument should be stored in a private member, with a getter method \textit{getTimeSteps()}
+   - Override \textit{AsianOption::payoffPath(std::vector<double>)} so that
   
 $$
 h(S_{t_1}, \dots, S_{t_m}) = h \left( \frac{1}{m} \sum_{k=1}^{m} S_{t_k} \right)
 $$
   
-where h on the right hand side is payoff(double). AsianOption::payoffPath(std::vector<double>)
+where $h$ on the right hand side is \textit{payoff(double)}. \textit{AsianOption::payoffPath(std::vector<double>)}
 should not be virtual.
-- Created AsianCallOption and AsianPutOption, derived from AsianOption.
-- In addition to std::vector<double>, their constructor takes a double as argument, den-
+- Created \textit{AsianCallOption} and \textit{AsianPutOption}, derived from \textit{AsianOption}.
+   - In addition to \textit{std::vector<double>}, their constructor takes a double as argument, den-
 ing the strike.
-- They have to have proper implementations of payoff().
-- Augment the Option class with bool isAsianOption(), returning false in its non-overriden
-version, override it in AsianOption.
-- In CRRPricer 's constructor, check if the option is an Asian option, if it is the case, throw
+   - They have to have proper implementations of \textit{payoff()}.
+- Augment the \textit{Option} class with \textit{bool isAsianOption()}, returning \textit{false} in its non-overriden
+version, override it in \textit{AsianOption}.
+- In \textit{CRRPricer}'s constructor, check if the option is an Asian option, if it is the case, throw
 an exception.
 - Design a singleton class MT, encapsulating a std::mt19937 object. Two public static methods
 are implemented: double rand_unif() and double rand_norm(), returning a realization of
