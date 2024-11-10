@@ -299,11 +299,11 @@ In particular, $H(0, 0)$ at the root node of the tree is the price of the Americ
 The binomial model can be used to approximate the Black-Scholes model if $N$ is large. One of the scheme is to divide the time interval $[0, T]$ into $N$ steps of length $h = \frac{T}{N}$, and set the parameters of the binomial model to be:
  
 $$
-U = e^{\left( r + \frac{\sigma^2}{2} \right)h + \sigma \sqrt{h} - 1}
+U = e^{\left( r + \frac{\sigma^2}{2} \right)h + \sigma \sqrt{h}} - 1
 $$
 
 $$
-D = e^{\left( r + \frac{\sigma^2}{2} \right)h - \sigma \sqrt{h} - 1}
+D = e^{\left( r + \frac{\sigma^2}{2} \right)h - \sigma \sqrt{h}} - 1
 $$
 
 $$
@@ -320,4 +320,4 @@ Implement a method to initialize a Binomial tree as a Black-Scholes approximatio
 - Derive *Option* into *AmericanOption*, and override *isAmericanOption()* properly.  
 - Derive *AmericanOption* into *AmericanCallOption* and *AmericanPutOption*, write proper constructors and override their respective *payoff()* methods.  
 - Modify *CRRPricer* in order for it to price properly American options; the exercise condition for American options is stored in a *BinaryTree<bool>*, accessible through a getter method *bool getExercise(int, int)*. The exercise condition is true when the intrinsic value is larger or equal to the continuous value, it is computed during the CRR procedure.  
-- Overload the CRRPricer with *CRRPricer(Option* option, int depth, double asset_price, double r, double volatility)*, which initializes $U, D \text{ and } R$ as described in Section 6.
+- Overload the CRRPricer with *CRRPricer(Option\* option, int depth, double asset_price, double r, double volatility)*, which initializes $U, D \text{ and } R$ as described in Section 6.
