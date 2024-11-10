@@ -318,7 +318,7 @@ holder will receive payoff $h(S(n, i))$.
 The price $H(n, i)$ of an American option at any time step $n$ and node $i$ in the binomial tree can
 be computed by the following procedure, which proceeds by backward induction on $n$:
   
-- At the expiry date N: $H(N, i)$ has the same value as for the option's European counterpart.
+- At the expiry date $N$: $H(N, i)$ has the same value as for the option's European counterpart.
 Financial interpretation: if not exercised before the expiry, there is no advantage holding an
 American option over holding a European option.
 
@@ -377,4 +377,4 @@ bool getExercise(int, int).
 The exercise condition is true when the intrinsic value is larger or equal to the continuous
 value, it is computed during the CRR procedure.  
 - Overload the CRRPricer with CRRPricer(Option* option, int depth, double asset_price,
-double r, double volatility), which initializes $U, D \text{and} R$ as described in Section 6.
+double r, double volatility), which initializes $U, D \text{ and } R$ as described in Section 6.
