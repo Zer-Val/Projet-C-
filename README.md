@@ -116,8 +116,7 @@ is called the risk-neutral probability.
 
 ## 4 - Implementation  
 
-### 4.1 Implement a class *BinaryTree* that represents the data structure (path tree) used for the
-CRR method:  
+### 4.1 Implement a class *BinaryTree* that represents the data structure (path tree) used for the CRR method:  
   
 - It should be a template class *BinaryTree<T>* 
 - It should have a member *_depth*, representing $N$
@@ -155,7 +154,9 @@ $$
 Put an optional argument *bool closed_form* that defaults to *false* to the *operator()*.
 When it is set to true, the above formula should be used instead of the CRR procedure.
 
-### 4.3 Similarly to *EuropeanVanillaOption*, design *EuropeanDigitalOption* and its derived classes (*EuropeanDigitalCallOption* and *EuropeanDigitalPutOption*) in order to take into account the following type of options:
+### 4.3 European Digital Options
+
+Similarly to *EuropeanVanillaOption*, design *EuropeanDigitalOption* and its derived classes (*EuropeanDigitalCallOption* and *EuropeanDigitalPutOption*) in order to take into account the following type of options:
 
 - Digital Call with payoff: $h(z) = 1_{z \geq K}$
 - Digital Put with payoff: $h(z) = 1_{z \leq K}$
