@@ -10,7 +10,7 @@ This project is based on the following project assignement :
 
 ## 1 - Model specification
 A European vanilla option has the following characteristics:
-- Type: Call or Put (to be modelled with an \textit{enum})
+- Type: Call or Put (to be modelled with an $\textit{enum}$)
 - Strike price: $K$
 - Expiry date: $T$  
   
