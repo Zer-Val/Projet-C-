@@ -201,7 +201,7 @@ where $H_T$ denotes the payoff of the option at its expiry date $T$.
 
 #### 5.1.1 European options  
   
-In the case of a European option, $H_T = h(S_T)$, where $h : \; \mathbb{R}^+ \to \mathbb{R}$ is the payoff function of the
+In the case of a European option, $H_T = h(S_T)$, where $h : \: \mathbb{R}^+ \to \mathbb{R}$ is the payoff function of the
 option, it only depends on the price of the risky asset at maturity.  
   
 #### 5.1.2 Path dependent options  
@@ -218,7 +218,7 @@ $$
 H_T = h(S_{t_1}, \dots , S_{t_m})
 $$
 
-where $h : \; (\mathbb{R}^+)^m \to \mathbb{R}$ is the payoff function.  
+where $h : \: (\mathbb{R}^+)^m \to \mathbb{R}$ is the payoff function.  
 For instance, the arithmetic Asian Call has the following payoff function:  
   
 $$
@@ -245,7 +245,7 @@ $$
 $$
 
 <p align="center">
-$\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} Z_1 }$
+$\hat{S}_{t_k} = \hat{S}_{t_{k-1}} e^{ \left( r - \frac{\sigma^2}{2} \right)(t_k - t_{k-1}) + \sigma \sqrt{t_k - t_{k-1}} \widehat{Z}_k }$
 </p>
   
 as a Black-Scholes sample path.
