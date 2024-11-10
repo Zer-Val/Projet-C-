@@ -236,10 +236,8 @@ $$
   
 Where $Z_1, \dots , Z_m$ are i.i.d. random variables with distribution $\mathcal{N}(0, 1)$.
 Let the seqence $`\widehat{Z}_{t_1},\dots, \widehat{Z}_{t_2}`$ be a i.i.d. sample of $Z_1, \dots ,Z_m$. We refer the sequence
-$`(\widehat{S}_{t_1},\dots, \widehat{S}_{t_m})`$
+$`(\widehat{S}_{t_1},\dots, \widehat{S}_{t_m})`$ defined by:
 
-defined by:
-  
 $$
 \hat{S}_{t_1} = S_0 e^{ \left( r - \frac{\sigma^2}{2} \right)t_1 + \sigma \sqrt{t_1} \hat{Z}_1 }
 $$
