@@ -247,7 +247,7 @@ $H_0 \approx e^{-rT} \frac{1}{N} \sum_{i=0}^{N-1} h \left( \hat{S}_{t_1}^{i}, \d
 ## 6 - Programming  
   
 - Augment the *Option* class with *payoffPath* method, taking a *std::vector<double>* as argument, returning $h(S_{t_1} , \dots , S_{t_m})$.
-- The non-overriden version of this function should return $h(S_{t_m})$ (calling *payoff(double)})
+- The non-overriden version of this function should return $h(S_{t_m})$ (calling *payoff(double)*)
 - Create a derived class from *Option*: *AsianOption*
    - The constructor takes a *std::vector<double>* as argument, representing $(t_1, \dots , t_m)$
    - The argument should be stored in a private member, with a getter method *getTimeSteps()*
