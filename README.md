@@ -86,7 +86,7 @@ the spot price $S_0$ (see Figure below).
   <img src="images/Graphique1CRR.png" alt="Binary Tree">
 </p>  
   
-As a result, the stock price at step n and node i is:
+As a result, the stock price at step $n$ and node $i$ is:
   
 $$ 
 S(n, i) = S_0 (1+U)^i (1+D)^{n-i}
@@ -201,7 +201,7 @@ where $H_T$ denotes the payoff of the option at its expiry date $T$.
 
 #### 5.1.1 European options  
   
-In the case of a European option, $H_T = h(S_T)$, where $h : \mathbb{R}^+ \to \mathbb{R}$ is the payoff function of the
+In the case of a European option, $H_T = h(S_T)$, where $h : \; \mathbb{R}^+ \to \mathbb{R}$ is the payoff function of the
 option, it only depends on the price of the risky asset at maturity.  
   
 #### 5.1.2 Path dependent options  
@@ -218,7 +218,7 @@ $$
 H_T = h(S_{t_1}, \dots , S_{t_m})
 $$
 
-where $h : (\mathbb{R}^+)^m \to \mathbb{R}$ is the payoff function.  
+where $h : \; (\mathbb{R}^+)^m \to \mathbb{R}$ is the payoff function.  
 For instance, the arithmetic Asian Call has the following payoff function:  
   
 $$
