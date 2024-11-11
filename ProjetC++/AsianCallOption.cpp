@@ -2,10 +2,10 @@
 #include <algorithm>
 
 // Constructeur qui initialise _expiry, _timeSteps et _strike
-AsianCallOption::AsianCallOption(double expiry, const std::vector<double>& timeSteps, double strike)
-    : AsianOption(expiry, timeSteps), _strike(strike) {}
+AsianCallOption::AsianCallOption(const std::vector<double>& timeSteps, double strikePrice)
+    : AsianOption(timeSteps), _strike(strikePrice) {}
 
-// Implémentation de la méthode payoff
+// ImplÃ©mentation de la mÃ©thode payoff pour l'option Call
 double AsianCallOption::payoff(double underlyingPrice) const {
-    return std::max(0.0, underlyingPrice - _strike);
+    return std::max(underlyingPrice - _strike, 0.0);
 }
