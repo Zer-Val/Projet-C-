@@ -7,14 +7,31 @@
 #include "CallOption.h"
 #include "PutOption.h"
 #include "BlackScholesPricer.h"
-
-int main() {
-
+#include "BinaryTree.h"
 
 
-
-    return 0;
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+ 
+int main(void) 
+{
+    time_t start, stop;
+    start = time(NULL);
+ 
+    system("Main");
+ 
+    stop = time(NULL);
+ 
+    printf("execution en %ds\n", stop - start);
+ 
+   return 0;
 }
+
+
+
+
+
 
 
 
