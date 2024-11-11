@@ -7,12 +7,12 @@
 #include "CallOption.h"
 #include "PutOption.h"
 #include "BlackScholesPricer.h"
+#include "BinaryTree.h"
 
 void testPayoffCallOption() {
     CallOption callOption(1.0, 100.0);
     double assetPrices[] = { 90.0, 100.0, 110.0 };
-    for (double price : assetPrices)
-    {
+    for (double price : assetPrices) {
         double payoff = callOption.payoff(price);
         std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
     }
@@ -21,53 +21,61 @@ void testPayoffCallOption() {
 void testPayoffPutOption() {
     PutOption putOption(1.0, 100.0);
     double assetPrices[] = { 90.0, 100.0, 110.0 };
-    for (double price : assetPrices)
-    {
+    for (double price : assetPrices) {
         double payoff = putOption.payoff(price);
         std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
     }
 }
 
 void testPrixAndDeltaCallOption() {
-    // Paramètres de l'option
     double T = 1.0;    // Maturity : 1 year
     double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double S0 = 105.0; // Spot price of 105 $
     double r = 0.05;   // Risk-free interest rate of 5%
-    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+    double vol = 0.2;  // Volatility : 20%
 
-    EuropeanVanillaOption* callOption = new CallOption(T, K);
-    BlackScholesPricer pricer(callOption, S0, r, vol);
+    auto callOption = std::make_unique<CallOption>(T, K);
+    BlackScholesPricer pricer(callOption.get(), S0, r, vol);
     double optionPrice = pricer();
     std::cout << "Prix de l'option Call: " << optionPrice << std::endl;
     double optionDelta = pricer.delta();
     std::cout << "Delta de l'option Call: " << optionDelta << std::endl;
-    delete callOption;
 }
 
 void testPrixAndDeltaPutOption() {
-    // Paramètres de l'option
     double T = 1.0;    // Maturity : 1 year
     double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double S0 = 105.0; // Spot price of 105 $
     double r = 0.05;   // Risk-free interest rate of 5%
-    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+    double vol = 0.2;  // Volatility : 20%
 
-    EuropeanVanillaOption* putOption = new PutOption(T, K); // Create a Put option
-    BlackScholesPricer pricer(putOption, S0, r, vol); // Create the Black-Scholes pricer
-    double optionPrice = pricer(); // Calculate the price of the Put option
+    auto putOption = std::make_unique<PutOption>(T, K);
+    BlackScholesPricer pricer(putOption.get(), S0, r, vol);
+    double optionPrice = pricer();
     std::cout << "Put Option Price: " << optionPrice << std::endl;
-    double optionDelta = pricer.delta(); // Calculate the delta of the Put option 
+    double optionDelta = pricer.delta();
     std::cout << "Put Option Delta: " << optionDelta << std::endl;
-    delete putOption; //Clean up memory
 }
 
+void testBinaryTree() {
+    BinaryTree<double> tree;
+    int depth = 5;
+    double initialPrice = 100.0;
+    double upFactor = 1.1;
+    double downFactor = 0.9;
+
+    tree.setDepth(depth);
+    tree.initializeBinomialModel(initialPrice, upFactor, downFactor);
+
+    std::cout << "Standard Display of the Binomial Model:\n";
+    tree.display();
+
+    std::cout << "\nPyramid Display of the Binomial Model:\n";
+    tree.displayPyramid();
+}
 
 int main() {
-
-    testPrixAndDeltaCallOption();
-
-
+    testBinaryTree();
     return 0;
 }
 
