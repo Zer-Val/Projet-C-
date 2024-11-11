@@ -1,8 +1,10 @@
-#include <vector>
-#include <iostream>
-
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
+
+#include <vector>
+#include <iostream>
+#include <iomanip>
+#include <stdexcept>
 
 template <typename T>
 class BinaryTree {
@@ -12,19 +14,15 @@ public:
     void setDepth(int depth);
     void setNode(int level, int index, T value);
     T getNode(int level, int index) const;
-    void display() const;
-
-    // Declaration for initializeBinomialModel
     void initializeBinomialModel(T initialPrice, T upFactor, T downFactor);
-
-    // Declaration for displayPyramid with the missing semicolon
     void displayPyramid() const;
+    void display() const;
 
 private:
     int _depth;
     std::vector<std::vector<T>> _tree;
 };
 
-#include "BinaryTree.cpp" // Include the .cpp file for templates
+#include "BinaryTree.cpp" // Inclure ici le fichier .cpp pour les templates
 
 #endif // BINARYTREE_H

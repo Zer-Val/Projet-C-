@@ -3,7 +3,7 @@
 
 int main() {
     BinaryTree<double> tree;
-    int depth = 5;
+    int depth = 10;
     double initialPrice = 100.0; // Starting price for the asset
     double upFactor = 1.1;       // Factor for an upward movement
     double downFactor = 0.9;     // Factor for a downward movement
