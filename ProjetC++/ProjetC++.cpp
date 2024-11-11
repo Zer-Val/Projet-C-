@@ -2,92 +2,76 @@
 // L'exécution du programme commence et se termine à cet endroit.
 
 #include <iostream>
-#include "Options.h"
+#include "Option.h"
 #include "EuropeanVanillaOption.h"
 #include "CallOption.h"
 #include "PutOption.h"
 #include "BlackScholesPricer.h"
-#include "BinaryTree.h"
 
+void testPayoffCallOption() {
+    CallOption callOption(1.0, 100.0);
+    double assetPrices[] = { 90.0, 100.0, 110.0 };
+    for (double price : assetPrices)
+    {
+        double payoff = callOption.payoff(price);
+        std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
+    }
+}
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
- 
-int main(void) 
-{
-    time_t start, stop;
-    start = time(NULL);
- 
-    system("Main");
- 
-    stop = time(NULL);
- 
-    printf("execution en %ds\n", stop - start);
- 
-   return 0;
+void testPayoffPutOption() {
+    PutOption putOption(1.0, 100.0);
+    double assetPrices[] = { 90.0, 100.0, 110.0 };
+    for (double price : assetPrices)
+    {
+        double payoff = putOption.payoff(price);
+        std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
+    }
+}
+
+void testPrixAndDeltaCallOption() {
+    // Paramètres de l'option
+    double T = 1.0;    // Maturity : 1 year
+    double K = 100.0;  // Strike price of 100 $
+    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double r = 0.05;   // Risk-free interest rate of 5%
+    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+
+    EuropeanVanillaOption* callOption = new CallOption(T, K);
+    BlackScholesPricer pricer(callOption, S0, r, vol);
+    double optionPrice = pricer();
+    std::cout << "Prix de l'option Call: " << optionPrice << std::endl;
+    double optionDelta = pricer.delta();
+    std::cout << "Delta de l'option Call: " << optionDelta << std::endl;
+    delete callOption;
+}
+
+void testPrixAndDeltaPutOption() {
+    // Paramètres de l'option
+    double T = 1.0;    // Maturity : 1 year
+    double K = 100.0;  // Strike price of 100 $
+    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double r = 0.05;   // Risk-free interest rate of 5%
+    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+
+    EuropeanVanillaOption* putOption = new PutOption(T, K); // Create a Put option
+    BlackScholesPricer pricer(putOption, S0, r, vol); // Create the Black-Scholes pricer
+    double optionPrice = pricer(); // Calculate the price of the Put option
+    std::cout << "Put Option Price: " << optionPrice << std::endl;
+    double optionDelta = pricer.delta(); // Calculate the delta of the Put option 
+    std::cout << "Put Option Delta: " << optionDelta << std::endl;
+    delete putOption; //Clean up memory
 }
 
 
+int main() {
+
+    testPrixAndDeltaCallOption();
 
 
+    return 0;
+}
 
 
-
-
-//// Créer une instance de PutOption avec une date d'expiration de 1 an et un prix d'exercice de 100
-//CallOption callOption(1.0, 100.0);
-//// Tester la méthode payoff avec différentes valeurs de z
-//double assetPrices[] = { 90.0, 100.0, 110.0 };
-//for (double price : assetPrices)
-//{
-//    double payoff = callOption.payoff(price);
-//    std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
-//}
-
-
-//// Créer une instance de PutOption avec une date d'expiration de 1 an et un prix d'exercice de 100
-//PutOption putOption(1.0, 100.0);
-//
-//// Tester la méthode payoff avec différentes valeurs de z
-//double assetPrices[] = { 90.0, 100.0, 110.0 };
-//for (double price : assetPrices)
-//{
-//    double payoff = putOption.payoff(price);
-//    std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
-//}
-
-
-//// Paramètres de l'option
-//double T = 1.0;    // Maturity : 1 year
-//double K = 100.0;  // Strike price of 100 $
-//double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
-//double r = 0.05;   // Risk-free interest rate of 5%
-//double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
-//
-//EuropeanVanillaOption* callOption = new CallOption(T, K); // Create a call option
-//BlackScholesPricer pricer(callOption, S0, r, vol); // Create the Black-Scholes pricer
-//double optionPrice = pricer(); // Calculate the price of the call option
-//std::cout << "Prix de l'option Call: " << optionPrice << std::endl;
-//double optionDelta = pricer.delta(); // Calculate the delta of the call option 
-//std::cout << "Delta de l'option Call: " << optionDelta << std::endl;
-//delete callOption; //Clean up memory
-
-
-//// Paramètres de l'option
-//double T = 1.0;    // Maturity : 1 year
-//double K = 100.0;  // Strike price of 100 $
-//double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
-//double r = 0.05;   // Risk-free interest rate of 5%
-//double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
-//
-//EuropeanVanillaOption* putOption = new PutOption(T, K); // Create a Put option
-//BlackScholesPricer pricer(putOption, S0, r, vol); // Create the Black-Scholes pricer
-//double optionPrice = pricer(); // Calculate the price of the Put option
-//std::cout << "Put Option Price: " << optionPrice << std::endl;
-//double optionDelta = pricer.delta(); // Calculate the delta of the Put option 
-//std::cout << "Put Option Delta: " << optionDelta << std::endl;
-//delete putOption; //Clean up memory
 
 
 // Paramètres de l'option
@@ -103,20 +87,6 @@ int main(void)
 //double optionDelta = pricer.delta(); // Calculate the delta of the Put option 
 //std::cout << "Put Option Delta: " << optionDelta << std::endl;
 //delete putOption; //Clean up memory
-
-
-
-
-//BinaryTree<int> tree;
-//tree.setDepth(2);
-//tree.setNode(0, 0, 0);
-//tree.setNode(1, 0, 20);
-//tree.setNode(1, 1, 0);
-//tree.setNode(2, 0, 40);
-//tree.setNode(2, 1, 0);
-//tree.setNode(2, 2, 80);
-//std::cout << "Binary Tree:" << std::endl;
-//tree.display();
 
 
 

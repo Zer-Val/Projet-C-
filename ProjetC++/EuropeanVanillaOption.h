@@ -3,7 +3,7 @@
 #include "Options.h"
 #include <iostream>
 
-class BlackScholesPricer; //Déclaration anticipée de la classe BSP
+class BlackScholesPricer; //DÃ©claration anticipÃ©e de la classe BSP
 
 #ifndef EUROPEANVANILLAOPTION_H
 #define EUROPEANVANILLAOPTION_H
@@ -17,17 +17,17 @@ public:
     //Constructeur qui initialise _expiry et _strike
     EuropeanVanillaOption(double expiry, double strike);
 
-    //Méthode getter pour _strike
+    //MÃ©thode getter pour _strike
     double getStrike() const;
 
-    //Méthode virtuelle pure pour obtenir le type d'option
+    //MÃ©thode virtuelle pure pour obtenir le type d'option
     virtual optionType GetOptionType() const = 0;
 
-    //On déclare BSP comme classe amie de EVO
+    //On dÃ©clare BSP comme classe amie de EVO
     friend class BlackScholesPricer;
 
 private:
-    double _strike; //Membre privé pour le prix d'exercice
+    double _strike; //Membre privÃ© pour le prix d'exercice
 };
 
 #endif // EUROPEANVANILLAOPTION_H
