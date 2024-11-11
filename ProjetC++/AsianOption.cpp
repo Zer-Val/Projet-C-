@@ -1,15 +1,15 @@
 #include "AsianOption.h"
 
-// Constructeur qui initialise _expiry et _timeSteps
-AsianOption::AsianOption(double expiry, const std::vector<double>& timeSteps)
-    : Option(expiry), _timeSteps(timeSteps) {}
+// Constructeur qui initialise _timeSteps
+AsianOption::AsianOption(const std::vector<double>& timeSteps)
+    : Option(0.0), _timeSteps(timeSteps) {}
 
 // Getter pour _timeSteps
 const std::vector<double>& AsianOption::getTimeSteps() const {
     return _timeSteps;
 }
 
-// Override de la méthode payoffPath
+// Override de la mÃ©thode payoffPath
 double AsianOption::payoffPath(const std::vector<double>& prices) const {
     double sum = 0.0;
     for (double price : prices) {
@@ -19,7 +19,7 @@ double AsianOption::payoffPath(const std::vector<double>& prices) const {
     return payoff(averagePrice);
 }
 
-// Override de la méthode isAsianOption
+// Override de la mÃ©thode isAsianOption
 bool AsianOption::isAsianOption() const {
     return true;
 }
