@@ -12,7 +12,8 @@
 void testPayoffCallOption() {
     CallOption callOption(1.0, 100.0);
     double assetPrices[] = { 90.0, 100.0, 110.0 };
-    for (double price : assetPrices) {
+    for (double price : assetPrices)
+    {
         double payoff = callOption.payoff(price);
         std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
     }
@@ -21,61 +22,136 @@ void testPayoffCallOption() {
 void testPayoffPutOption() {
     PutOption putOption(1.0, 100.0);
     double assetPrices[] = { 90.0, 100.0, 110.0 };
-    for (double price : assetPrices) {
+    for (double price : assetPrices)
+    {
         double payoff = putOption.payoff(price);
         std::cout << "Payoff for asset price " << price << " is: " << payoff << std::endl;
     }
 }
 
 void testPrixAndDeltaCallOption() {
+    // Paramètres de l'option
     double T = 1.0;    // Maturity : 1 year
     double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $
+    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
     double r = 0.05;   // Risk-free interest rate of 5%
-    double vol = 0.2;  // Volatility : 20%
+    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
 
-    auto callOption = std::make_unique<CallOption>(T, K);
-    BlackScholesPricer pricer(callOption.get(), S0, r, vol);
+    EuropeanVanillaOption* callOption = new CallOption(T, K);
+    BlackScholesPricer pricer(callOption, S0, r, vol);
     double optionPrice = pricer();
     std::cout << "Prix de l'option Call: " << optionPrice << std::endl;
     double optionDelta = pricer.delta();
     std::cout << "Delta de l'option Call: " << optionDelta << std::endl;
+    delete callOption;
 }
 
 void testPrixAndDeltaPutOption() {
+    // Paramètres de l'option
     double T = 1.0;    // Maturity : 1 year
     double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $
+    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
     double r = 0.05;   // Risk-free interest rate of 5%
-    double vol = 0.2;  // Volatility : 20%
+    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
 
-    auto putOption = std::make_unique<PutOption>(T, K);
-    BlackScholesPricer pricer(putOption.get(), S0, r, vol);
-    double optionPrice = pricer();
+    EuropeanVanillaOption* putOption = new PutOption(T, K); // Create a Put option
+    BlackScholesPricer pricer(putOption, S0, r, vol); // Create the Black-Scholes pricer
+    double optionPrice = pricer(); // Calculate the price of the Put option
     std::cout << "Put Option Price: " << optionPrice << std::endl;
-    double optionDelta = pricer.delta();
+    double optionDelta = pricer.delta(); // Calculate the delta of the Put option 
     std::cout << "Put Option Delta: " << optionDelta << std::endl;
+    delete putOption; //Clean up memory
 }
 
-void testBinaryTree() {
-    BinaryTree<double> tree;
-    int depth = 5;
-    double initialPrice = 100.0;
-    double upFactor = 1.1;
-    double downFactor = 0.9;
+void testAffichagePyramide()
+{
+    BinaryTree<int> tree;
 
-    tree.setDepth(depth);
-    tree.initializeBinomialModel(initialPrice, upFactor, downFactor);
+    tree.setDepth(11);
 
-    std::cout << "Standard Display of the Binomial Model:\n";
+    tree.setNode(0, 0, 0);
+
+    tree.setNode(1, 0, 20);
+    tree.setNode(1, 1, 0);
+
+    tree.setNode(2, 0, 40);
+    tree.setNode(2, 1, 0);
+    tree.setNode(2, 2, 80);
+
+    tree.setNode(3, 0, 60);
+    tree.setNode(3, 1, 0);
+    tree.setNode(3, 2, 100);
+    tree.setNode(3, 3, 0);
+
+    tree.setNode(4, 0, 80);
+    tree.setNode(4, 1, 0);
+    tree.setNode(4, 2, 120);
+    tree.setNode(4, 3, 0);
+    tree.setNode(4, 4, 160);
+
+    tree.setNode(5, 0, 100);
+    tree.setNode(5, 1, 0);
+    tree.setNode(5, 2, 140);
+    tree.setNode(5, 3, 0);
+    tree.setNode(5, 4, 180);
+    tree.setNode(5, 5, 0);
+
+    tree.setNode(6, 0, 120);
+    tree.setNode(6, 1, 0);
+    tree.setNode(6, 2, 160);
+    tree.setNode(6, 3, 0);
+    tree.setNode(6, 4, 200);
+    tree.setNode(6, 5, 0);
+    tree.setNode(6, 6, 240);
+
+    tree.setNode(7, 0, 140);
+    tree.setNode(7, 1, 0);
+    tree.setNode(7, 2, 180);
+    tree.setNode(7, 3, 0);
+    tree.setNode(7, 4, 220);
+    tree.setNode(7, 5, 0);
+    tree.setNode(7, 6, 260);
+    tree.setNode(7, 7, 0);
+
+    tree.setNode(8, 0, 160);
+    tree.setNode(8, 1, 0);
+    tree.setNode(8, 2, 200);
+    tree.setNode(8, 3, 0);
+    tree.setNode(8, 4, 240);
+    tree.setNode(8, 5, 0);
+    tree.setNode(8, 6, 280);
+    tree.setNode(8, 7, 0);
+    tree.setNode(8, 8, 320);
+
+    tree.setNode(9, 0, 180);
+    tree.setNode(9, 1, 0);
+    tree.setNode(9, 2, 220);
+    tree.setNode(9, 3, 0);
+    tree.setNode(9, 4, 260);
+    tree.setNode(9, 5, 0);
+    tree.setNode(9, 6, 300);
+    tree.setNode(9, 7, 0);
+    tree.setNode(9, 8, 340);
+    tree.setNode(9, 9, 0);
+
+    tree.setNode(10, 0, 200);
+    tree.setNode(10, 1, 0);
+    tree.setNode(10, 2, 240);
+    tree.setNode(10, 3, 0);
+    tree.setNode(10, 4, 280);
+    tree.setNode(10, 5, 0);
+    tree.setNode(10, 6, 320);
+    tree.setNode(10, 7, 0);
+    tree.setNode(10, 8, 360);
+    tree.setNode(10, 9, 0);
+    tree.setNode(10, 10, 400);
+
     tree.display();
-
-    std::cout << "\nPyramid Display of the Binomial Model:\n";
-    tree.displayPyramid();
 }
+
 
 int main() {
-    testBinaryTree();
+	testAffichagePyramide();
     return 0;
 }
 
