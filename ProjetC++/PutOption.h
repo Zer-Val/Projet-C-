@@ -10,10 +10,10 @@ public:
     //Constructeur qui utilise celui d'EVO
     PutOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
 
-    //Implémentation de payoff pour une Put
+    //ImplÃ©mentation de payoff pour une Put
     double payoff(double z) const override;
 
-    //Implémentation de GetOptionType pour une Put
+    //ImplÃ©mentation de GetOptionType pour une Put
     optionType GetOptionType() const override;
 };
 
