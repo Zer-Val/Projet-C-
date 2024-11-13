@@ -10,10 +10,10 @@ public:
     //Constructeur, utilise le celui de EVO
     CallOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
 
-    //Implémentation de payoff pour une Call
+    //ImplÃ©mentation de payoff pour une Call
     double payoff(double z) const override;
 
-    //Implémentation de GetOptionType pour une Call
+    //ImplÃ©mentation de GetOptionType pour une Call
     optionType GetOptionType() const override;
 };
 

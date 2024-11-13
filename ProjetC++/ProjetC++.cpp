@@ -8,6 +8,10 @@
 #include "PutOption.h"
 #include "BlackScholesPricer.h"
 #include "BinaryTree.h"
+#include "EuropeanDigitalOption.h"
+#include "EuropeanDigitalCallOption.h"
+#include "EuropeanDigitalPutOption.h"
+
 
 void testPayoffCallOption() {
     CallOption callOption(1.0, 100.0);
@@ -65,7 +69,7 @@ void testPrixAndDeltaPutOption() {
 
 void testAffichagePyramide()
 {
-    BinaryTree<int> tree;
+    BinaryTree<double> tree;
 
     tree.setDepth(11);
 
@@ -149,9 +153,51 @@ void testAffichagePyramide()
     tree.display();
 }
 
+void testPayoffDigitalCallOption()
+{
+    double strike = 100.0;
+    double expiry = 1.0; // 1 an
+
+    EuropeanDigitalCallOption callOption(strike, expiry);
+
+    double assetPrice = 105.0; // Prix actuel de l'actif sous-jacent
+
+    std::cout << "Prix de l'actif sous-jacent: " << assetPrice << std::endl;
+    std::cout << "Prix d'exercice: " << strike << std::endl;
+    std::cout << "Echéance: " << expiry << " an(s)" << std::endl;
+
+    std::cout << "Payoff de l'option call digitale: " << callOption.payoff(assetPrice) << std::endl;
+
+}
+
+
+void testPayoffDigitalPutOption()
+{
+	double strike = 100.0;
+	double expiry = 1.0; // 1 an
+
+	EuropeanDigitalPutOption putOption(strike, expiry);
+
+	double assetPrice = 95.0; // Prix actuel de l'actif sous-jacent
+
+	std::cout << "Prix de l'actif sous-jacent: " << assetPrice << std::endl;
+	std::cout << "Prix d'exercice: " << strike << std::endl;
+	std::cout << "Echéance: " << expiry << " an(s)" << std::endl;
+
+	std::cout << "Payoff de l'option put digitale: " << putOption.payoff(assetPrice) << std::endl;
+
+}
 
 int main() {
-	testAffichagePyramide();
+	
+	//testPayoffDigitalCallOption();
+
+	//testPayoffDigitalPutOption();
+
+	testPrixAndDeltaCallOption();
+	
+    testPrixAndDeltaPutOption();
+
     return 0;
 }
 

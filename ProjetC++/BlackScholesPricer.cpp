@@ -5,51 +5,80 @@
 #define M_SQRT1_2 0.70710678118654752440 // define M_SQRT1_2 as square root of 1/2
 #endif
 
-
 BlackScholesPricer::BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility)
-    : option_(option), asset_price_(asset_price), interest_rate_(interest_rate), volatility_(volatility) {} // Constructeur de la classe BSP
+    : vanilla_option_(option), digital_option_(nullptr), asset_price_(asset_price), interest_rate_(interest_rate), volatility_(volatility) {} // Constructeur de la classe BSP avec initialisation des attributs pour une option Vanille Européenne
 
+BlackScholesPricer::BlackScholesPricer(EuropeanDigitalOption* option, double asset_price, double interest_rate, double volatility)
+    : vanilla_option_(nullptr), digital_option_(option), asset_price_(asset_price), interest_rate_(interest_rate), volatility_(volatility) {} // Constructeur de la classe BSP avec initialisation des attributs pour une option Digitale Européenne
 
 double BlackScholesPricer::operator()() const // Opérateur () pour retourner le prix de l'option 
 {
-    double T = option_->getExpiry(); // Maturité de l'option
-    double K = option_->getStrike(); // Prix d'exercice de l'option
-    double S = asset_price_; // Prix de l'actif sous-jacent
-    double r = interest_rate_; // Taux d'intérêt
-    double sigma = volatility_; // Volatilité
+    double T, K, S = asset_price_, r = interest_rate_, sigma = volatility_;
+    double d1, d2;
 
-    double d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
-    double d2 = d1 - sigma * std::sqrt(T);
+    if (vanilla_option_) {
+        T = vanilla_option_->getExpiry(); // Maturité de l'option
+        K = vanilla_option_->getStrike(); // Prix d'exercice de l'option
 
-    if (option_->GetOptionType() == EuropeanVanillaOption::optionType::call)
-    {
-        return S * 0.5 * std::erfc(-d1 * M_SQRT1_2) - K * std::exp(-r * T) * 0.5 * std::erfc(-d2 * M_SQRT1_2);
+        d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
+        d2 = d1 - sigma * std::sqrt(T);
+
+        if (vanilla_option_->GetOptionType() == EuropeanVanillaOption::optionType::call) {
+            return S * 0.5 * std::erfc(-d1 * M_SQRT1_2) - K * std::exp(-r * T) * 0.5 * std::erfc(-d2 * M_SQRT1_2);
+        }
+        else {
+            return K * std::exp(-r * T) * 0.5 * std::erfc(d2 * M_SQRT1_2) - S * 0.5 * std::erfc(d1 * M_SQRT1_2);
+        }
     }
-    else
-    {
-        return K * std::exp(-r * T) * 0.5 * std::erfc(d2 * M_SQRT1_2) - S * 0.5 * std::erfc(d1 * M_SQRT1_2);
+    else if (digital_option_) {
+        T = digital_option_->getExpiry(); // Maturité de l'option
+        K = digital_option_->getStrike(); // Prix d'exercice de l'option
+
+        d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
+        d2 = d1 - sigma * std::sqrt(T);
+
+        if (digital_option_->GetOptionType() == EuropeanDigitalOption::optionType::call) {
+            return std::exp(-r * T) * 0.5 * std::erfc(-d2 * M_SQRT1_2);
+        }
+        else {
+            return std::exp(-r * T) * 0.5 * std::erfc(d2 * M_SQRT1_2);
+        }
     }
+
+    return 0.0; // Retourne 0 si aucune option n'est définie
 }
 
 // Méthode pour retourner le Delta de l'option
 double BlackScholesPricer::delta() const {
-    double T = option_->getExpiry();  // Maturité de l'option
-    double K = option_->getStrike();  // Prix d'exercice de l'option
-    double S = asset_price_;          // Prix de l'actif sous-jacent
-    double sigma = volatility_;       // Volatilité
-    double r = interest_rate_;        // Taux d'intérêt
+    double T, K, S = asset_price_, sigma = volatility_, r = interest_rate_;
+    double d1;
 
-    // Calcul de d1
-    double d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
+    if (vanilla_option_) {
+        T = vanilla_option_->getExpiry(); // Maturité de l'option
+        K = vanilla_option_->getStrike(); // Prix d'exercice de l'option
 
-    // Si l'option est un call, delta = CDF(d1)
-    if (option_->GetOptionType() == EuropeanVanillaOption::optionType::call)
-    {
-        return 0.5 * std::erfc(-d1 * M_SQRT1_2); // CDF(d1) for a call
+        d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
+
+        if (vanilla_option_->GetOptionType() == EuropeanVanillaOption::optionType::call) {
+            return 0.5 * std::erfc(-d1 * M_SQRT1_2); // CDF(d1) for a call
+        }
+        else {
+            return 0.5 * std::erfc(d1 * M_SQRT1_2) - 1; // CDF(d1) - 1 for a put
+        }
     }
-    // Si l'option est un put, delta = CDF(d1) - 1
-    else
-    {
-        return 0.5 * std::erfc(d1 * M_SQRT1_2) - 1; // CDF(d1) - 1 for a put
+    else if (digital_option_) {
+        T = digital_option_->getExpiry(); // Maturité de l'option
+        K = digital_option_->getStrike(); // Prix d'exercice de l'option
+
+        d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
+
+        if (digital_option_->GetOptionType() == EuropeanDigitalOption::optionType::call) {
+            return std::exp(-r * T) * 0.5 * std::erfc(-d1 * M_SQRT1_2) / (S * sigma * std::sqrt(T));
+        }
+        else {
+            return -std::exp(-r * T) * 0.5 * std::erfc(d1 * M_SQRT1_2) / (S * sigma * std::sqrt(T));
+        }
     }
+
+    return 0.0; // Retourne 0 si aucune option n'est définie
 }

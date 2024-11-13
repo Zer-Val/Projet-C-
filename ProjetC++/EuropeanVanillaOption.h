@@ -1,13 +1,9 @@
 #pragma once
 #include <stdexcept>
-#include "Options.h"
+#include "Option.h"
 #include <iostream>
 
 class BlackScholesPricer; //Déclaration anticipée de la classe BSP
-
-#ifndef EUROPEANVANILLAOPTION_H
-#define EUROPEANVANILLAOPTION_H
-
 
 class EuropeanVanillaOption : public Option {
 public:
@@ -20,14 +16,13 @@ public:
     //Méthode getter pour _strike
     double getStrike() const;
 
-    //Méthode virtuelle pure pour obtenir le type d'option
+    //Méthode virtuelle pure pour obtenir le type d'option 
     virtual optionType GetOptionType() const = 0;
 
-    //On déclare BSP comme classe amie de EVO
+	//On déclare BSP comme classe amie de EVO pour pouvoir accéder à _strike dans BSP
     friend class BlackScholesPricer;
 
 private:
     double _strike; //Membre privé pour le prix d'exercice
 };
 
-#endif // EUROPEANVANILLAOPTION_H
