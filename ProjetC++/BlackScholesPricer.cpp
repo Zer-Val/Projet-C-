@@ -1,5 +1,9 @@
 #include "BlackScholesPricer.h"
 #include <iostream>
+#include <cmath>
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 
 #ifndef M_SQRT1_2 // check if M_SRQT1_2 is not defined
 #define M_SQRT1_2 0.70710678118654752440 // define M_SQRT1_2 as square root of 1/2
@@ -24,24 +28,29 @@ double BlackScholesPricer::operator()() const // Opérateur () pour retourner le
         d2 = d1 - sigma * std::sqrt(T);
 
         if (vanilla_option_->GetOptionType() == EuropeanVanillaOption::optionType::call) {
-            return S * 0.5 * std::erfc(-d1 * M_SQRT1_2) - K * std::exp(-r * T) * 0.5 * std::erfc(-d2 * M_SQRT1_2);
+            return S * 0.5 * std::erfc(-d1 * 1 / std::sqrt(2)) - K * std::exp(-r * T) * 0.5 * std::erfc(-d2 * 1 / std::sqrt(2));
         }
         else {
-            return K * std::exp(-r * T) * 0.5 * std::erfc(d2 * M_SQRT1_2) - S * 0.5 * std::erfc(d1 * M_SQRT1_2);
+            return K * std::exp(-r * T) * 0.5 * std::erfc(d2 * 1 / std::sqrt(2)) - S * 0.5 * std::erfc(d1 * 1 / std::sqrt(2));
         }
     }
     else if (digital_option_) {
         T = digital_option_->getExpiry(); // Maturité de l'option
         K = digital_option_->getStrike(); // Prix d'exercice de l'option
 
-        d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
-        d2 = d1 - sigma * std::sqrt(T);
+		double alpha = S * std::exp(r * T) / K; // alpha dans le papier d'Evry
 
         if (digital_option_->GetOptionType() == EuropeanDigitalOption::optionType::call) {
-            return std::exp(-r * T) * 0.5 * std::erfc(-d2 * M_SQRT1_2);
+			
+            d2 = (std::log(alpha) / (sigma * std::sqrt(T))) - 0.5 * (sigma * std::sqrt(T)); // d0(alpha) dans le papier d'Evry
+
+            return std::exp(-r * T) * (1 - 0.5 * std::erfc(d2 / std::sqrt(2)));
         }
         else {
-            return std::exp(-r * T) * 0.5 * std::erfc(d2 * M_SQRT1_2);
+            
+            d1 = - std::log(alpha) / (sigma * std::sqrt(T)) + 0.5 * (sigma * std::sqrt(T));  //d1(1/alpha) dans le papier d'Evry
+            
+            return std::exp(-r * T) * (1 - 0.5 * std::erfc(d1 * 1 / std::sqrt(2)));
         }
     }
 
@@ -60,23 +69,27 @@ double BlackScholesPricer::delta() const {
         d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
 
         if (vanilla_option_->GetOptionType() == EuropeanVanillaOption::optionType::call) {
-            return 0.5 * std::erfc(-d1 * M_SQRT1_2); // CDF(d1) for a call
+            return 0.5 * std::erfc(-d1 * std::sqrt(2)); // CDF(d1) for a call
         }
         else {
-            return 0.5 * std::erfc(d1 * M_SQRT1_2) - 1; // CDF(d1) - 1 for a put
+            return 0.5 * std::erfc(d1 * std::sqrt(2)) - 1; // CDF(d1) - 1 for a put
         }
     }
     else if (digital_option_) {
         T = digital_option_->getExpiry(); // Maturité de l'option
         K = digital_option_->getStrike(); // Prix d'exercice de l'option
 
-        d1 = (std::log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T));
+
+		d1 = (std::log(S / K) + (r - 0.5 * sigma * sigma) * T) / (sigma * std::sqrt(T)); // d1 dans le papier d'Evry
 
         if (digital_option_->GetOptionType() == EuropeanDigitalOption::optionType::call) {
-            return std::exp(-r * T) * 0.5 * std::erfc(-d1 * M_SQRT1_2) / (S * sigma * std::sqrt(T));
+            return std::exp(-r * T) * (std::exp(-d1*d1/2) / std::sqrt(2 * M_PI)) / (S * sigma * std::sqrt(T));
         }
         else {
-            return -std::exp(-r * T) * 0.5 * std::erfc(d1 * M_SQRT1_2) / (S * sigma * std::sqrt(T));
+
+			std::cout << "S: " << S << " T: " << T << " K: " << K << " sigma: " << sigma << " r: " << r << " d1: " << d1 << std::endl;
+			std::cout << "exp(-r * T): " << std::exp(-r * T) << " exp(-d1*d1/2): " << std::exp(-d1 * d1 / 2) << " sqrt(2 * M_PI): " << std::sqrt(2 * M_PI) << " S: " << S << " sigma: " << sigma << " sqrt(T): " << std::sqrt(T) << std::endl;
+			return - std::exp(-r * T) * (std::exp(-d1*d1/2) / std::sqrt(2 * M_PI)) / (S * sigma * std::sqrt(T));
         }
     }
 
