@@ -67,6 +67,7 @@ void testPrixAndDeltaPutOption() {
     delete putOption; //Clean up memory
 }
 
+
 void testAffichagePyramide()
 {
     BinaryTree<double> tree;
@@ -153,6 +154,7 @@ void testAffichagePyramide()
     tree.display();
 }
 
+
 void testPayoffDigitalCallOption()
 {
     double strike = 100.0;
@@ -169,7 +171,6 @@ void testPayoffDigitalCallOption()
     std::cout << "Payoff de l'option call digitale: " << callOption.payoff(assetPrice) << std::endl;
 
 }
-
 
 void testPayoffDigitalPutOption()
 {
@@ -188,15 +189,55 @@ void testPayoffDigitalPutOption()
 
 }
 
+void testPrixAndDeltaDigitalCallOption()
+{
+	// Paramètres de l'option
+	double T = 1.0;    // Maturity : 1 year
+	double K = 100.0;  // Strike price of 100 $
+	double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
+	double r = 0.05;   // Risk-free interest rate of 5%
+	double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+
+	EuropeanDigitalOption* callOption = new EuropeanDigitalCallOption(K, T);
+	BlackScholesPricer pricer(callOption, S0, r, vol);
+	double optionPrice = pricer();
+	std::cout << "Prix de l'option Call digitale: " << optionPrice << std::endl;
+	double optionDelta = pricer.delta();
+	std::cout << "Delta de l'option Call digitale: " << optionDelta << std::endl;
+	delete callOption;
+}
+
+void testPrixAndDeltaDigitalPutOption()
+{
+	// Paramètres de l'option
+	double T = 1.0;    // Maturity : 1 year
+	double K = 100.0;  // Strike price of 100 $
+	double S0 = 95.0; // Spot price of 95 $ (Current price of the underlying asset)
+	double r = 0.05;   // Risk-free interest rate of 5%
+	double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+
+	EuropeanDigitalOption* putOption = new EuropeanDigitalPutOption(K, T);
+	BlackScholesPricer pricer(putOption, S0, r, vol);
+	double optionPrice = pricer();
+	std::cout << "Prix de l'option Put digitale: " << optionPrice << std::endl;
+	double optionDelta = pricer.delta();
+	std::cout << "Delta de l'option Put digitale: " << optionDelta << std::endl;
+	delete putOption;
+}
+
 int main() {
 	
 	//testPayoffDigitalCallOption();
 
 	//testPayoffDigitalPutOption();
 
-	testPrixAndDeltaCallOption();
+	//testPrixAndDeltaCallOption();
 	
-    testPrixAndDeltaPutOption();
+    //testPrixAndDeltaPutOption();
+
+	testPrixAndDeltaDigitalCallOption();
+
+	testPrixAndDeltaDigitalPutOption();
 
     return 0;
 }
