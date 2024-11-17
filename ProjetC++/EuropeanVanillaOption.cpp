@@ -12,3 +12,8 @@ EuropeanVanillaOption::EuropeanVanillaOption(double expiry, double strike)
 double EuropeanVanillaOption::getStrike() const {
     return _strike;
 }
+
+//Override de isAsianOption pour retourner false pour EVO - (Probleme de compilation si on ne le fait pas)
+bool EuropeanVanillaOption::isAsianOption() const {
+    return false;
+}
