@@ -22,6 +22,9 @@ public:
 	//On déclare BSP comme classe amie de EVO pour pouvoir accéder à _strike dans BSP
     friend class BlackScholesPricer;
 
+	//Override de isAsianOption pour retourner false pour EVO - (Probleme de compilation si on ne le fait pas)
+    bool isAsianOption() const override;
+
 private:
     double _strike; //Membre privé pour le prix d'exercice
 };
