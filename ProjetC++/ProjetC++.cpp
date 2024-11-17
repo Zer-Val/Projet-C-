@@ -2,18 +2,17 @@
 // L'exécution du programme commence et se termine à cet endroit.
 
 #include <iostream>
-#include "Option.h"
-#include "EuropeanVanillaOption.h"
 #include "CallOption.h"
 #include "PutOption.h"
-#include "BlackScholesPricer.h"
-#include "BinaryTree.h"
-#include "EuropeanDigitalOption.h"
 #include "EuropeanDigitalCallOption.h"
 #include "EuropeanDigitalPutOption.h"
-
+#include "BlackScholesPricer.h"
+#include "CRRPricer.h"
+#include "BinaryTree.h"
 
 void testPayoffCallOption() {
+
+    
     CallOption callOption(1.0, 100.0);
     double assetPrices[] = { 90.0, 100.0, 110.0 };
     for (double price : assetPrices)
@@ -37,7 +36,7 @@ void testPrixAndDeltaCallOption() {
     // Paramètres de l'option
     double T = 1.0;    // Maturity : 1 year
     double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double S0 = 95.0; // Spot price of 105 $ (Current price of the underlying asset)
     double r = 0.05;   // Risk-free interest rate of 5%
     double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
 
@@ -54,7 +53,7 @@ void testPrixAndDeltaPutOption() {
     // Paramètres de l'option
     double T = 1.0;    // Maturity : 1 year
     double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double S0 = 95.0; // Spot price of 105 $ (Current price of the underlying asset)
     double r = 0.05;   // Risk-free interest rate of 5%
     double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
 
@@ -67,12 +66,11 @@ void testPrixAndDeltaPutOption() {
     delete putOption; //Clean up memory
 }
 
-
 void testAffichagePyramide()
 {
     BinaryTree<double> tree;
 
-    tree.setDepth(11);
+    tree.setDepth(10);
 
     tree.setNode(0, 0, 0);
 
@@ -154,7 +152,6 @@ void testAffichagePyramide()
     tree.display();
 }
 
-
 void testPayoffDigitalCallOption()
 {
     double strike = 100.0;
@@ -226,42 +223,23 @@ void testPrixAndDeltaDigitalPutOption()
 }
 
 int main() {
+
+	// testPayoffDigitalCallOption();
+
+	// testPayoffDigitalPutOption();
+
+	testAffichagePyramide();
+
+	// testPrixAndDeltaCallOption();
 	
-	//testPayoffDigitalCallOption();
+    // testPrixAndDeltaPutOption();
 
-	//testPayoffDigitalPutOption();
+	// testPrixAndDeltaDigitalCallOption();
 
-	//testPrixAndDeltaCallOption();
-	
-    //testPrixAndDeltaPutOption();
-
-	testPrixAndDeltaDigitalCallOption();
-
-	testPrixAndDeltaDigitalPutOption();
+	// testPrixAndDeltaDigitalPutOption();
 
     return 0;
 }
-
-
-
-
-// Paramètres de l'option
-//double T = 5.0;    // Maturity : 5 year (time to expiration)
-//double K = 101.0;  // Strike price of 101 $ (price at which the option holder can buy or sell the underlying asset)
-//double S0 = 100.0; // Spot price of 100 $ (Current price of the underlying asset)
-//double r = 0.01;   // Risk-free interest rate of 1% (annual)
-//double vol = 0.1;  // Volatility : 10% (volatility of the underlying asset)
-//EuropeanVanillaOption* putOption = new PutOption(T, K); // Create a Put option
-//BlackScholesPricer pricer(putOption, S0, r, vol); // Create the Black-Scholes pricer
-//double optionPrice = pricer(); // Calculate the price of the Put option
-//std::cout << "Put Option Price: " << optionPrice << std::endl;
-//double optionDelta = pricer.delta(); // Calculate the delta of the Put option 
-//std::cout << "Put Option Delta: " << optionDelta << std::endl;
-//delete putOption; //Clean up memory
-
-
-
-
 
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
@@ -281,3 +259,4 @@ int main() {
 //   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
 //   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
 //   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
+
