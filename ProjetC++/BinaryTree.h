@@ -25,7 +25,7 @@ private:
 
 template <typename T>
 void BinaryTree<T>::setDepth(int depth) {
-    _depth = depth;
+    _depth = depth + 1; // Ajouter 1 pour que la profondeur de 3 signifie 4 étages
     _tree.resize(_depth);
     for (int i = 0; i < _depth; ++i) {
         _tree[i].resize(i + 1);
@@ -49,11 +49,11 @@ T BinaryTree<T>::getNode(int level, int index) const {
 
 template <typename T>
 void BinaryTree<T>::display() const {
-    
+
     if (_depth == 0) return;
     else {
 
-        for (int i = 0; i <= _depth && i < _tree.size(); ++i) {
+        for (int i = 0; i < _depth && i < _tree.size(); ++i) {
             for (int j = 0; j <= i && j < _tree[i].size(); ++j) {
                 std::cout << _tree[i][j] << " ";
             }
@@ -77,7 +77,7 @@ void BinaryTree<T>::display() const {
                     for (int space = 0; space < 3; ++space) {
                         std::cout << " "; // Espaces entre les valeurs
                     }
-                    if (_tree[i][j] < 99) {
+                    if (_tree[i][j] < 99 && std::floor(_tree[i][j]) == _tree[i][j]) {
                         std::cout << " "; // Espaces supplémentaires pour les nombres à 3 chiffres
                     }
                 }
@@ -108,26 +108,21 @@ void BinaryTree<T>::display() const {
                 std::cout << std::endl;
             }
         }
+
+		std::cout << std::endl;
     }
 }
- 
-
-
-
-
-
-
 
 // BONUS 
 
 // Implementation of the initializeBinomialModel method
 template <typename T>
 void BinaryTree<T>::initializeBinomialModel(T initialPrice, T upFactor, T downFactor) {
-    setDepth(_depth); // Set the depth and initialize tree structure
+    setDepth(_depth - 1); // Set the depth and initialize tree structure
     _tree[0][0] = initialPrice; // Set the initial price at the root node
 
     // Populate the tree using the binomial model
-    for (int level = 1; level <= _depth; ++level) {
+    for (int level = 1; level < _depth; ++level) {
         for (int i = 0; i <= level; ++i) {
             if (i == 0) {
                 // Up movement from the first node in the previous level

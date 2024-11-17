@@ -6,6 +6,9 @@ CRRPricer::CRRPricer(Option* option, int depth, double asset_price, double up, d
     if (U <= D || R <= -1) {
         throw std::invalid_argument("Arbitrage condition violated.");
     }
+    if (option->isAsianOption()) {
+        throw std::invalid_argument("Asian options are not supported by this CRRPricer.");
+    }
     tree.setDepth(N + 1); // Initialiser la profondeur de l'arbre
 }
 

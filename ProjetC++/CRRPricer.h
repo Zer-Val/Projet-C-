@@ -1,13 +1,6 @@
 #include "BinaryTree.h"
+#include "Option.h"
 #include <stdexcept>
-
-#ifndef CRRPRICER_H
-#define CRRPRICER_H
-
-class Option {
-public:
-    virtual double payoff(double asset_price) const = 0;
-};
 
 class CRRPricer {
 public:
@@ -26,5 +19,3 @@ private:
     double closedForm() const;
     static double binomialCoefficient(int n, int k);
 };
-
-#endif // CRRPRICER_H

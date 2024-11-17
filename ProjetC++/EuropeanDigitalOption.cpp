@@ -8,7 +8,12 @@ EuropeanDigitalOption::EuropeanDigitalOption(double K, double expiry)
     }
 }
 
-// Méthode getter pour _strike
+// MÃ©thode getter pour _strike
 double EuropeanDigitalOption::getStrike() const {
     return strike;
+}
+
+//Override de isAsianOption pour retourner false pour EVDO - (Probleme de compilation si on ne le fait pas)
+bool EuropeanDigitalOption::isAsianOption() const {
+	return false;
 }
