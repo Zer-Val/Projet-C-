@@ -1,5 +1,5 @@
 #include <iostream>
-#include "BinaryTree.h" // Include your BinaryTree implementation
+#include "BinaryTree.h" 
 
 int main() {
     BinaryTree<double> tree;

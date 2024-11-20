@@ -23,6 +23,6 @@ private:
     std::vector<std::vector<T>> _tree;
 };
 
-#include "BinaryTree.cpp" // Inclure ici le fichier .cpp pour les templates
+#include "BinaryTree.cpp" // Include here the .cpp file for templates
 
 #endif // BINARYTREE_H

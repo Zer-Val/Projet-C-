@@ -1,7 +1,7 @@
 // EuropeanVanillaOption.cpp
 #include "EuropeanVanillaOption.h"
 
-// Constructeur qui initialise _expiry et _strike
+// Constructor initializing _expiry and _strike
 EuropeanVanillaOption::EuropeanVanillaOption(double expiry, double strike)
     : Option(expiry), _strike(strike) {
     if (expiry < 0 || strike < 0) {
@@ -9,7 +9,7 @@ EuropeanVanillaOption::EuropeanVanillaOption(double expiry, double strike)
     }
 }
 
-// Méthode getter pour _strike
+// Get method for _strike
 double EuropeanVanillaOption::getStrike() const {
     return _strike;
 }

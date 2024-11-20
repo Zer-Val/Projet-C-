@@ -1,12 +1,12 @@
 #include "PutOption.h"
 
-//Implémentation de payoff pour une Put
+//Payoff implementation for a put
 double PutOption::payoff(double z) const
 {
-	return (getStrike() >= z) ? (getStrike() - z) : 0.0; // ? est un opérateur ternaire, je m'en sers pour écrire des conditions if-else en une seule ligne ici (getStrike() >= z) ? (getStrike() - z) : 0.0 <=> if (getStrike() >= z) { return getStrike() - z; } else { return 0.0; }
+	return (getStrike() >= z) ? (getStrike() - z) : 0.0; // ? is a ternary operator, I use it to write if-else conditions in a single line here (getStrike() >= z) ? (getStrike() - z) : 0.0 <=> if (getStrike() >= z) { return getStrike() - z; } else { return 0.0; }
 }
 
-//Implémentation de GetOptionType pour une Put
+//Implementation of GetOptionType for a Put
 EuropeanVanillaOption::optionType PutOption::GetOptionType() const
 {
 	return optionType::put;

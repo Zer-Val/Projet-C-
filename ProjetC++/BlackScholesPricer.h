@@ -8,17 +8,17 @@
 class BlackScholesPricer {
 public:
 
-    BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility); //Constructeur de la classe BSP
-    double operator()() const; //Opérateur () pour calculer le prix de l'option
-    double delta() const; //Méthode pour calculer le delta de l'option
+    BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility); //BSP class Cosntructor
+    double operator()() const; //Operator () to return the option price 
+    double delta() const; //Method for returning option delta
 
 private:
-    EuropeanVanillaOption* option_; //Pointeur vers l'option qu'on veut pricer
-    double asset_price_; //Prix de l'actif sous-jacent (S)
-    double interest_rate_; //Taux d'intérêt (r)
-    double volatility_;  //Volatilité (vol)
+    EuropeanVanillaOption* option_; //Pointer to the option to be priced
+    double asset_price_; //Price of underlying asset (S)
+    double interest_rate_; //Interest rate (r)
+    double volatility_;  //Volatility (vol)
 
-    double normal_cdf(double x) const; //Méthode pour calculer la fonction de répartition cumulative de la loi normale
+    double normal_cdf(double x) const; //Method for calculating the cumulative distribution function of the normal distribution
 };
 
 #endif //BLACKSCHOLESPRICER_H

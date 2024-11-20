@@ -7,13 +7,13 @@
 class CallOption : public EuropeanVanillaOption
 {
 public:
-    //Constructeur, utilise le celui de EVO
+    //Cosntructor using EVO's
     CallOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
 
-    //Implémentation de payoff pour une Call
+    //Payoff implementation for a Call
     double payoff(double z) const override;
 
-    //Implémentation de GetOptionType pour une Call
+    //Implementation of GetOptionType for a Call
     optionType GetOptionType() const override;
 };
 

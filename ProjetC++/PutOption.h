@@ -7,13 +7,13 @@
 class PutOption : public EuropeanVanillaOption
 {
 public:
-    //Constructeur qui utilise celui d'EVO
+    //Constructor using EVO's
     PutOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
 
-    //Implémentation de payoff pour une Put
+    //Payoff implementation for a Put
     double payoff(double z) const override;
 
-    //Implémentation de GetOptionType pour une Put
+    //Implementation of GetOptionType for a Put
     optionType GetOptionType() const override;
 };
 
