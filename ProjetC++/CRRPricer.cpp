@@ -1,58 +1,74 @@
 #include "CRRPricer.h"
-#include <cmath>
+#include <stdexcept> // For invalid_argument exception handling
 
+// Constructor to initialize the CRR model parameters and set up the price and value trees
 CRRPricer::CRRPricer(Option* option, int depth, double asset_price, double up, double down, double interest_rate)
-    : option(option), N(depth), S0(asset_price), U(up), D(down), R(interest_rate), q((1 + R - D) / (U - D)) {
-    if (U <= D || R <= -1) {
-        throw std::invalid_argument("Arbitrage condition violated.");
-    }
-    if (option->isAsianOption()) {
-        throw std::invalid_argument("Asian options are not supported by this CRRPricer.");
-    }
-    tree.setDepth(N + 1); // Initialiser la profondeur de l'arbre
+    : _option(option), _depth(depth), _asset_price(asset_price), _up(up), _down(down), _interest_rate(interest_rate), _computed(false) {
+    check_arbitrage(); // Verify no arbitrage conditions
+    _q = (1 + _interest_rate - _down) / (_up - _down); // Calculate risk-neutral probability
+    _price_tree.setDepth(_depth); // Initialize price tree
+    _value_tree.setDepth(_depth); // Initialize value tree
+    _price_tree.setNode(0, 0, _asset_price); // Set initial asset price
 }
 
-void CRRPricer::compute() {
-    for (int i = 0; i <= N; ++i) {
-        tree.setNode(N, i, option->payoff(S0 * std::pow(U, i) * std::pow(D, N - i)));
-    }
-    for (int n = N - 1; n >= 0; --n) {
-        for (int i = 0; i <= n; ++i) {
-            double value = (q * tree.getNode(n + 1, i + 1) + (1 - q) * tree.getNode(n + 1, i)) / (1 + R);
-            tree.setNode(n, i, value);
-        }
-    }
-}
-
-double CRRPricer::get(int n, int i) const {
-    if (n < 0 || n > N || i < 0 || i > n) {
-        throw std::out_of_range("Invalid indices.");
-    }
-    return tree.getNode(n, i);
-}
-
+// Calculate option price using either closed-form or tree-based method
 double CRRPricer::operator()(bool closed_form) {
     if (closed_form) {
-        return closedForm();
-    }
-    else {
-        compute();
-        return tree.getNode(0, 0);
+        return closed_form_formula(); // Use closed-form formula
+    } else {
+        if (!_computed) compute(); // Compute tree values if not already done
+        return _value_tree.getNode(0, 0); // Return price at root of value tree
     }
 }
 
-double CRRPricer::closedForm() const {
+// Check for arbitrage conditions in model parameters
+void CRRPricer::check_arbitrage() {
+    if (_down >= 1 + _interest_rate || _up <= 1 + _interest_rate) {
+        throw std::invalid_argument("Arbitrage opportunity detected.");
+    }
+}
+
+// Compute the price and value trees
+void CRRPricer::compute() {
+    if (_computed) return;
+
+    // Build the price tree
+    for (int n = 1; n <= _depth; ++n) {
+        for (int i = 0; i <= n; ++i) {
+            double price = _price_tree.getNode(n - 1, i) * _up;
+            if (i > 0) price = _price_tree.getNode(n - 1, i - 1) * _down;
+            _price_tree.setNode(n, i, price);
+        }
+    }
+
+    // Populate the value tree at maturity
+    for (int i = 0; i <= _depth; ++i) {
+        _value_tree.setNode(_depth, i, _option->payoff(_price_tree.getNode(_depth, i)));
+    }
+
+    // Backpropagate values to earlier nodes
+    for (int n = _depth - 1; n >= 0; --n) {
+        for (int i = 0; i <= n; ++i) {
+            double continuation_value = (_q * _value_tree.getNode(n + 1, i) +
+                                         (1 - _q) * _value_tree.getNode(n + 1, i + 1)) / (1 + _interest_rate);
+            _value_tree.setNode(n, i, continuation_value);
+        }
+    }
+
+    _computed = true;
+}
+
+// Get the value of a specific node in the value tree
+double CRRPricer::get(int n, int i) const {
+    return _value_tree.getNode(n, i);
+}
+
+// Calculate option price using closed-form formula
+double CRRPricer::closed_form_formula() const {
     double result = 0.0;
-    for (int i = 0; i <= N; ++i) {
-        result += binomialCoefficient(N, i) * std::pow(q, i) * std::pow(1 - q, N - i) * option->payoff(S0 * std::pow(U, i) * std::pow(D, N - i));
+    for (int i = 0; i <= _depth; ++i) {
+        double probability = std::pow(_q, i) * std::pow(1 - _q, _depth - i); // Probability of ending at node i
+        result += probability * _option->payoff(_price_tree.getNode(_depth, i)); // Weighted payoff
     }
-    return result / std::pow(1 + R, N);
-}
-
-double CRRPricer::binomialCoefficient(int n, int k) {
-    double result = 1.0;
-    for (int i = 1; i <= k; ++i) {
-        result *= (n - i + 1) / static_cast<double>(i);
-    }
-    return result;
+    return result / std::pow(1 + _interest_rate, _depth); // Discount to present value
 }
