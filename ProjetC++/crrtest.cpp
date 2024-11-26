@@ -35,4 +35,4 @@ int main() {
     std::cout << "Option Price (Closed-form method): " << closed_form_price << std::endl;
 
     return 0;
-    }
+}
