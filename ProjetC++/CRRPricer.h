@@ -1,5 +1,5 @@
 #pragma once
-#include "Options.h"
+#include "Option.h"
 #include "BinaryTree.h"
 #include <stdexcept>
 #include <cmath>
