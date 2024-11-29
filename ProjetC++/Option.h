@@ -1,28 +1,28 @@
 #pragma once
 #include <vector>
 
-#ifndef OPTION_H
-#define OPTION_H
+class Option 
+{
+    public:
+        // Constructor that initialize _expiry
+        Option(double expiry);
 
-class Option {
-public:
-    //Constructeur qui initialise _expiry
-    Option(double expiry);
+	    // Getter method for _expiry
+        double getExpiry() const;
 
-    //Méthode getter pour _expiry
-    double getExpiry() const;
+	    // Virtual method to calculate the payoff of the option
+        virtual double payoff(double underlyingPrice) const = 0;
 
-    //Méthode virtuelle pure pour le calcul du payoff
-    virtual double payoff(double underlyingPrice) const = 0;
+	    // Virtual method to calculate the payoff of the option with a path of prices (Asian Options)
+        virtual double payoffPath(const std::vector<double>& prices) const;
 
-    //Méthode virtuelle pure pour le calcul du payoff d'un chemin (pour les options asiatiques)
-    virtual double payoffPath(const std::vector<double>& prices) const;
+	    // Virtual method to check if the option is an Asian Option
+        virtual bool isAsianOption() const;
 
-    // Méthode virtuelle pour vérifier si c'est une option asiatique
-    virtual bool isAsianOption() const;
+	    // Virtual method to check if the option is an American Option
+        virtual bool isAmericanOption() const;
 
-private:
-    double _expiry; //Membre privé pour la date d'expiration
+    private:
+	    double _expiry; //Private attribute that stores the expiry of the option
 };
 
-#endif //OPTION_H
