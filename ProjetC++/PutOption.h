@@ -1,20 +1,15 @@
 #pragma once
 #include "EuropeanVanillaOption.h"
 
-#ifndef PUTOPTION_H
-#define PUTOPTION_H
-
 class PutOption : public EuropeanVanillaOption
 {
-public:
-    //Constructeur qui utilise celui d'EVO
-    PutOption(double expiry, double strike) : EuropeanVanillaOption(expiry, strike) {}
+    public:
+        //Constructor for PutOption, uses the one from EuropeanVanillaOption
+        PutOption(double _expiry, double _strike) : EuropeanVanillaOption(_expiry, _strike) {}
 
-    //Implémentation de payoff pour une Put
-    double payoff(double z) const override;
+        //Payoff method for an European Vanilla Put option
+        double payoff(double z) const override;
 
-    //Implémentation de GetOptionType pour une Put
-    optionType GetOptionType() const override;
+        //GetOptionType method for an European Vanilla Put option
+        optionType GetOptionType() const override;
 };
-
-#endif //PUTOPTION_H
