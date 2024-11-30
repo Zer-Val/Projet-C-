@@ -3,24 +3,19 @@
 #include "EuropeanVanillaOption.h"
 #include "EuropeanDigitalOption.h"
 
-#ifndef BLACKSCHOLESPRICER_H
-#define BLACKSCHOLESPRICER_H
+class BlackScholesPricer 
+{
+	public:
 
-class BlackScholesPricer {
-public:
+		BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility); //Constructor of the BSP class for a European Vanilla Option
+		BlackScholesPricer(EuropeanDigitalOption* option, double asset_price, double interest_rate, double volatility); //Constructor of the BSP class for a European Digital Option
+		double operator()() const; //Operator () to price the option
+		double delta() const; //Method to compute the delta of the option
 
-	BlackScholesPricer(EuropeanVanillaOption* option, double asset_price, double interest_rate, double volatility); //Constructeur de la classe BSP pour une option Vanille Européenne
-    BlackScholesPricer(EuropeanDigitalOption* option, double asset_price, double interest_rate, double volatility); //Constructeur de la classe BSP pour une option Digitale Européenne
-    double operator()() const; //Opérateur () pour calculer le prix de l'option
-    double delta() const; //Méthode pour calculer le delta de l'option
-
-private:
-    EuropeanVanillaOption* vanilla_option_; // Pointeur vers l'option vanille qu'on veut pricer
-    EuropeanDigitalOption* digital_option_; // Pointeur vers l'option digitale qu'on veut pricer
-    double asset_price_; // Prix de l'actif sous-jacent (S)
-    double interest_rate_; // Taux d'intérêt (r)
-    double volatility_; // Volatilité (vol)
-
+	private:
+		EuropeanVanillaOption* vanilla_option_; // Pointer to the vanilla option we want to price
+		EuropeanDigitalOption* digital_option_; // Pointer to the digital option we want to price
+		double _asset_price; // Underlying asset price (S)
+		double _interest_rate; // Risk-free interest rate (r)
+		double _volatility; // Volatility (vol)
 };
-
-#endif //BLACKSCHOLESPRICER_H

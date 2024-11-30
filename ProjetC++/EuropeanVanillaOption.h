@@ -3,29 +3,33 @@
 #include "Option.h"
 #include <iostream>
 
-class BlackScholesPricer; //Déclaration anticipée de la classe BSP
+class BlackScholesPricer; // Forward declaration of the BlackScholesPricer class
 
-class EuropeanVanillaOption : public Option {
-public:
-    //Enum pour le type d'option
-    enum class optionType { call, put };
+class EuropeanVanillaOption : public Option 
+{
+    public:
+        // Enum for the option type
+        enum class optionType { call, put };
 
-    //Constructeur qui initialise _expiry et _strike
-    EuropeanVanillaOption(double expiry, double strike);
+        //Constructor that initialize _strike
+        EuropeanVanillaOption(double expiry, double strike);
 
-    //Méthode getter pour _strike
-    double getStrike() const;
+        // Getter method for _strike
+        double getStrike() const;
 
-    //Méthode virtuelle pure pour obtenir le type d'option 
-    virtual optionType GetOptionType() const = 0;
+        // Pure virtual method to get the option type
+        virtual optionType GetOptionType() const = 0;
 
-	//On déclare BSP comme classe amie de EVO pour pouvoir accéder à _strike dans BSP
-    friend class BlackScholesPricer;
+        // I declare BSP as a friend class of EVO to be able to access _strike in BSP
+        friend class BlackScholesPricer;
 
-	//Override de isAsianOption pour retourner false pour EVO - (Probleme de compilation si on ne le fait pas)
-    bool isAsianOption() const override;
+	    // Override of isAsianOption to return false for EVO - (Compilation issue if not)
+        bool isAsianOption() const override;
 
-private:
-    double _strike; //Membre privé pour le prix d'exercice
+		// Override of isAmericanOption to return false for EVO
+		bool isAmericanOption() const override;
+
+    private:
+        double _strike; // Private member variable for the strike price
 };
 
