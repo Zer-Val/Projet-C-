@@ -1,11 +1,16 @@
 #include "EuropeanDigitalPutOption.h"
 
-// Implémentation de la méthode payoff pour une option digitale put
-double EuropeanDigitalPutOption::payoff(double z) const {
+//Implementation of the constructor for the EuropeanDigitalPutOption class
+EuropeanDigitalPutOption::EuropeanDigitalPutOption(double expiry, double strike) : EuropeanDigitalOption(expiry, strike) {}
+
+// Implementation of the payoff method for a digitalPput option
+double EuropeanDigitalPutOption::payoff(double z) const 
+{
     return z <= getStrike() ? 1.0 : 0.0;
 }
 
-//Implémentation de GetOptionType pour une Put
-EuropeanDigitalOption::optionType EuropeanDigitalPutOption::GetOptionType() const {
+// Implementation of the GetOptionType method for a Put
+EuropeanDigitalOption::optionType EuropeanDigitalPutOption::GetOptionType() const 
+{
 	return optionType::put;
 }
