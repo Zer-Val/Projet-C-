@@ -1,6 +1,6 @@
 #include "EuropeanDigitalOption.h"
 
-// Constructeur qui initialise _expiry et _strike
+//Constructor that initialize _strike
 EuropeanDigitalOption::EuropeanDigitalOption(double K, double expiry) : Option(expiry), strike(K) 
 {
     if (expiry < 0 || strike < 0) 
@@ -9,13 +9,12 @@ EuropeanDigitalOption::EuropeanDigitalOption(double K, double expiry) : Option(e
     }
 }
 
-// Méthode getter pour _strike
-double EuropeanDigitalOption::getStrike() const 
+// Getter method for _strikedouble EuropeanDigitalOption::getStrike() const 
 {
     return _strike;
 }
 
-//Override de isAsianOption pour retourner false pour EVDO - (Probleme de compilation si on ne le fait pas)
+// Override of isAsianOption to return false for EVDO - (Compilation issue if not)
 bool EuropeanDigitalOption::isAsianOption() const 
 {
 	return false;
