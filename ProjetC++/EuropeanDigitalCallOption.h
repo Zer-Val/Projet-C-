@@ -2,14 +2,15 @@
 
 #include "EuropeanDigitalOption.h"
 
-class EuropeanDigitalCallOption : public EuropeanDigitalOption {
-public:
-	// Constructeur de la classe EuropeanDigitalCallOption
-	EuropeanDigitalCallOption(double K, double expiry) : EuropeanDigitalOption(K, expiry) {}
+class EuropeanDigitalCallOption : public EuropeanDigitalOption 
+{
+	public:
+		// Constructor for the EuropeanDigitalCallOption class
+		EuropeanDigitalCallOption(double expiry, double strike);
 
-	// Implémentation de la méthode payoff pour une option digitale call
-    double payoff(double z) const override;
+		// Payoff method for a digital Call option
+		double payoff(double z) const override;
 
-	//Implémentation de GetOptionType pour une Call
-	optionType GetOptionType() const override;
+		// GetOptionType method for a Call option
+		optionType GetOptionType() const override;
 };

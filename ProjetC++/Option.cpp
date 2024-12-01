@@ -1,21 +1,29 @@
 #include "Option.h"
 #include <iostream>
 
-// Constructeur qui initialise _expiry
+// Implementation of the constructor that initialize _expiry
 Option::Option(double expiry) : _expiry(expiry) {}
 
-// Méthode getter pour _expiry
-double Option::getExpiry() const {
+// Implementation of the getter method for _expiry
+double Option::getExpiry() const 
+{
     return _expiry;
 }
 
-// Implémentation de la méthode payoffPath qui retourne la valeur de la méthode payoff avec le dernier élément du vecteur prices par défaut
-double Option::payoffPath(const std::vector<double>& prices) const {
-    // Appel de la méthode payoff(double) avec le dernier élément du vecteur
-    return payoff(prices.back());
+// Implementation of the method payoffPath that calls the method payoff(double) with the last element of the vector
+double Option::payoffPath(const std::vector<double>& prices) const 
+{
+	return payoff(prices.back()); // Call the payoff method with the last element of the vector
 }
 
-// Implémentation de la méthode isAsianOption qui retourne false par défaut
-bool Option::isAsianOption() const {
+// Implementation of the virtual method to check if the option is an Asian Option
+bool Option::isAsianOption() const 
+{
     return false;
+}
+
+// Implementation of the virtual method to check if the option is an American Option
+bool Option::isAmericanOption() const 
+{
+	return false;
 }

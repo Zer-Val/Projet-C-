@@ -1,19 +1,15 @@
 #pragma once
 #include "AsianOption.h"
 
-#ifndef ASIANPUTOPTION_H
-#define ASIANPUTOPTION_H
+class AsianPutOption : public AsianOption 
+{
+    public:
+	    // Constructor that initializes _strike
+        AsianPutOption(const std::vector<double>& timeSteps, double strike);
 
-class AsianPutOption : public AsianOption {
-public:
-    // Constructeur qui initialise _timeSteps et _strikePrice
-    AsianPutOption(const std::vector<double>& timeSteps, double strike);
+        // Implementation of the payoff method for the Put option
+        double payoff(double underlyingPrice) const override;
 
-    // Implémentation de la méthode payoff
-    double payoff(double underlyingPrice) const override;
-
-private:
-    double _strike; // Membre privé pour le prix d'exercice
+    private:
+        double _strike; //Private member to store the strike price of the option
 };
-
-#endif // ASIANPUTOPTION_H

@@ -1,12 +1,17 @@
 #include "EuropeanDigitalCallOption.h"
 
-// Implémentation de la méthode payoff pour une option digitale call
-double EuropeanDigitalCallOption::payoff(double z) const {
-    return z >= getStrike() ? 1.0 : 0.0;
+//Implementation of the constructor for the EuropeanDigitalCallOption class
+EuropeanDigitalCallOption::EuropeanDigitalCallOption(double expiry, double strike) : EuropeanDigitalOption(expiry, strike) {}
+
+// Implementation of the payoff method for a digital Call option
+double EuropeanDigitalCallOption::payoff(double z) const 
+{
+    return z >= getStrike() ? 1.0 : 0.0; 
 }
 
-//Implémentation de GetOptionType pour une Call
-EuropeanDigitalOption::optionType EuropeanDigitalCallOption::GetOptionType() const {
+// Implementation of the GetOptionType method for a Call option
+EuropeanDigitalOption::optionType EuropeanDigitalCallOption::GetOptionType() const 
+{
 	return optionType::call;
 }
 

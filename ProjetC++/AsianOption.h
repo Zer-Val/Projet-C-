@@ -2,25 +2,21 @@
 #include "Option.h"
 #include <vector>
 
-#ifndef ASIANOPTION_H
-#define ASIANOPTION_H
+class AsianOption : public Option 
+{
+    public:
+        // Constructor that initialize _timeSteps
+        AsianOption(const std::vector<double>& timeSteps);
 
-class AsianOption : public Option {
-public:
-    // Constructeur qui initialise _expiry et _timeSteps
-    AsianOption(const std::vector<double>& timeSteps);
+        // Getter method for _timeSteps
+        const std::vector<double>& getTimeSteps() const;
 
-    // Getter pour _timeSteps
-    const std::vector<double>& getTimeSteps() const;
+        // Override of the payoffPath method
+        double payoffPath(const std::vector<double>& prices) const override;
 
-    // Override de la méthode payoffPath
-    double payoffPath(const std::vector<double>& prices) const override;
+        // Override of the isAsianOption method
+        bool isAsianOption() const override;
 
-    // Override de la méthode isAsianOption
-    bool isAsianOption() const override;
-
-private:
-    std::vector<double> _timeSteps; // Membre privé pour les étapes de temps
+    private:
+	    std::vector<double> _timeSteps; // Private member variable that stores the time steps
 };
-
-#endif // ASIANOPTION_H

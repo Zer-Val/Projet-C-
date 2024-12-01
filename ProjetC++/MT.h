@@ -2,24 +2,25 @@
 
 #include <random>
 
-class MT {
-public:
-    // Méthode pour obtenir une instance unique de MT
-    static MT& getInstance();
+class MT 
+{
+	public:
+		// Method to get the unique instance of the class
+		static MT& getInstance();
 
-    // Méthode pour générer un nombre aléatoire uniforme entre 0 et 1
-    static double rand_unif();
+		// Method to generate a random number between 0 and 1
+		static double rand_unif();
 
-    // Méthode pour générer un nombre aléatoire normal avec une moyenne de 0 et un écart-type de 1
-    static double rand_norm();
+		// Method to generate a random number following a normal distribution
+		static double rand_norm();
 
-private:
-    // Constructeur privé pour empêcher la création d'instances en dehors de la classe
-    MT();
+	private:
+		// Private constructor to prevent instanciation
+		MT();
 
-    // Suppression des constructeurs de copie et d'affectation
-    MT(const MT&) = delete;
-    MT& operator=(const MT&) = delete;
+		// Deleted copy constructor and assignment operator to prevent copies
+		MT(const MT&) = delete;
+		MT& operator=(const MT&) = delete;
 
-    std::mt19937 mt; // Générateur de nombres aléatoires
+		std::mt19937 mt; // Pseudo-random number generator
 };
