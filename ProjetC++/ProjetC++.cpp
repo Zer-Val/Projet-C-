@@ -53,11 +53,11 @@ void testBSPriceAndDeltaEuropeanVanillaCallOption()
 	std::cout << "| Price and Delta of an European Vanilla Call option |" << std::endl;
     std::cout << " ----------------------------------------------------" << std::endl;
     // Paramètres de l'option
-    double T = 1.0;    // Maturity : 1 year
-    double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
-    double r = 0.05;   // Risk-free interest rate of 5%
-    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+    double T = 5.0;    // Maturity : 1 year
+    double K = 101.0;  // Strike price of 100 $
+    double S0 = 100.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double r = 0.01;   // Risk-free interest rate of 5%
+    double vol = 0.1;  // Volatility : 20% (volatility of the underlying asset)
 
     CallOption* callOption = new CallOption(T, K);
     BlackScholesPricer pricer(callOption, S0, r, vol);
@@ -75,11 +75,11 @@ void testBSPriceAndDeltaEuropeanVanillaPutOption()
 	std::cout << "| Price and Delta of an European Vanilla Put option |" << std::endl;
     std::cout << " ---------------------------------------------------" << std::endl;
     // Paramètres de l'option
-    double T = 1.0;    // Maturity : 1 year
-    double K = 100.0;  // Strike price of 100 $
-    double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
-    double r = 0.05;   // Risk-free interest rate of 5%
-    double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+    double T = 5.0;    // Maturity : 1 year
+    double K = 101.0;  // Strike price of 100 $
+    double S0 = 100.0; // Spot price of 105 $ (Current price of the underlying asset)
+    double r = 0.01;   // Risk-free interest rate of 5%
+    double vol = 0.1;  // Volatility : 20% (volatility of the underlying asset)
 
     PutOption* putOption = new PutOption(T, K); // Create a Put option
     BlackScholesPricer pricer(putOption, S0, r, vol); // Create the Black-Scholes pricer
@@ -223,15 +223,17 @@ void testPriceAndDeltaEuropeanDigitalCallOption()
 	std::cout << " ----------------------------------------------------" << std::endl;
 
 	// Paramètres de l'option
-	double T = 1.0;    // Maturity : 1 year
-	double K = 100.0;  // Strike price of 100 $
-	double S0 = 105.0; // Spot price of 105 $ (Current price of the underlying asset)
-	double r = 0.05;   // Risk-free interest rate of 5%
-	double vol = 0.2;  // Volatility : 20% (volatility of the underlying asset)
+    double T = 5.0;    // Maturity : 5 year
+    double K = 101.0;  // Strike price of 101 $
+    double S0 = 100.0; // Spot price of 100 $ (Current price of the underlying asset)
+    double r = 0.01;   // Risk-free interest rate of 1%
+    double vol = 0.1;  // Volatility : 10% (volatility of the underlying asset)
 
-	EuropeanDigitalOption* callOption = new EuropeanDigitalCallOption(K, T);
+	EuropeanDigitalOption* callOption = new EuropeanDigitalCallOption(T, K);
 	BlackScholesPricer pricer(callOption, S0, r, vol);
+
 	double optionPrice = pricer();
+
 	std::cout << "Prix de l'option Call digitale: " << optionPrice << std::endl;
 	double optionDelta = pricer.delta();
 	std::cout << "Delta de l'option Call digitale: " << optionDelta << std::endl;
@@ -246,13 +248,13 @@ void testPriceAndDeltaEuropeanDigitalPutOption()
     std::cout << " ---------------------------------------------------" << std::endl;
 
 	// Paramètres de l'option
-	double T = 5.0;    // Maturity : 1 year
-	double K = 101.0;  // Strike price of 100 $
-	double S0 = 100.0; // Spot price of 95 $ (Current price of the underlying asset)
-	double r = 0.01;   // Risk-free interest rate of 5%
-	double vol = 0.1;  // Volatility : 20% (volatility of the underlying asset)
+    double T = 5.0;    // Maturity : 5 year
+    double K = 101.0;  // Strike price of 101 $
+    double S0 = 100.0; // Spot price of 100 $ (Current price of the underlying asset)
+    double r = 0.01;   // Risk-free interest rate of 1%
+    double vol = 0.1;  // Volatility : 10% (volatility of the underlying asset)
 
-	EuropeanDigitalOption* putOption = new EuropeanDigitalPutOption(K, T);
+	EuropeanDigitalOption* putOption = new EuropeanDigitalPutOption(T, K);
 	BlackScholesPricer pricer(putOption, S0, r, vol);
 	double optionPrice = pricer();
 	std::cout << "Prix de l'option Put digitale: " << optionPrice << std::endl;
@@ -345,11 +347,11 @@ void testCRRPricerEuropeanDigitalCallOption()
 
 }
 
-void testCRRPricerEuropeanDigiralPutOption()
+void testCRRPricerEuropeanDigitalPutOption()
 {
-    std::cout << " --------------------------------------------------------------" << std::endl;
-    std::cout << "| Price of an European Digital Call Option with the CRR Pricer |" << std::endl;
-    std::cout << " --------------------------------------------------------------" << std::endl;
+    std::cout << " -------------------------------------------------------------" << std::endl;
+    std::cout << "| Price of an European Digital Put Option with the CRR Pricer |" << std::endl;
+    std::cout << " -------------------------------------------------------------" << std::endl;
 
     double expiry = 5.0;
     double strike = 101.0;
@@ -374,20 +376,20 @@ void testCRRPricerEuropeanDigiralPutOption()
 
 void testCRRPricerAmericanCallOption()
 {
-	std::cout << " --------------------------------------------------------------" << std::endl;
+	std::cout << " ------------------------------------------------------" << std::endl;
 	std::cout << "| Price of an American Call Option with the CRR Pricer |" << std::endl;
-	std::cout << " --------------------------------------------------------------" << std::endl;
+	std::cout << " ------------------------------------------------------" << std::endl;
 
-	double expiry = 5.0;
-	double strike = 101.0;
-	int depth = 5;
-	double asset_price = 100.0;
-	double up = 0.05;
-	double down = -0.045;
-	double interest_rate = 0.01;
+    double expiry = 5.0;
+    double strike = 101.0;
+    int depth = 5;
+    double asset_price = 100.0;
+    double up = 0.05;
+    double down = -0.045;
+    double interest_rate = 0.01;
 
-	AmericanCallOption AmericanCallOption(expiry, strike);
-	CRRPricer pricer(&AmericanCallOption, depth, asset_price, up, down, interest_rate);
+	AmericanCallOption americanCallOption(expiry, strike);
+	CRRPricer pricer(&americanCallOption, depth, asset_price, up, down, interest_rate);
 
 	// Calculate price using the CRR method
 	double price = pricer();
@@ -400,6 +402,33 @@ void testCRRPricerAmericanCallOption()
 
 }
 
+void testCRRPricerAmericanPutOption()
+{
+    std::cout << " -----------------------------------------------------" << std::endl;
+    std::cout << "| Price of an American Put Option with the CRR Pricer |" << std::endl;
+    std::cout << " -----------------------------------------------------" << std::endl;
+
+    double expiry = 5.0;
+    double strike = 99;
+    int depth = 5;
+    double asset_price = 100.0;
+    double up = 0.05;
+    double down = -0.045;
+    double interest_rate = 0.01;
+
+    AmericanPutOption americanPutOption(expiry, strike);
+    CRRPricer pricer(&americanPutOption, depth, asset_price, up, down, interest_rate);
+
+    // Calculate price using the CRR method
+    double price = pricer();
+    std::cout << "Option Price (CRR method): " << price << std::endl;
+
+    // Calculate price using closed-form formula
+    double closed_form_price = pricer(true);
+    std::cout << "Option Price (Closed-form method): " << closed_form_price << std::endl;
+    std::cout << std::endl;
+}
+
 
 
 
@@ -410,8 +439,8 @@ void testBSMCPricerEuropeanVanillaCallOption()
     std::cout << " ---------------------------------------------------------------------------------" << std::endl;
 
 	double expiry = 5.0;
-	double strike = 100.0;
-	double asset_price = 101.0;
+	double strike = 101.0;
+	double asset_price = 100.0;
 	double interest_rate = 0.01;
 	double volatility = 0.1;
 	int nb_paths = 1000000;
@@ -434,12 +463,12 @@ void testBSMCPricerEuropeanVanillaPutOption()
     std::cout << "| Price with Black-Scholes Monte-Carlo pricer for an European Vanilla Put Option |" << std::endl;
     std::cout << " --------------------------------------------------------------------------------" << std::endl;
     
-    double expiry = 1.0;
-	double strike = 100.0;
-	double asset_price = 105.0;
-	double interest_rate = 0.05;
-	double volatility = 0.2;
-	int nb_paths = 100000000;
+    double expiry = 5.0;
+	double strike = 101.0;
+	double asset_price = 100.0;
+	double interest_rate = 0.01;
+	double volatility = 0.1;
+	int nb_paths = 1000000;
 
 	PutOption putOption(expiry, strike);
 	BlackScholesMCPricer pricer(&putOption, asset_price, interest_rate, volatility);
@@ -453,217 +482,296 @@ void testBSMCPricerEuropeanVanillaPutOption()
 	std::cout << std::endl;
 }
 
+void testBSMCPricerEuropeanDigitalCallOption()
+{
+    std::cout << " ---------------------------------------------------------------------------------" << std::endl;
+    std::cout << "| Price with Black-Scholes Monte-Carlo pricer for an European Vanilla Call Option |" << std::endl;
+    std::cout << " ---------------------------------------------------------------------------------" << std::endl;
 
-//void test_prof_1()
-//{
-//    {
-//
-//        double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
-//        CallOption opt1(T, K);
-//        PutOption opt2(T, K);
-//
-//
-//        std::cout << "European options 1" << std::endl << std::endl;
-//
-//        {
-//            BlackScholesPricer pricer1(&opt1, S0, r, sigma);
-//            std::cout << "BlackScholesPricer price=" << pricer1() << ", delta=" << pricer1.delta() << std::endl;
-//
-//            BlackScholesPricer pricer2(&opt2, S0, r, sigma);
-//            std::cout << "BlackScholesPricer price=" << pricer2() << ", delta=" << pricer2.delta() << std::endl;
-//            std::cout << std::endl;
-//
-//            int N(150);
-//            double U = exp(sigma * sqrt(T / N)) - 1.0;
-//            double D = exp(-sigma * sqrt(T / N)) - 1.0;
-//            double R = exp(r * T / N) - 1.0;
-//
-//            CRRPricer crr_pricer1(&opt1, N, S0, U, D, R);
-//            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
-//            std::cout << std::endl;
-//            std::cout << "CRR pricer computed price=" << crr_pricer1() << std::endl;
-//            std::cout << "CRR pricer explicit formula price=" << crr_pricer1(true) << std::endl;
-//            std::cout << std::endl;
-//
-//            CRRPricer crr_pricer2(&opt2, N, S0, U, D, R);
-//            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
-//            std::cout << std::endl;
-//            std::cout << "CRR pricer computed price=" << crr_pricer2() << std::endl;
-//            std::cout << "CRR pricer explicit formula price=" << crr_pricer2(true) << std::endl;
-//        }
-//        std::cout << std::endl << "*********************************************************" << std::endl;
-//    }
-//
-//    {
-//        std::cout << "Binary Tree" << std::endl << std::endl;
-//        BinaryTree<bool> t1;
-//        t1.setDepth(3);
-//        t1.setNode(1, 1, true);
-//        t1.display();
-//        t1.setDepth(5);
-//        t1.display();
-//        t1.setDepth(3);
-//        t1.display();
-//
-//
-//        BinaryTree<double> t2;
-//        t2.setDepth(2);
-//        t2.setNode(2, 1, 3.14);
-//        t2.display();
-//        t2.setDepth(4);
-//        t2.display();
-//        t2.setDepth(3);
-//        t2.display();
-//
-//        BinaryTree<int> t3;
-//        t3.setDepth(4);
-//        t3.setNode(3, 0, 8);
-//        t3.display();
-//        t3.setDepth(2);
-//        t3.display();
-//        t3.setDepth(4);
-//        t3.display();
-//
-//        std::cout << std::endl << "*********************************************************" << std::endl;
-//    }
-//
-//    {
-//
-//        double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
-//        EuropeanDigitalCallOption opt1(T, K);
-//        EuropeanDigitalPutOption opt2(T, K);
-//
-//
-//        std::cout << "European options 2" << std::endl << std::endl;
-//
-//        {
-//            BlackScholesPricer pricer1(&opt1, S0, r, sigma);
-//            std::cout << "BlackScholesPricer price=" << pricer1() << ", delta=" << pricer1.delta() << std::endl;
-//
-//            BlackScholesPricer pricer2(&opt2, S0, r, sigma);
-//            std::cout << "BlackScholesPricer price=" << pricer2() << ", delta=" << pricer2.delta() << std::endl;
-//            std::cout << std::endl;
-//
-//            int N(150);
-//            double U = exp(sigma * sqrt(T / N)) - 1.0;
-//            double D = exp(-sigma * sqrt(T / N)) - 1.0;
-//            double R = exp(r * T / N) - 1.0;
-//
-//            CRRPricer crr_pricer1(&opt1, N, S0, U, D, R);
-//            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
-//            std::cout << std::endl;
-//            std::cout << crr_pricer1.get(1, 1);
-//            std::cout << "CRR pricer computed price=" << crr_pricer1() << std::endl;
-//            std::cout << "CRR pricer explicit formula price=" << crr_pricer1(true) << std::endl;
-//            std::cout << std::endl;
-//
-//            CRRPricer crr_pricer2(&opt2, N, S0, U, D, R);
-//            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
-//            std::cout << std::endl;
-//            std::cout << "CRR pricer computed price=" << crr_pricer2() << std::endl;
-//            std::cout << "CRR pricer explicit formula price=" << crr_pricer2(true) << std::endl;
-//        }
-//        std::cout << std::endl << "*********************************************************" << std::endl;
-//    }
-//}
-//
-//void test_prof_2()
-//{
-//    double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
-//    std::vector<Option*> opt_ptrs;
-//    opt_ptrs.push_back(new CallOption(T, K));
-//    opt_ptrs.push_back(new PutOption(T, K));
-//    opt_ptrs.push_back(new EuropeanDigitalCallOption(T, K));
-//    opt_ptrs.push_back(new EuropeanDigitalPutOption(T, K));
-//
-//    std::vector<double> fixing_dates;
-//    for (int i = 1; i <= 5; i++) {
-//        fixing_dates.push_back(0.1 * i);
-//    }
-//    opt_ptrs.push_back(new AsianCallOption(fixing_dates, K));
-//    opt_ptrs.push_back(new AsianPutOption(fixing_dates, K));
-//
-//    std::vector<double> ci;
-//    BlackScholesMCPricer* pricer;
-//
-//    for (auto& opt_ptr : opt_ptrs) {
-//        pricer = new BlackScholesMCPricer(opt_ptr, S0, r, sigma);
-//        do {
-//            pricer->generate(10);
-//            ci = pricer->confidenceInterval();
-//        } while (ci[1] - ci[0] > 1e-2);
-//        std::cout << "nb samples: " << pricer->getNbPaths() << std::endl;
-//        std::cout << "price: " << (*pricer)() << std::endl << std::endl;
-//        delete pricer;
-//        delete opt_ptr;
-//    }
-//}
-//
-//void test_prof_3()
-//{
-//    double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
-//    std::vector<Option*> opt_ptrs;
-//    opt_ptrs.push_back(new CallOption(T, K));
-//    opt_ptrs.push_back(new PutOption(T, K));
-//    opt_ptrs.push_back(new EuropeanDigitalCallOption(T, K));
-//    opt_ptrs.push_back(new EuropeanDigitalPutOption(T, K));
-//    opt_ptrs.push_back(new AmericanCallOption(T, K));
-//    opt_ptrs.push_back(new AmericanPutOption(T, K));
-//
-//    CRRPricer* pricer;
-//
-//    for (auto& opt_ptr : opt_ptrs) {
-//        pricer = new CRRPricer(opt_ptr, 150, S0, r, sigma);
-//
-//        pricer->compute();
-//
-//        std::cout << "price: " << (*pricer)() << std::endl << std::endl;
-//        delete pricer;
-//        delete opt_ptr;
-//
-//    }
-//
-//}
+    double expiry = 5.0;
+    double strike = 101.0;
+    double asset_price = 100.0;
+    double interest_rate = 0.01;
+    double volatility = 0.1;
+    int nb_paths = 1000000;
+
+    EuropeanDigitalCallOption europeanDigitalCallOption(expiry, strike);
+    BlackScholesMCPricer pricer(&europeanDigitalCallOption, asset_price, interest_rate, volatility);
+
+    pricer.generate(nb_paths);
+    double price = pricer();
+    std::cout << "Option Price (MC method): " << price << std::endl;
+
+    std::vector<double> confidence_interval = pricer.confidenceInterval();
+    std::cout << "Confidence interval: [" << confidence_interval[0] << ", " << confidence_interval[1] << "]" << std::endl;
+    std::cout << std::endl;
+}
+
+void testBSMCPricerEuropeanDigitalPutOption()
+{
+    std::cout << " --------------------------------------------------------------------------------" << std::endl;
+    std::cout << "| Price with Black-Scholes Monte-Carlo pricer for an European Vanilla Put Option |" << std::endl;
+    std::cout << " --------------------------------------------------------------------------------" << std::endl;
+
+    double expiry = 5.0;
+    double strike = 101.0;
+    double asset_price = 100.0;
+    double interest_rate = 0.01;
+    double volatility = 0.1;
+    int nb_paths = 1000000;
+
+    EuropeanDigitalPutOption europeanDigitalPutOption(expiry, strike);
+    BlackScholesMCPricer pricer(&europeanDigitalPutOption, asset_price, interest_rate, volatility);
+
+    pricer.generate(nb_paths);
+    double price = pricer();
+    std::cout << "Option Price (MC method): " << price << std::endl;
+
+    std::vector<double> confidence_interval = pricer.confidenceInterval();
+    std::cout << "Confidence interval: [" << confidence_interval[0] << ", " << confidence_interval[1] << "]" << std::endl;
+    std::cout << std::endl;
+}
+
+void testBSMCPricerAsianCallOption()
+{
+	std::cout << " ---------------------------------------------------------------------------------" << std::endl;
+	std::cout << "| Price with Black-Scholes Monte-Carlo pricer for an Asian Call Option |" << std::endl;
+	std::cout << " ---------------------------------------------------------------------------------" << std::endl;
+
+
+	double T = 5.0;
+	double strike = 101.0;
+	double asset_price = 100.0;
+	double interest_rate = 0.01;
+	double volatility = 0.1;
+	int nb_paths = 1000000;
+
+    int m = 50;
+    std::vector<double> time_steps;
+    double deltaT = T / m;
+    for (int i = 1; i <= m; ++i)
+    {
+        time_steps.push_back(i * deltaT);
+    }
+
+
+	AsianCallOption asianCallOption(time_steps, strike);
+	BlackScholesMCPricer pricer(&asianCallOption, asset_price, interest_rate, volatility);
+
+	pricer.generate(nb_paths);
+	double price = pricer();
+	std::cout << "Option Price (MC method): " << price << std::endl;
+
+	std::vector<double> confidence_interval = pricer.confidenceInterval();
+	std::cout << "Confidence interval: [" << confidence_interval[0] << ", " << confidence_interval[1] << "]" << std::endl;
+	std::cout << std::endl;
+
+}
+
+
+
+
+void test_prof_1()
+{
+    {
+
+        double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
+        CallOption opt1(T, K);
+        PutOption opt2(T, K);
+
+
+        std::cout << "European options 1" << std::endl << std::endl;
+
+        {
+            BlackScholesPricer pricer1(&opt1, S0, r, sigma);
+            std::cout << "BlackScholesPricer price=" << pricer1() << ", delta=" << pricer1.delta() << std::endl;
+
+            BlackScholesPricer pricer2(&opt2, S0, r, sigma);
+            std::cout << "BlackScholesPricer price=" << pricer2() << ", delta=" << pricer2.delta() << std::endl;
+            std::cout << std::endl;
+
+            int N(150);
+            double U = exp(sigma * sqrt(T / N)) - 1.0;
+            double D = exp(-sigma * sqrt(T / N)) - 1.0;
+            double R = exp(r * T / N) - 1.0;
+
+            CRRPricer crr_pricer1(&opt1, N, S0, U, D, R);
+            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
+            std::cout << std::endl;
+            std::cout << "CRR pricer computed price=" << crr_pricer1() << std::endl;
+            std::cout << "CRR pricer explicit formula price=" << crr_pricer1(true) << std::endl;
+            std::cout << std::endl;
+
+            CRRPricer crr_pricer2(&opt2, N, S0, U, D, R);
+            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
+            std::cout << std::endl;
+            std::cout << "CRR pricer computed price=" << crr_pricer2() << std::endl;
+            std::cout << "CRR pricer explicit formula price=" << crr_pricer2(true) << std::endl;
+        }
+        std::cout << std::endl << "*********************************************************" << std::endl;
+    }
+
+    {
+        std::cout << "Binary Tree" << std::endl << std::endl;
+        BinaryTree<bool> t1;
+        t1.setDepth(3);
+        t1.setNode(1, 1, true);
+        t1.display();
+        t1.setDepth(5);
+        t1.display();
+        t1.setDepth(3);
+        t1.display();
+
+
+        BinaryTree<double> t2;
+        t2.setDepth(2);
+        t2.setNode(2, 1, 3.14);
+        t2.display();
+        t2.setDepth(4);
+        t2.display();
+        t2.setDepth(3);
+        t2.display();
+
+        BinaryTree<int> t3;
+        t3.setDepth(4);
+        t3.setNode(3, 0, 8);
+        t3.display();
+        t3.setDepth(2);
+        t3.display();
+        t3.setDepth(4);
+        t3.display();
+
+        std::cout << std::endl << "*********************************************************" << std::endl;
+    }
+
+    {
+
+        double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
+        EuropeanDigitalCallOption opt1(T, K);
+        EuropeanDigitalPutOption opt2(T, K);
+
+
+        std::cout << "European options 2" << std::endl << std::endl;
+
+        {
+            BlackScholesPricer pricer1(&opt1, S0, r, sigma);
+            std::cout << "BlackScholesPricer price=" << pricer1() << ", delta=" << pricer1.delta() << std::endl;
+
+            BlackScholesPricer pricer2(&opt2, S0, r, sigma);
+            std::cout << "BlackScholesPricer price=" << pricer2() << ", delta=" << pricer2.delta() << std::endl;
+            std::cout << std::endl;
+
+            int N(150);
+            double U = exp(sigma * sqrt(T / N)) - 1.0;
+            double D = exp(-sigma * sqrt(T / N)) - 1.0;
+            double R = exp(r * T / N) - 1.0;
+
+            CRRPricer crr_pricer1(&opt1, N, S0, U, D, R);
+            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
+            std::cout << std::endl;
+            std::cout << crr_pricer1.get(1, 1);
+            std::cout << "CRR pricer computed price=" << crr_pricer1() << std::endl;
+            std::cout << "CRR pricer explicit formula price=" << crr_pricer1(true) << std::endl;
+            std::cout << std::endl;
+
+            CRRPricer crr_pricer2(&opt2, N, S0, U, D, R);
+            std::cout << "Calling CRR pricer with depth=" << N << std::endl;
+            std::cout << std::endl;
+            std::cout << "CRR pricer computed price=" << crr_pricer2() << std::endl;
+            std::cout << "CRR pricer explicit formula price=" << crr_pricer2(true) << std::endl;
+        }
+        std::cout << std::endl << "*********************************************************" << std::endl;
+    }
+}
+
+void test_prof_2()
+{
+    double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
+    std::vector<Option*> opt_ptrs;
+    opt_ptrs.push_back(new CallOption(T, K));
+    opt_ptrs.push_back(new PutOption(T, K));
+    opt_ptrs.push_back(new EuropeanDigitalCallOption(T, K));
+    opt_ptrs.push_back(new EuropeanDigitalPutOption(T, K));
+
+    std::vector<double> fixing_dates;
+    for (int i = 1; i <= 5; i++) {
+        fixing_dates.push_back(0.1 * i);
+    }
+    opt_ptrs.push_back(new AsianCallOption(fixing_dates, K));
+    opt_ptrs.push_back(new AsianPutOption(fixing_dates, K));
+
+    std::vector<double> ci;
+    BlackScholesMCPricer* pricer;
+
+    for (auto& opt_ptr : opt_ptrs) {
+        pricer = new BlackScholesMCPricer(opt_ptr, S0, r, sigma);
+        do {
+            pricer->generate(10);
+            ci = pricer->confidenceInterval();
+        } while (ci[1] - ci[0] > 1e-2);
+        std::cout << "nb samples: " << pricer->getNbPaths() << std::endl;
+        std::cout << "price: " << (*pricer)() << std::endl << std::endl;
+        delete pricer;
+        delete opt_ptr;
+    }
+}
+
+void test_prof_3()
+{
+    double S0(95.), K(100.), T(0.5), r(0.02), sigma(0.2);
+    std::vector<Option*> opt_ptrs;
+    opt_ptrs.push_back(new CallOption(T, K));
+    opt_ptrs.push_back(new PutOption(T, K));
+    opt_ptrs.push_back(new EuropeanDigitalCallOption(T, K));
+    opt_ptrs.push_back(new EuropeanDigitalPutOption(T, K));
+    opt_ptrs.push_back(new AmericanCallOption(T, K));
+    opt_ptrs.push_back(new AmericanPutOption(T, K));
+
+    CRRPricer* pricer;
+
+    for (auto& opt_ptr : opt_ptrs) {
+        pricer = new CRRPricer(opt_ptr, 150, S0, r, sigma);
+
+        pricer->compute();
+
+        std::cout << "price: " << (*pricer)() << std::endl << std::endl;
+        delete pricer;
+        delete opt_ptr;
+
+    }
+
+}
 
 
 int main() {
 
 	//testPayoffEuropeanVanillaCallOption();
-
 	//testPayoffEuropeanVanillaPutOption();
-
 	//testBSPriceAndDeltaEuropeanVanillaCallOption();
+    //testBSPriceAndDeltaEuropeanVanillaPutOption();
 
- //   testBSPriceAndDeltaEuropeanVanillaPutOption();
+    //testBTDisplay();
 
-     //testBTDisplay();
-
- //   testPayoffEuropeanDigitalCallOption();
-
- //   testPayoffEuropeanDigitalPutOption();
-
-	testPriceAndDeltaEuropeanDigitalCallOption();
-
-	testPriceAndDeltaEuropeanDigitalPutOption();
+    //testPayoffEuropeanDigitalCallOption();
+    //testPayoffEuropeanDigitalPutOption();
+	//testPriceAndDeltaEuropeanDigitalCallOption();
+	//testPriceAndDeltaEuropeanDigitalPutOption();
 
     //testCRRPriceEuropeanVanillaCallOption();
-
 	//testCRRPricerEuropeanVanillaPutOption();
-
 	//testCRRPricerEuropeanDigitalCallOption();
-
-	//testCRRPricerEuropeanDigiralPutOption();
-
-	//testCRRPricerAmericanCallOption(); A REPRENDRE
+	//testCRRPricerEuropeanDigitalPutOption();
+    //testCRRPricerAmericanCallOption();
+    testCRRPricerAmericanPutOption(); //A REPRENDRE
 
 	//testBSMCPricerEuropeanVanillaCallOption();
-
 	//testBSMCPricerEuropeanVanillaPutOption();
+	//testBSMCPricerEuropeanDigitalCallOption();
+    //testBSMCPricerEuropeanDigitalPutOption();
+	//testBSMCPricerAsianCallOption();
 
 	//test_prof_1();
-
 	//test_prof_2();
-
 	//test_prof_3();
 
     return 0;
