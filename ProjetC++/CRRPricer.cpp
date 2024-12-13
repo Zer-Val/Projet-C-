@@ -20,6 +20,10 @@ CRRPricer::CRRPricer(Option* option, int depth, double asset_price, double up, d
 // Constructor that initializes U, D et R
 CRRPricer::CRRPricer(Option* option, int depth, double asset_price, double r, double volatility) : _option(option), _depth(depth), _asset_price(asset_price), _computed(false) 
 {
+	if (_option -> isAsianOption()) 
+	{
+		throw std::invalid_argument("Asian options not supported.");
+	}
 	_up = std::exp((r + (volatility*volatility)/2)*(_option->getExpiry()/_depth)+volatility * std::sqrt(volatility)) - 1; // Calculate up factor
 	_down = std::exp((r + (volatility * volatility) / 2) * (_option->getExpiry() / _depth) - volatility * std::sqrt(volatility)) - 1; // Calculate down factor
 	_interest_rate = std::exp(r*(_option->getExpiry() / _depth)) - 1; // Calculate interest rate
