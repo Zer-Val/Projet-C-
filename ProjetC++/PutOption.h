@@ -5,7 +5,7 @@ class PutOption : public EuropeanVanillaOption
 {
     public:
         //Constructor for PutOption, uses the one from EuropeanVanillaOption
-        PutOption(double _expiry, double _strike) : EuropeanVanillaOption(_expiry, _strike) {}
+        PutOption(double expiry, double strike);
 
         //Payoff method for an European Vanilla Put option
         double payoff(double z) const override;

@@ -3,13 +3,13 @@
 // Implementation of the constructor for AmericanCallOption, uses the one from AmericanOption
 AmericanCallOption::AmericanCallOption(double expiry, double strike) : AmericanOption(expiry, strike) {}
 
-//Implementation of the Payoff method for an European Vanilla Call option
+//Payoff method for an American Call option
 double AmericanCallOption::payoff(double z) const
 {
-
+	return (z >= getStrike()) ? (z - getStrike()) : 0.0;
 }
 
-//Implementation of the GetOptionType method for a Call option
+//GetOptionType method for a(n) (American) Call option
 AmericanCallOption::optionType AmericanCallOption::GetOptionType() const
 {
 	return optionType::call;
