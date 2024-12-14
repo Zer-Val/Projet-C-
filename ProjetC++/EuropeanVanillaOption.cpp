@@ -1,21 +1,10 @@
 #include "EuropeanVanillaOption.h"
 
-//Constructor that initialize _strike
-EuropeanVanillaOption::EuropeanVanillaOption(double expiry, double strike)
-    : Option(expiry), _strike(strike) {
-    if (expiry < 0 || strike < 0) {
-        throw std::invalid_argument("Expiry and strike must be non-negative");
-    }
-}
+//Constructor of EuropeanVanillaOptions, that use the constructor of Option and initialize _strike as a double (K)
+EuropeanVanillaOption::EuropeanVanillaOption(double expiry, double strike) : Option(expiry), _strike(strike) {}
 
-// Getter method for _strike
+// Impklementation of the getter method for _strike
 double EuropeanVanillaOption::getStrike() const 
 {
     return _strike;
-}
-
-// Override of isAsianOption to return false for EVO - (Compilation issue if not)
-bool EuropeanVanillaOption::isAsianOption() const 
-{
-    return false;
 }
