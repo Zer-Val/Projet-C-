@@ -1,7 +1,7 @@
 #include "AsianOption.h"
 
 // Constructor that initialize _timeSteps
-AsianOption::AsianOption(const std::vector<double>& timeSteps) : Option(0.0), _timeSteps(timeSteps) {}
+AsianOption::AsianOption(const std::vector<double>& timeSteps) : Option(timeSteps.back()), _timeSteps(timeSteps) {}
 
 // Getter method for _timeSteps
 const std::vector<double>& AsianOption::getTimeSteps() const
